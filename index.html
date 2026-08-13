@@ -176,6 +176,8 @@ a{color:inherit}
   font-family:'JetBrains Mono',ui-monospace,monospace;font-size:var(--mm);letter-spacing:.14em;
   padding:6px 10px 5px;margin:0;display:flex;gap:8px;align-items:center}
 .slug i{font-style:normal;color:var(--signal)}
+.slug[data-author="1"] .num{display:none}
+.slug[data-author="1"] i{color:var(--paper)}
 
 /* title, his opening line, one verbatim line, the link */
 .caption{min-width:0}
@@ -735,7 +737,9 @@ html.js-on .nojs{display:none}
       <figure class="plate" data-i="7" style="--ox:2.2%;--oy:-2.9%;--or:.34deg"><img src="assets/covers/risk.webp" alt="A collapsed bridge sinking into a calm green river, framed by dark trees." width="1600" height="900" loading="lazy" decoding="async"></figure>
       <figure class="plate" data-i="8" style="--ox:-1.8%;--oy:2.9%;--or:.58deg"><img src="assets/covers/digital.webp" alt="A wall papered with printed and hand drawn Like and dislike buttons and smiley faces." width="1600" height="900" loading="lazy" decoding="async"></figure>
       <figure class="plate" data-i="9" style="--ox:3.1%;--oy:-2.3%;--or:-.48deg"><img src="assets/ali-al-mokdad.webp" alt="Ali Al Mokdad in red glasses and a checked jacket, photographed against a bright yellow perforated wall." width="1500" height="844" loading="lazy" decoding="async"></figure>
-      <p class="slug"><i>small c cut</i> <span id="slug-n">01</span><i>/</i>10</p>
+      <!-- Nine cuts, then the person who noticed them. The tenth is NOT a cut, so it
+           drops the counter rather than claiming to be "small c cut 10 of 10". -->
+      <p class="slug" id="slug"><i id="slug-lab">small c cut</i><span class="num"> <span id="slug-n">01</span></span><i class="num">/</i><span class="num">09</span></p>
     </div>
 
     <div class="caption">
@@ -748,7 +752,8 @@ html.js-on .nojs{display:none}
   </div>
 
   <div class="instr">
-    <button class="step" id="prev" type="button" aria-label="Bring the previous small c cut into register">
+    <!-- deliberately not "the next small c cut": from 09 the next one is the author -->
+    <button class="step" id="prev" type="button" aria-label="Bring the previous into register">
       <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15.4 3.6 7 12l8.4 8.4 2.1-2.1L11.2 12l6.3-6.3z"/></svg>
     </button>
 
@@ -756,14 +761,14 @@ html.js-on .nojs{display:none}
       <span class="baseline"></span>
       <div class="ticks" id="ticks" aria-hidden="true"></div>
       <input class="dial" id="dial" type="range" min="0" max="9" step="1" value="0"
-             aria-label="Bring one small c cut into register. Ten in the set, nine cuts.">
+             aria-label="Bring one into register. Nine small c cuts, then the person who noticed them.">
       <span class="rulefocus"></span>
       <span class="needle" id="needle" style="left:0%">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6.2a8 8 0 100 11.6"/></svg>
       </span>
     </div>
 
-    <button class="step" id="next" type="button" aria-label="Bring the next small c cut into register">
+    <button class="step" id="next" type="button" aria-label="Bring the next into register">
       <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8.6 3.6 6.5 5.7 12.8 12l-6.3 6.3 2.1 2.1L17 12z"/></svg>
     </button>
 
@@ -967,6 +972,7 @@ html.js-on .nojs{display:none}
       capT=d.getElementById('cap-t'), capO=d.getElementById('cap-o'),
       capQ=d.getElementById('cap-q'), capL=d.getElementById('cap-l'),
       slugN=d.getElementById('slug-n'),
+      slug=d.getElementById('slug'), slugLab=d.getElementById('slug-lab'),
       bPrev=d.getElementById('prev'), bNext=d.getElementById('next'),
       N=P.length, cur=-1, prev=-1, moveT=0, demoT=0, touched=false;
 
@@ -1015,6 +1021,7 @@ html.js-on .nojs{display:none}
     /* the opening state: nothing corrected yet, so there is nothing to caption */
     if(cur<0){
       slugN.textContent='--';
+      slugLab.textContent='small c cut'; slug.removeAttribute('data-author');
       needle.style.left='0%';
       d.body.setAttribute('data-plate','none');
       ends();
@@ -1025,7 +1032,10 @@ html.js-on .nojs{display:none}
     capT.textContent=p.t; capO.textContent=p.o; capQ.textContent=p.q;
     capL.href=p.u;
     capL.textContent=(cur===N-1)?'alialmokdad.com':'read the piece';
-    slugN.textContent=pad(cur);
+    /* The tenth is the person who noticed, not a tenth cut, so the slug drops the
+       counter there rather than reading "small c cut 10 of 09". */
+    if(cur===N-1){ slugLab.textContent='the person who noticed'; slug.setAttribute('data-author','1'); }
+    else { slugLab.textContent='small c cut'; slug.removeAttribute('data-author'); slugN.textContent=pad(cur); }
     needle.style.left=(cur/(N-1)*100)+'%';
     ends();
     d.body.setAttribute('data-plate',String(cur));
@@ -1063,6 +1073,9 @@ html.js-on .nojs{display:none}
     try{
       var AC=window.AudioContext||window.webkitAudioContext;
       if(!AC) return;
+      /* A closed context stays truthy, so caching it blindly would silently kill the
+         sound for the rest of the visit. Replace it if the browser has closed it. */
+      if(actx && actx.state==='closed') actx=null;
       actx=actx||new AC();
       if(actx.state==='suspended') actx.resume();
       var t=actx.currentTime, sr=actx.sampleRate;
@@ -1074,6 +1087,15 @@ html.js-on .nojs{display:none}
       var g1=actx.createGain(); g1.gain.setValueAtTime(0.16,t);
       src.connect(bp); bp.connect(g1); g1.connect(actx.destination);
       src.start(t); src.stop(t+0.05);
+      /* Disconnect when the source ends. A source and an oscillator release themselves
+         once stopped, but the filter and the gains stay wired to the destination, so
+         without this every click would leave three more live nodes in the graph. */
+      var drop1=function(){ try{ src.disconnect(); bp.disconnect(); g1.disconnect(); }catch(e){} };
+      src.onended=drop1;
+      /* onended only fires if the context actually advances to the stop time. If it gets
+         suspended first (switching tab mid sound is the ordinary way), the nodes would sit
+         attached. This timer releases them regardless, and disconnect twice is harmless. */
+      setTimeout(drop1,400);
 
       var osc=actx.createOscillator(); osc.type='sine'; osc.frequency.setValueAtTime(190,t);
       osc.frequency.exponentialRampToValueAtTime(90,t+0.045);
@@ -1083,6 +1105,9 @@ html.js-on .nojs{display:none}
       g2.gain.exponentialRampToValueAtTime(0.0001,t+0.05);
       osc.connect(g2); g2.connect(actx.destination);
       osc.start(t); osc.stop(t+0.055);
+      var drop2=function(){ try{ osc.disconnect(); g2.disconnect(); }catch(e){} };
+      osc.onended=drop2;
+      setTimeout(drop2,400);
     }catch(e){}
   }
   capL.addEventListener('click',shutter);
