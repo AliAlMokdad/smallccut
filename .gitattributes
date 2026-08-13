@@ -1,0 +1,7 @@
+* text=auto
+CNAME text eol=lf
+robots.txt text eol=lf
+llms.txt text eol=lf
+*.woff2 binary
+*.webp binary
+*.jpg binary
