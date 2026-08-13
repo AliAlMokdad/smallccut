@@ -1,0 +1,60 @@
+# small c cut
+
+> “Small c” is the term I use for quiet, strategic reductions that unlock real change over time.
+> Ali Al Mokdad
+
+smallccut.org is a single page. It holds nine field photographs taken by Ali Al Mokdad
+in the course of humanitarian and development operations work, and the nine pieces each
+photograph belongs to. Every photograph is a small observed thing that shows what the
+system is actually doing: a lorry whose load towers above its cab, a taxi carrying an air
+conditioning unit on its roof, a wall papered with hand drawn Like buttons.
+
+A small c cut is distinguished from what he calls a Capital C Cut, meaning a loud sweeping
+restructure. His own phrasing for the method: "One precise correction at a time. No
+restructure required. No new committee."
+
+## The nine pieces
+
+01. [Reducing INGO Overhead with Small c Cuts](https://www.linkedin.com/posts/ali-al-mokdad_smallccut-ingotransformation-operationalexcellence-activity-7401927984095330304-5_kT/)
+    topic: overhead
+    line: An office that no longer opens doors is not representation, it is overhead.
+
+02. [Unlock Efficiency at INGO HQ with a ‘Small c’ Cut](https://www.linkedin.com/pulse/unlock-efficiency-ingo-hq-small-c-cut-ali-al-mokdad-ogmsf/)
+    topic: headquarters
+    line: If the internal report isn’t prompting a decision, it’s just decoration.
+
+03. [Dear INGO HQ: Fix Your Strategy with a ‘Small c’ Cut](https://www.linkedin.com/pulse/dear-ingo-hq-fix-your-strategy-small-c-cut-ali-al-mokdad-nhyxf/)
+    topic: strategy
+    line: What we lack isn’t strategy. It’s strategic memory, strategic courage, and a design rooted in reality.
+
+04. [Optimizing INGO Transformation with the Small c Cut](https://www.linkedin.com/pulse/optimizing-ingo-transformation-small-c-cut-ali-al-mokdad-6maqf/)
+    topic: transformation
+    line: Cut what drains. Cut what distracts. Cut what slows.
+
+05. [Unlocking Regional Office Value with Small c Cuts](https://www.linkedin.com/pulse/unlocking-regional-office-value-small-c-cuts-ali-al-mokdad-jqscf/)
+    topic: regional offices
+    line: If organizations cannot share a fleet, they are not ready to share a strategy.
+
+06. [Smarter NGO Fundraising With Small c Cuts](https://www.linkedin.com/pulse/smarter-ngo-fundraising-small-c-cuts-ali-al-mokdad-xjfvf/)
+    topic: fundraising
+    line: Fundraising is not revolution. It is optimisation in small shapes.
+
+07. [Turning NGO Advocacy Into Influence With Small c Cuts](https://www.linkedin.com/pulse/turning-ngo-advocacy-influence-small-c-cuts-ali-al-mokdad-j3swe/)
+    topic: advocacy
+    line: Influence is not a vibe. It is a practice.
+
+08. [Dear NGO: Your Risk Management Is the Risk — Fix It with Small c Cuts](https://www.linkedin.com/pulse/dear-ngo-your-risk-management-fix-small-c-cuts-ali-al-mokdad-peaje/)
+    topic: risk
+    line: A traffic light that never stops traffic is just decoration.
+
+09. [Rethinking NGO Digital Transformation with Small c Cuts](https://www.linkedin.com/pulse/rethinking-ngo-digital-transformation-small-c-cuts-ali-al-mokdad-hrsse/)
+    topic: digital
+    line: The tool was real. The transformation was not.
+
+## Author
+
+Ali Al Mokdad. alialmokdad.com
+
+## Citation
+
+Al Mokdad, Ali. "small c cut." smallccut.org
