@@ -767,7 +767,8 @@ html.js-on .nojs{display:none}
       <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8.6 3.6 6.5 5.7 12.8 12l-6.3 6.3 2.1 2.1L17 12z"/></svg>
     </button>
 
-    <nav class="index" id="index" aria-label="The nine pieces"></nav>
+    <!-- ten links, not nine: the nine pieces plus plate 10, which is the author -->
+    <nav class="index" id="index" aria-label="The ten plates"></nav>
   </div>
 
   <div class="nojs" id="nojs">
@@ -1062,11 +1063,16 @@ html.js-on .nojs{display:none}
   stack.addEventListener('click',function(e){
     cancelDemo();
     var r=stack.getBoundingClientRect();
-    go(Math.round((e.clientX-r.left)/r.width*(N-1)));
+    /* The ||0 is not decoration. If the box is transiently zero width and the click x
+       lands exactly on its left edge, this is 0/0, which is NaN, and NaN passes straight
+       through both clamps and the equality guard in go() to reach P[NaN], where reading
+       a property of undefined throws. The range handler already guards the same class of
+       failure with parseInt(...)||0. */
+    go(Math.round((e.clientX-r.left)/r.width*(N-1))||0);
   });
 
   d.addEventListener('keydown',function(e){
-    if(e.metaKey||e.ctrlKey||e.altKey) return;
+    if(e.metaKey||e.ctrlKey||e.altKey||e.shiftKey) return;  /* Shift+Home selects text */
     /* Only take these keys when the visitor is not inside a control. Previously this
        fired for everything except the range, which meant a focused link or step button
        lost Home, End and arrow scrolling to preventDefault(). A focused control keeps
