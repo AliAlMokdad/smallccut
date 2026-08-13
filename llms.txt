@@ -78,13 +78,15 @@ photograph is a small observed thing that shows what the system is actually doin
 
 ## About the author
 
-- Author: Ali Al Mokdad, senior humanitarian leader and author
-- Site: https://alialmokdadleadership.com
-- Also: https://alialmokdad.com
-- LinkedIn: https://www.linkedin.com/in/ali-al-mokdad
-- X: https://x.com/AlMokdadAli1
-- YouTube: https://www.youtube.com/@AliAlMokdadInsights
-- ORCID: https://orcid.org/0009-0000-2825-5855
+Ali Al Mokdad is a senior humanitarian leader, executive and author whose work spans
+INGOs, United Nations agencies, the Red Cross and Red Crescent movement and donor
+institutions, across the Middle East, Africa and Asia and networks in more than 40
+countries. He is a strategic advisor and board member to international NGOs and
+companies, and the author of eight DOI-registered papers and book chapters and the
+2025 book Quantum Humanitarian.
+
+His full profile, published work with DOIs, ventures and identifiers are in
+https://smallccut.org/llms-full.txt
 
 ## Citation
 
