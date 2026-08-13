@@ -76,8 +76,18 @@ ANTI_SLOP_BRIEF, the five decisions, made before any styling
 :root{
   --paper:#DFE0DF; --dust:#82827D; --shade:#3B3B36; --ink:#0F1010; --signal:#EEC51C;
   --hair:rgba(15,16,16,.22);
-  --mm:clamp(9px,.62vw,11px);
-  --pad:clamp(14px,2.4vw,34px);
+  /* Instrument mono. This was clamp(9px,.62vw,11px), which resolved to 9px on a
+     1440 laptop: far too small for uppercase set with wide tracking. The floor is
+     now 11.5px and tracking came down to suit it. */
+  --mm:clamp(11.5px,.82vw,13.5px);
+  /* The scale tick numerals are the one exception. Ten of them share the full
+     width, they are digits rather than words, and they must not crowd. */
+  --mmt:clamp(10px,.6vw,11.5px);
+  /* The trim marks occupy the first 26px of every corner. Content used to run
+     straight into them: the control strip abutted the bottom right mark with zero
+     clearance. The padding is now a real gutter that clears the marks, which is
+     also what a printed sheet has. */
+  --pad:clamp(30px,2.7vw,46px);
   --ease:cubic-bezier(.16,.84,.28,1);
   --dur:820ms;
 }
@@ -93,7 +103,8 @@ body{
 img{display:block;max-width:100%}
 a{color:inherit}
 
-.sheet{position:relative;min-height:100svh;padding:var(--pad);display:grid;
+.sheet{position:relative;min-height:100svh;padding:var(--pad);
+  padding-bottom:calc(var(--pad) + 12px);display:grid;
   grid-template-rows:auto 1fr auto;gap:clamp(10px,1.6vh,22px);max-width:1680px;margin:0 auto}
 
 /* trim marks in the four corners, the way a printer marks a sheet */
@@ -107,20 +118,19 @@ a{color:inherit}
 /* an identifier plate, deliberately not a headline */
 .plate-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
 .ident{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:var(--mm);
-  text-transform:uppercase;letter-spacing:.16em;color:var(--shade);
+  text-transform:uppercase;letter-spacing:.13em;color:var(--ink);font-weight:600;
   display:flex;align-items:center;gap:9px;margin:0}
-.cmark{width:13px;height:13px;flex:none}
+.cmark{width:15px;height:15px;flex:none}
 .cmark path{fill:none;stroke:var(--signal);stroke-width:3.6}
-.regout{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:var(--mm);
-  color:var(--shade);text-align:right;line-height:1.7;margin:0}
-.regout b{font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums}
+/* The register readout that used to sit up here has been removed. The plate slug
+   on the sheet already says which plate is in register, and the scale shows it. */
 
 /* his own definition, verbatim. the first words on the page are his. */
-.epigraph{max-width:34ch;margin:clamp(6px,1.4vh,18px) 0 0;
-  font-size:clamp(.98rem,1.44vw,1.34rem);line-height:1.36;font-weight:500;
-  letter-spacing:-.012em;text-wrap:balance}
-.epigraph .src{display:block;margin-top:.55em;font-family:'JetBrains Mono',ui-monospace,monospace;
-  font-size:var(--mm);letter-spacing:.14em;text-transform:uppercase;color:var(--shade);font-weight:600}
+.epigraph{max-width:33ch;margin:clamp(6px,1.4vh,18px) 0 0;
+  font-size:clamp(1.06rem,1.52vw,1.46rem);line-height:1.34;font-weight:500;
+  letter-spacing:-.014em;text-wrap:balance}
+.epigraph .src{display:block;margin-top:.6em;font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:var(--mm);letter-spacing:.13em;text-transform:uppercase;color:var(--shade);font-weight:600}
 
 .bed{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);
   gap:clamp(16px,2.6vw,44px);align-items:center;min-height:0}
@@ -169,14 +179,16 @@ a{color:inherit}
 
 /* title, his opening line, one verbatim line, the link */
 .caption{min-width:0}
-.cap-i{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:var(--mm);letter-spacing:.18em;
-  text-transform:uppercase;color:var(--shade);margin:0 0 .85em;display:flex;gap:.8em;align-items:baseline}
+.cap-i{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:var(--mm);letter-spacing:.15em;
+  text-transform:uppercase;color:var(--shade);margin:0 0 .9em;display:flex;gap:.8em;align-items:baseline}
 .cap-i s{text-decoration:none;color:var(--ink);font-weight:600}
-h1.cap-t{font-size:clamp(1.34rem,2.62vw,2.5rem);line-height:1.04;letter-spacing:-.03em;
-  font-weight:680;margin:0 0 .5em;text-wrap:balance}
-.cap-o{font-size:clamp(.86rem,1.02vw,1rem);line-height:1.48;color:var(--shade);margin:0 0 1.15em;max-width:46ch}
-.cap-q{position:relative;margin:0 0 1.2em;padding-left:1.5em;max-width:34ch;
-  font-size:clamp(1.02rem,1.42vw,1.4rem);line-height:1.2;letter-spacing:-.018em;font-weight:560}
+h1.cap-t{font-size:clamp(1.42rem,2.66vw,2.6rem);line-height:1.05;letter-spacing:-.03em;
+  font-weight:680;margin:0 0 .52em;text-wrap:balance}
+/* the opening line is his published prose, so it gets a real reading size */
+.cap-o{font-size:clamp(1rem,1.16vw,1.14rem);line-height:1.54;color:var(--shade);
+  margin:0 0 1.2em;max-width:44ch}
+.cap-q{position:relative;margin:0 0 1.25em;padding-left:1.5em;max-width:33ch;
+  font-size:clamp(1.1rem,1.5vw,1.5rem);line-height:1.24;letter-spacing:-.018em;font-weight:560}
 /* the mark is a lower-case c: a notch taken out of a closed ring */
 .cap-q::before{content:"";position:absolute;left:0;top:.28em;width:.62em;height:.62em;
   border:2.4px solid var(--signal);border-radius:50%;
@@ -187,15 +199,39 @@ h1.cap-t{font-size:clamp(1.34rem,2.62vw,2.5rem);line-height:1.04;letter-spacing:
 .cap-l:hover,.cap-l:focus-visible{border-bottom-color:var(--ink)}
 .cap-l::after{content:" \2197"}
 
-/* the instrument: a millimetre scale, because millimetre is his own word */
-.instr{position:relative;padding-top:6px}
-.rule{position:relative;height:44px}
+/* ── The instrument: a millimetre scale, because millimetre is his own word, with a
+   step either side. The two steps are drawn as the same knocked out ink cells as
+   the control strip, so the whole page is made of one kind of object. They are the
+   thing that tells a visitor this moves. ── */
+/* One variable drives the cell size, the gutter above the scale and the negative
+   offset, so the scale line always passes through the exact centre of both steps.
+   Getting this wrong left them hanging below the line, looking detached from it. */
+.instr{--stepH:38px;position:relative;display:flex;align-items:flex-start;
+  padding-top:calc(var(--stepH) / 2 + 4px);gap:clamp(10px,1.4vw,18px)}
+.step{
+  --bg:var(--ink); --gl:var(--paper);
+  width:var(--stepH);height:var(--stepH);flex:none;
+  margin-top:calc(var(--stepH) / -2);
+  display:grid;place-items:center;padding:0;
+  background:var(--bg);border:1px solid var(--ink);cursor:pointer;
+  transition:background-color 130ms linear,opacity 200ms linear;
+  -webkit-tap-highlight-color:transparent;
+}
+.step svg{width:17px;height:17px;display:block;fill:var(--gl)}
+.step:hover,.step:focus-visible{--bg:var(--paper);--gl:var(--ink)}
+.step:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.step:active{--bg:var(--paper);--gl:var(--ink)}
+/* at the ends of the scale the step has nowhere to go, and says so quietly */
+.step[data-end="1"]{opacity:.26;cursor:default}
+.step[data-end="1"]:hover{--bg:var(--ink);--gl:var(--paper)}
+
+.rule{position:relative;height:44px;flex:1 1 auto;min-width:0}
 .ticks{position:absolute;inset:0;display:flex;justify-content:space-between;align-items:flex-start}
 .tk{position:relative;flex:none;width:1px;height:9px;background:var(--dust)}
 .tk[data-major="1"]{height:19px;background:var(--ink)}
 .tk[data-major="1"]::after{content:attr(data-mm);position:absolute;top:22px;left:0;
   transform:translateX(-50%);font-family:'JetBrains Mono',ui-monospace,monospace;
-  font-size:var(--mm);color:var(--shade);white-space:nowrap}
+  font-size:var(--mmt);color:var(--shade);white-space:nowrap;font-variant-numeric:tabular-nums}
 .baseline{position:absolute;left:0;right:0;top:0;height:1px;background:var(--ink)}
 
 .needle{position:absolute;top:-13px;width:24px;height:24px;margin-left:-12px;
@@ -219,18 +255,58 @@ h1.cap-t{font-size:clamp(1.34rem,2.62vw,2.5rem);line-height:1.04;letter-spacing:
 
 /* one real link per plate, present at all times, so all ten are reachable
    without a menu having to exist */
+/* One real link per plate, present at all times so all ten are reachable without a
+   menu existing. They sit AFTER the two steps in the document, so a keyboard journey
+   runs scale, steps, then the ten titles, rather than wading through ten hidden
+   links between the two arrows. A focused one surfaces as a chip ABOVE the
+   instrument: positioned absolutely, so it never reflows the scale. */
 .index{position:absolute;left:0;right:0;top:0;height:0}
 .index a{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
-.index a:focus-visible{position:static;width:auto;height:auto;clip-path:none;
-  background:var(--ink);color:var(--paper);padding:4px 8px;font-size:12px}
+.index a:focus-visible{width:auto;height:auto;clip-path:none;left:0;top:-34px;
+  background:var(--ink);color:var(--paper);padding:5px 9px;
+  font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:.04em;
+  outline:2px solid var(--ink);outline-offset:2px;z-index:6}
 
-.foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+.foot{display:flex;justify-content:flex-end;align-items:flex-end;gap:14px 20px;flex-wrap:wrap;
   font-family:'JetBrains Mono',ui-monospace,monospace;font-size:var(--mm);color:var(--shade);
   letter-spacing:.1em;padding-top:clamp(8px,1.4vh,16px)}
-.foot a{color:var(--shade);text-decoration:none;border-bottom:1px solid var(--hair)}
-.foot a:hover,.foot a:focus-visible{color:var(--ink);border-bottom-color:var(--ink)}
-.hint kbd{font-family:'JetBrains Mono',ui-monospace,monospace;border:1px solid var(--hair);
-  padding:1px 5px;border-radius:2px;font-size:.94em}
+
+/* ── The control strip. A printer lays a row of solid patches along the edge of a
+   sheet to check the press. These are those patches, and each one is a link. The
+   mark is knocked out of the ink the way a plate actually prints, so the whole
+   strip is drawn in the same language as the trim marks and the plate slug.
+   Hover and focus invert the cell, ink for paper. Nothing moves: the signal
+   yellow is not used here, because on this page yellow means one thing only,
+   which is a plate in register. ── */
+.colophon{display:flex;align-items:center;gap:12px}
+.by{color:var(--ink);font-weight:600;letter-spacing:.13em;text-transform:uppercase;white-space:nowrap}
+.strip{display:flex}
+.strip a{
+  --bg:var(--ink); --gl:var(--paper);
+  width:34px;height:34px;flex:none;display:grid;place-items:center;
+  background:var(--bg);border:1px solid var(--ink);margin-left:-1px;
+  transition:background-color 130ms linear;
+}
+.strip a:first-child{margin-left:0}
+/* A hairline between patches, so the strip reads as a row of separate cells and
+   not as one black slab. It inverts with the cell, which keeps it visible in
+   both states. */
+.strip a + a{border-left-color:var(--gl)}
+.strip a:hover,.strip a:focus-visible{--bg:var(--paper);--gl:var(--ink)}
+.strip a:focus-visible{outline:2px solid var(--ink);outline-offset:2px;position:relative;z-index:2}
+.strip svg{width:19px;height:19px;display:block}
+/* Every mark is built the same way a plate prints: a solid shape in the ink of the
+   cell, with the detail knocked back out of it. Keeping all four filled means they
+   carry equal weight; an outlined globe next to three solid marks read as lighter. */
+.strip .f{fill:var(--gl)}
+.strip .k{fill:var(--bg)}
+.strip .ks{fill:none;stroke:var(--bg);stroke-width:1.55;stroke-linecap:round}
+
+/* a finger needs more than 34px */
+@media (hover:none) and (pointer:coarse){
+  .strip a{width:44px;height:44px}
+  .strip svg{width:22px;height:22px}
+}
 
 body[data-plate="9"] .cap-q{font-weight:500}
 
@@ -241,19 +317,70 @@ body[data-plate="9"] .cap-q{font-weight:500}
 body[data-plate="none"] .caption{opacity:0;pointer-events:none}
 body[data-plate="none"] .stack{cursor:pointer}
 
+/* ── Phone and tablet. The photograph is the point, so it keeps the full width of
+   the sheet and the corrected plate is inset a little less than on a laptop: the
+   ghost band around it still shows the other nine, but the picture gets the room.
+   ── */
 @media (max-width:900px){
   .bed{grid-template-columns:1fr;gap:clamp(12px,2.2vh,20px);align-items:start}
-  /* the footer ran into the bottom trim marks at 390 and at 360, so the sheet
-     keeps a clear margin below the last line */
-  .sheet{min-height:auto;padding-bottom:46px}
+  .sheet{min-height:auto}
   .epigraph,.cap-o{max-width:none}
   .trim{width:18px;height:18px}
   .trim::before{top:8px;width:18px}.trim::after{left:8px;height:18px}
-  .regout{text-align:left}
+  .plate[data-reg="1"]{transform:translate3d(0,0,0) rotate(0deg) scale(.9)}
+  .plate[data-reg="0"]{transform:translate3d(var(--ox),var(--oy),0) rotate(var(--or)) scale(1.05)}
+}
+@media (max-width:700px){
+  /* a smaller corner mark buys back the side margins on a narrow screen */
+  .trim{width:14px;height:14px}
+  .trim::before{top:6px;width:14px}.trim::after{left:6px;height:14px}
+  /* On a phone the photograph is the whole point and the gutter was starving it, so
+     the plate runs off both edges of the sheet. Printers call that bleed, which is
+     the right word for a page built as a press sheet. */
+  .stack{margin-left:calc(var(--pad) * -1);margin-right:calc(var(--pad) * -1);
+    border-left:0;border-right:0}
+  .instr{--stepH:44px;gap:10px}
+  .step svg{width:19px;height:19px}
+  .foot{justify-content:space-between}
+  .colophon{gap:10px;width:100%;justify-content:space-between}
 }
 @media (max-width:560px){
-  .tk[data-major="1"]::after{font-size:8px}
-  .foot{flex-direction:column;gap:6px}
+  /* ten numerals will not fit across a phone, so the scale keeps its first,
+     middle and last and lets the ticks carry the rest */
+  .tk[data-major="1"]::after{display:none}
+  .tk[data-mm="01"]::after,.tk[data-mm="05"]::after,.tk[data-mm="10"]::after{display:block}
+  .by{font-size:calc(var(--mm) - .5px)}
+}
+@media (max-width:390px){
+  .by{display:none}          /* his name is already on plate 10 */
+  .colophon{justify-content:flex-end}
+}
+/* Short phones. At 360x740 the page came to 810 and clipped the control strip.
+   This tightens the vertical rhythm on short screens only, rather than shrinking
+   the type for everyone, so the whole page still lands in one view. */
+@media (max-width:700px) and (max-height:800px){
+  .sheet{gap:8px;padding-bottom:calc(var(--pad) - 4px)}
+  .epigraph{font-size:1.01rem;line-height:1.3;margin-top:4px}
+  .epigraph .src{margin-top:.45em}
+  h1.cap-t{margin-bottom:.4em}
+  .cap-i{margin-bottom:.6em}
+  .cap-o{margin-bottom:.75em;line-height:1.45}
+  .cap-q{margin-bottom:.8em;line-height:1.2}
+  .instr{padding-top:calc(var(--stepH) / 2 + 2px)}
+  .foot{padding-top:6px}
+}
+/* The shortest phones still in wide use, 667 tall. Everything here buys height
+   without cropping a photograph or dropping a line of his prose, which is the
+   trade I am not willing to make. The attribution under the epigraph goes because
+   his name is already on plate 10 and in the colophon. */
+@media (max-width:700px) and (max-height:700px){
+  .sheet{padding:26px;padding-bottom:22px;gap:6px}
+  .epigraph{font-size:1rem;line-height:1.28;margin-top:2px}
+  .epigraph .src{display:none}
+  .cap-i{margin-bottom:.5em}
+  .cap-o{margin-bottom:.6em}
+  .cap-q{font-size:1.05rem;line-height:1.18;margin-bottom:.65em}
+  .stack{margin-left:-26px;margin-right:-26px}
 }
 
 /* a page whose subject is restraint does not get to ignore this */
@@ -283,7 +410,7 @@ body[data-plate="none"] .stack{cursor:pointer}
   letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--ink)}
 .nojs .num{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:var(--mm);
   letter-spacing:.18em;text-transform:uppercase;color:var(--shade);font-weight:600}
-html:not(.js-on) .bed,html:not(.js-on) .instr,html:not(.js-on) .foot .hint{display:none}
+html:not(.js-on) .bed,html:not(.js-on) .instr{display:none}
 html.js-on .nojs{display:none}
 </style>
 <script type="application/ld+json">
@@ -300,21 +427,27 @@ html.js-on .nojs{display:none}
    "author": {
     "@type": "Person",
     "name": "Ali Al Mokdad",
-    "url": "https://alialmokdad.com",
+    "url": "https://alialmokdadleadership.com/",
     "image": "https://smallccut.org/assets/ali-al-mokdad.jpg",
     "sameAs": [
+     "https://alialmokdadleadership.com/",
+     "https://alialmokdad.com",
      "https://www.linkedin.com/in/ali-al-mokdad",
-     "https://alialmokdad.com"
+     "https://x.com/AlMokdadAli1",
+     "https://www.youtube.com/@AliAlMokdadInsights"
     ]
    },
    "publisher": {
     "@type": "Person",
     "name": "Ali Al Mokdad",
-    "url": "https://alialmokdad.com",
+    "url": "https://alialmokdadleadership.com/",
     "image": "https://smallccut.org/assets/ali-al-mokdad.jpg",
     "sameAs": [
+     "https://alialmokdadleadership.com/",
+     "https://alialmokdad.com",
      "https://www.linkedin.com/in/ali-al-mokdad",
-     "https://alialmokdad.com"
+     "https://x.com/AlMokdadAli1",
+     "https://www.youtube.com/@AliAlMokdadInsights"
     ]
    }
   },
@@ -327,11 +460,14 @@ html.js-on .nojs{display:none}
    "creator": {
     "@type": "Person",
     "name": "Ali Al Mokdad",
-    "url": "https://alialmokdad.com",
+    "url": "https://alialmokdadleadership.com/",
     "image": "https://smallccut.org/assets/ali-al-mokdad.jpg",
     "sameAs": [
+     "https://alialmokdadleadership.com/",
+     "https://alialmokdad.com",
      "https://www.linkedin.com/in/ali-al-mokdad",
-     "https://alialmokdad.com"
+     "https://x.com/AlMokdadAli1",
+     "https://www.youtube.com/@AliAlMokdadInsights"
     ]
    }
   },
@@ -353,11 +489,14 @@ html.js-on .nojs{display:none}
       "author": {
        "@type": "Person",
        "name": "Ali Al Mokdad",
-       "url": "https://alialmokdad.com",
+       "url": "https://alialmokdadleadership.com/",
        "image": "https://smallccut.org/assets/ali-al-mokdad.jpg",
        "sameAs": [
+        "https://alialmokdadleadership.com/",
+        "https://alialmokdad.com",
         "https://www.linkedin.com/in/ali-al-mokdad",
-        "https://alialmokdad.com"
+        "https://x.com/AlMokdadAli1",
+        "https://www.youtube.com/@AliAlMokdadInsights"
        ]
       },
       "image": "https://smallccut.org/assets/covers/overhead.jpg"
@@ -374,11 +513,14 @@ html.js-on .nojs{display:none}
       "author": {
        "@type": "Person",
        "name": "Ali Al Mokdad",
-       "url": "https://alialmokdad.com",
+       "url": "https://alialmokdadleadership.com/",
        "image": "https://smallccut.org/assets/ali-al-mokdad.jpg",
        "sameAs": [
+        "https://alialmokdadleadership.com/",
+        "https://alialmokdad.com",
         "https://www.linkedin.com/in/ali-al-mokdad",
-        "https://alialmokdad.com"
+        "https://x.com/AlMokdadAli1",
+        "https://www.youtube.com/@AliAlMokdadInsights"
        ]
       },
       "image": "https://smallccut.org/assets/covers/hqefficiency.jpg"
@@ -395,11 +537,14 @@ html.js-on .nojs{display:none}
       "author": {
        "@type": "Person",
        "name": "Ali Al Mokdad",
-       "url": "https://alialmokdad.com",
+       "url": "https://alialmokdadleadership.com/",
        "image": "https://smallccut.org/assets/ali-al-mokdad.jpg",
        "sameAs": [
+        "https://alialmokdadleadership.com/",
+        "https://alialmokdad.com",
         "https://www.linkedin.com/in/ali-al-mokdad",
-        "https://alialmokdad.com"
+        "https://x.com/AlMokdadAli1",
+        "https://www.youtube.com/@AliAlMokdadInsights"
        ]
       },
       "image": "https://smallccut.org/assets/covers/hqstrategy.jpg"
@@ -416,11 +561,14 @@ html.js-on .nojs{display:none}
       "author": {
        "@type": "Person",
        "name": "Ali Al Mokdad",
-       "url": "https://alialmokdad.com",
+       "url": "https://alialmokdadleadership.com/",
        "image": "https://smallccut.org/assets/ali-al-mokdad.jpg",
        "sameAs": [
+        "https://alialmokdadleadership.com/",
+        "https://alialmokdad.com",
         "https://www.linkedin.com/in/ali-al-mokdad",
-        "https://alialmokdad.com"
+        "https://x.com/AlMokdadAli1",
+        "https://www.youtube.com/@AliAlMokdadInsights"
        ]
       },
       "image": "https://smallccut.org/assets/covers/transformation.jpg"
@@ -437,11 +585,14 @@ html.js-on .nojs{display:none}
       "author": {
        "@type": "Person",
        "name": "Ali Al Mokdad",
-       "url": "https://alialmokdad.com",
+       "url": "https://alialmokdadleadership.com/",
        "image": "https://smallccut.org/assets/ali-al-mokdad.jpg",
        "sameAs": [
+        "https://alialmokdadleadership.com/",
+        "https://alialmokdad.com",
         "https://www.linkedin.com/in/ali-al-mokdad",
-        "https://alialmokdad.com"
+        "https://x.com/AlMokdadAli1",
+        "https://www.youtube.com/@AliAlMokdadInsights"
        ]
       },
       "image": "https://smallccut.org/assets/covers/regional.jpg"
@@ -458,11 +609,14 @@ html.js-on .nojs{display:none}
       "author": {
        "@type": "Person",
        "name": "Ali Al Mokdad",
-       "url": "https://alialmokdad.com",
+       "url": "https://alialmokdadleadership.com/",
        "image": "https://smallccut.org/assets/ali-al-mokdad.jpg",
        "sameAs": [
+        "https://alialmokdadleadership.com/",
+        "https://alialmokdad.com",
         "https://www.linkedin.com/in/ali-al-mokdad",
-        "https://alialmokdad.com"
+        "https://x.com/AlMokdadAli1",
+        "https://www.youtube.com/@AliAlMokdadInsights"
        ]
       },
       "image": "https://smallccut.org/assets/covers/fundraising.jpg"
@@ -479,11 +633,14 @@ html.js-on .nojs{display:none}
       "author": {
        "@type": "Person",
        "name": "Ali Al Mokdad",
-       "url": "https://alialmokdad.com",
+       "url": "https://alialmokdadleadership.com/",
        "image": "https://smallccut.org/assets/ali-al-mokdad.jpg",
        "sameAs": [
+        "https://alialmokdadleadership.com/",
+        "https://alialmokdad.com",
         "https://www.linkedin.com/in/ali-al-mokdad",
-        "https://alialmokdad.com"
+        "https://x.com/AlMokdadAli1",
+        "https://www.youtube.com/@AliAlMokdadInsights"
        ]
       },
       "image": "https://smallccut.org/assets/covers/advocacy.jpg"
@@ -500,11 +657,14 @@ html.js-on .nojs{display:none}
       "author": {
        "@type": "Person",
        "name": "Ali Al Mokdad",
-       "url": "https://alialmokdad.com",
+       "url": "https://alialmokdadleadership.com/",
        "image": "https://smallccut.org/assets/ali-al-mokdad.jpg",
        "sameAs": [
+        "https://alialmokdadleadership.com/",
+        "https://alialmokdad.com",
         "https://www.linkedin.com/in/ali-al-mokdad",
-        "https://alialmokdad.com"
+        "https://x.com/AlMokdadAli1",
+        "https://www.youtube.com/@AliAlMokdadInsights"
        ]
       },
       "image": "https://smallccut.org/assets/covers/risk.jpg"
@@ -521,11 +681,14 @@ html.js-on .nojs{display:none}
       "author": {
        "@type": "Person",
        "name": "Ali Al Mokdad",
-       "url": "https://alialmokdad.com",
+       "url": "https://alialmokdadleadership.com/",
        "image": "https://smallccut.org/assets/ali-al-mokdad.jpg",
        "sameAs": [
+        "https://alialmokdadleadership.com/",
+        "https://alialmokdad.com",
         "https://www.linkedin.com/in/ali-al-mokdad",
-        "https://alialmokdad.com"
+        "https://x.com/AlMokdadAli1",
+        "https://www.youtube.com/@AliAlMokdadInsights"
        ]
       },
       "image": "https://smallccut.org/assets/covers/digital.jpg"
@@ -558,11 +721,6 @@ html.js-on .nojs{display:none}
         <span class="src">Ali Al Mokdad</span>
       </p>
     </div>
-    <p class="regout">
-      ten plates &middot; nine cuts<br>
-      in register <b id="ro-n">01</b> of <b>10</b><br>
-      <span id="ro-t">nine out of register</span>
-    </p>
   </header>
 
   <div class="bed">
@@ -590,6 +748,10 @@ html.js-on .nojs{display:none}
   </div>
 
   <div class="instr">
+    <button class="step" id="prev" type="button" aria-label="Bring the previous plate into register">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15.4 3.6 7 12l8.4 8.4 2.1-2.1L11.2 12l6.3-6.3z"/></svg>
+    </button>
+
     <div class="rule" id="rule">
       <span class="baseline"></span>
       <div class="ticks" id="ticks" aria-hidden="true"></div>
@@ -599,8 +761,13 @@ html.js-on .nojs{display:none}
       <span class="needle" id="needle" style="left:0%">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6.2a8 8 0 100 11.6"/></svg>
       </span>
-      <nav class="index" id="index" aria-label="The nine pieces"></nav>
     </div>
+
+    <button class="step" id="next" type="button" aria-label="Bring the next plate into register">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8.6 3.6 6.5 5.7 12.8 12l-6.3 6.3 2.1 2.1L17 12z"/></svg>
+    </button>
+
+    <nav class="index" id="index" aria-label="The nine pieces"></nav>
   </div>
 
   <div class="nojs" id="nojs">
@@ -687,8 +854,45 @@ html.js-on .nojs{display:none}
   </div>
 
   <footer class="foot">
-    <span class="hint">drag the scale &middot; <kbd>&larr;</kbd> <kbd>&rarr;</kbd> &middot; or click a plate</span>
-    <span>Ali Al Mokdad &middot; <a href="https://alialmokdad.com" rel="noopener">alialmokdad.com</a></span>
+    <span class="colophon">
+      <span class="by">Ali Al Mokdad</span>
+      <nav class="strip" aria-label="Ali Al Mokdad elsewhere">
+
+        <a href="https://alialmokdadleadership.com/" rel="noopener me" target="_blank"
+           aria-label="alialmokdadleadership.com" title="alialmokdadleadership.com">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <circle class="f" cx="12" cy="12" r="9"/>
+            <path class="ks" d="M3.2 12h17.6"/>
+            <path class="ks" d="M12 3c2.5 2.4 3.9 5.5 3.9 9s-1.4 6.6-3.9 9c-2.5-2.4-3.9-5.5-3.9-9S9.5 5.4 12 3Z"/>
+          </svg>
+        </a>
+
+        <a href="https://www.linkedin.com/in/ali-al-mokdad" rel="noopener me" target="_blank"
+           aria-label="Ali Al Mokdad on LinkedIn" title="LinkedIn">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <rect class="f" x="3.3" y="9.4" width="3.3" height="11.3"/>
+            <rect class="f" x="3.1" y="3.6" width="3.6" height="3.6"/>
+            <path class="f" d="M9.5 20.7V9.4h3.2v1.6a4.3 4.3 0 0 1 7.6 2.9v6.8h-3.3v-6a1.9 1.9 0 0 0-3.8 0v6Z"/>
+          </svg>
+        </a>
+
+        <a href="https://x.com/AlMokdadAli1" rel="noopener me" target="_blank"
+           aria-label="Ali Al Mokdad on X" title="X">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path class="f" d="M4 3.4h4.6l4.1 5.6 4.8-5.6h2.6l-6.1 7.1 6.6 9.2h-4.6l-4.3-5.9-5 5.9H4l6.4-7.5Z"/>
+          </svg>
+        </a>
+
+        <a href="https://www.youtube.com/@AliAlMokdadInsights" rel="noopener me" target="_blank"
+           aria-label="Ali Al Mokdad on YouTube" title="YouTube">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <rect class="f" x="1.8" y="5.6" width="20.4" height="12.8" rx="3.9"/>
+            <path class="k" d="M10 9.5l5.6 2.9L10 15.3Z"/>
+          </svg>
+        </a>
+
+      </nav>
+    </span>
   </footer>
 
 </main>
@@ -761,10 +965,22 @@ html.js-on .nojs{display:none}
       capI=d.getElementById('cap-i'), capD=d.getElementById('cap-d'),
       capT=d.getElementById('cap-t'), capO=d.getElementById('cap-o'),
       capQ=d.getElementById('cap-q'), capL=d.getElementById('cap-l'),
-      slugN=d.getElementById('slug-n'), roN=d.getElementById('ro-n'), roT=d.getElementById('ro-t'),
+      slugN=d.getElementById('slug-n'),
+      bPrev=d.getElementById('prev'), bNext=d.getElementById('next'),
       N=P.length, cur=-1, prev=-1, moveT=0, demoT=0, touched=false;
 
   function pad(i){var v=i+1;return v<10?'0'+v:''+v;}
+
+  /* The steps say when they have nowhere left to go. aria-disabled rather than the
+     disabled attribute, so they keep their place in the tab order and a screen
+     reader still announces what they are. */
+  function ends(){
+    var atStart = cur<=0, atEnd = cur>=N-1;
+    bPrev.setAttribute('data-end', atStart?'1':'0');
+    bNext.setAttribute('data-end', atEnd?'1':'0');
+    bPrev.setAttribute('aria-disabled', atStart?'true':'false');
+    bNext.setAttribute('aria-disabled', atEnd?'true':'false');
+  }
 
   /* The scale. Major ticks are the ten plates; the minor ticks between them are the
      millimetres, because millimetre is the word he uses for the size of the shift. */
@@ -797,10 +1013,10 @@ html.js-on .nojs{display:none}
     }
     /* the opening state: nothing corrected yet, so there is nothing to caption */
     if(cur<0){
-      slugN.textContent='--'; roN.textContent='--';
-      roT.textContent='ten out of register';
+      slugN.textContent='--';
       needle.style.left='0%';
       d.body.setAttribute('data-plate','none');
+      ends();
       return;
     }
     var p=P[cur];
@@ -808,9 +1024,9 @@ html.js-on .nojs{display:none}
     capT.textContent=p.t; capO.textContent=p.o; capQ.textContent=p.q;
     capL.href=p.u;
     capL.textContent=(cur===N-1)?'alialmokdad.com':'read the piece';
-    slugN.textContent=pad(cur); roN.textContent=pad(cur);
-    roT.textContent='nine out of register';
+    slugN.textContent=pad(cur);
     needle.style.left=(cur/(N-1)*100)+'%';
+    ends();
     d.body.setAttribute('data-plate',String(cur));
     if(dial.value!==String(cur)) dial.value=String(cur);
     /* the register grid shows only while a plate is actually moving */
@@ -836,6 +1052,11 @@ html.js-on .nojs{display:none}
   dial.addEventListener('pointerdown',cancelDemo);
   dial.addEventListener('input',function(){cancelDemo();go(parseInt(dial.value,10)||0);});
 
+  /* The two steps. From the opening state, cur is -1, so next lands on plate 01 and
+     prev clamps to it: either arrow gets a first time visitor moving. */
+  bPrev.addEventListener('click',function(){cancelDemo();go(cur<0?0:cur-1);});
+  bNext.addEventListener('click',function(){cancelDemo();go(cur+1);});
+
   /* Clicking a plate brings it into register. There is no button, and the wheel is
      left alone so that the page can still be read and scrolled normally. */
   stack.addEventListener('click',function(e){
@@ -845,7 +1066,18 @@ html.js-on .nojs{display:none}
   });
 
   d.addEventListener('keydown',function(e){
-    if(e.target===dial||e.metaKey||e.ctrlKey||e.altKey) return;
+    if(e.metaKey||e.ctrlKey||e.altKey) return;
+    /* Only take these keys when the visitor is not inside a control. Previously this
+       fired for everything except the range, which meant a focused link or step button
+       lost Home, End and arrow scrolling to preventDefault(). A focused control keeps
+       its native behaviour; the shortcuts still work in the ordinary case where
+       nothing is focused. */
+    var t=e.target;
+    if(t===dial) return;                 /* the range handles its own arrows natively */
+    if(t && t!==d.body && t.closest &&
+       t.closest('a,input,select,textarea,summary,[contenteditable]')) return;
+    /* the two steps are deliberately NOT in that list: once you have clicked an arrow,
+       the arrow keys should keep working from there. */
     var k=e.key;
     if(/^(ArrowRight|ArrowLeft|ArrowUp|ArrowDown|Home|End)$/.test(k)||(k>='0'&&k<='9')) cancelDemo();
     if(k==='ArrowRight'||k==='ArrowDown'){go(cur+1);e.preventDefault();}

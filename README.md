@@ -92,11 +92,21 @@ scratchpad, not in this repository, but the checks are simple to restate:
 
 ## Accessibility and robustness
 
-- The interface is a native `<input type="range">`. Arrow keys, Home, End, number keys
-  1 to 9 and 0, touch drag and screen readers all work without anything being
-  reimplemented. There is no custom knob widget.
+- The interface is a native `<input type="range">` with a step button either side. Arrow
+  keys, Home, End, number keys 1 to 9 and 0, touch drag, clicking a plate and clicking a
+  step all work, and none of it is a reimplemented widget. The steps carry `data-end` and
+  `aria-disabled` at the extremes rather than the `disabled` attribute, so they keep their
+  place in the tab order and are still announced.
 - All ten pieces exist as real links in the document at all times, so every one is
-  reachable without a menu existing.
+  reachable without a menu existing. They sit after the two steps in the document, so a
+  keyboard journey runs scale, steps, then the ten titles; a focused one surfaces as an ink
+  slug above the instrument and does not reflow the scale.
+- The four links out (his site, LinkedIn, X, YouTube) are a control strip in the footer:
+  contiguous ink cells with the mark knocked out in paper, inverting on hover and focus.
+  34px cells, 44px under a coarse pointer.
+- On phones the plate bleeds off both sheet edges, and two short-screen blocks tighten the
+  vertical rhythm so the whole page lands in one view down to 360x740. At 375x667 it is
+  8px over with nothing important below the fold.
 - The wheel is deliberately left alone. Nothing is scroll jacked.
 - `prefers-reduced-motion` reduces every transition to 1ms and skips the opening
   demonstration, so a reduced motion visitor is never left looking at an unexplained
