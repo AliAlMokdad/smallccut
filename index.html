@@ -111,6 +111,13 @@ ANTI_SLOP_BRIEF, the five decisions, made before any styling
   --dur:820ms;
 }
 *,*::before,*::after{box-sizing:border-box}
+/* Selecting text on a press sheet should not flood it with the browser's default blue,
+   which is the one colour on the page that was not sampled from his photographs.
+   Inverting ink and paper is already how this page marks a thing as active: the step
+   buttons do it, the control strip does it, and the slug is printed that way. Selection
+   now speaks the same language. 14.40:1 either way round, so it stays legible. */
+::selection{background:var(--ink);color:var(--paper)}
+::-moz-selection{background:var(--ink);color:var(--paper)}
 html,body{margin:0;padding:0}
 html{-webkit-text-size-adjust:100%}
 body{
@@ -145,9 +152,15 @@ a{color:inherit}
    on the sheet already says which plate is in register, and the scale shows it. */
 
 /* his own definition, verbatim. the first words on the page are his. */
+/* The opening quote mark HANGS. Without this the sentence starts on a curly quote, which
+   is a light glyph, so the S of Small sits visually indented from the nameplate above it
+   and the left edge of the page reads as ragged. Pulling the mark into the margin puts the
+   S back on the same optical line, which is ordinary compositor practice and is the whole
+   reason hanging punctuation exists. The indent only affects the first line, so the
+   attribution below is untouched. */
 .epigraph{max-width:33ch;margin:clamp(6px,1.4vh,18px) 0 0;
   font-size:clamp(1.06rem,1.52vw,1.46rem);line-height:1.34;font-weight:500;
-  letter-spacing:-.014em;text-wrap:balance}
+  letter-spacing:-.014em;text-wrap:balance;text-indent:-.42em}
 .epigraph .src{display:block;margin-top:.6em;font-family:'JetBrains Mono',ui-monospace,monospace;
   font-size:var(--mm);letter-spacing:.13em;text-transform:uppercase;color:var(--shade);font-weight:600}
 
@@ -261,6 +274,14 @@ a{color:inherit}
 .tk[data-major="1"]::after{content:attr(data-mm);position:absolute;top:22px;left:0;
   transform:translateX(-50%);font-family:'JetBrains Mono',ui-monospace,monospace;
   font-size:var(--mmt);color:var(--shade);white-space:nowrap;font-variant-numeric:tabular-nums}
+/* The tick you are standing on. Three separate reviewers proposed painting this tick
+   signal yellow; measured, that is a REGRESSION. Yellow on paper is 1.26:1 while the ink
+   tick it would replace is 14.40:1, so a 1px yellow tick is very nearly invisible. The
+   needle is already yellow and already sits at this position, so colour adds nothing here
+   anyway. Emphasis is carried by contrast and weight instead, which is what actually makes
+   the number readable at a glance. */
+.tk[data-current="1"]{height:24px}
+.tk[data-current="1"]::after{color:var(--ink);font-weight:700}
 .baseline{position:absolute;left:0;right:0;top:0;height:1px;background:var(--ink)}
 
 .needle{position:absolute;top:-13px;width:24px;height:24px;margin-left:-12px;
@@ -1189,12 +1210,26 @@ html.js-on .nojs{display:none}
 
   /* The scale. Major ticks are the ten plates; the minor ticks between them are the
      millimetres, because millimetre is the word he uses for the size of the shift. */
+  /* the major ticks, kept so render() can mark the one you are standing on without
+     querying the DOM on every move */
+  var majors=[];
+
+  /* Clear every mark, then set one. Ten elements, so the loop costs nothing, and doing it
+     this way cannot leave a stale mark behind the way tracking prev would if a render is
+     ever skipped or the index is set from somewhere new. Pass -1 for none. */
+  function markTick(k){
+    for(var t=0;t<majors.length;t++){
+      if(t===k) majors[t].setAttribute('data-current','1');
+      else majors[t].removeAttribute('data-current');
+    }
+  }
+
   (function build(){
     var frag=d.createDocumentFragment(), total=(N-1)*5, i, s;
     for(i=0;i<=total;i++){
       s=d.createElement('span');
       s.className='tk';
-      if(i%5===0){ s.setAttribute('data-major','1'); s.setAttribute('data-mm',pad(i/5)); }
+      if(i%5===0){ s.setAttribute('data-major','1'); s.setAttribute('data-mm',pad(i/5)); majors.push(s); }
       else{ s.setAttribute('data-major','0'); }
       frag.appendChild(s);
     }
@@ -1221,6 +1256,7 @@ html.js-on .nojs{display:none}
       slugN.textContent='--';
       slugLab.textContent='small c cut'; slug.removeAttribute('data-author');
       needle.style.left='0%';
+      markTick(-1);           /* nothing is in register yet, so no tick is standing */
       d.body.setAttribute('data-plate','none');
       ends();
       return;
@@ -1237,6 +1273,7 @@ html.js-on .nojs{display:none}
        counter there rather than reading "small c cut 10 of 09". */
     if(cur===N-1){ slugLab.textContent=p.d; slug.setAttribute('data-author','1'); }
     else { slugLab.textContent='small c cut'; slug.removeAttribute('data-author'); slugN.textContent=pad(cur); }
+    markTick(cur);
     needle.style.left=(cur/(N-1)*100)+'%';
     ends();
     d.body.setAttribute('data-plate',String(cur));
