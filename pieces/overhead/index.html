@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Reducing INGO Overhead with Small c Cuts &middot; small c cut</title>
+<meta name="description" content="HQ in International NGOs has a talent for introducing change.">
+<link rel="canonical" href="https://smallccut.org/pieces/overhead/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="author" content="Ali Al Mokdad">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="small c cut">
+<meta property="og:locale" content="en">
+<meta property="og:url" content="https://smallccut.org/pieces/overhead/">
+<meta property="og:title" content="Reducing INGO Overhead with Small c Cuts">
+<meta property="og:description" content="HQ in International NGOs has a talent for introducing change.">
+<meta property="og:image" content="https://smallccut.org/assets/covers/overhead.jpg">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="900">
+<meta property="og:image:alt" content="A lorry on a road, its tarpaulin load stacked far higher than the cab.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@AlMokdadAli1">
+<meta name="twitter:creator" content="@AlMokdadAli1">
+<meta name="twitter:title" content="Reducing INGO Overhead with Small c Cuts">
+<meta name="twitter:description" content="HQ in International NGOs has a talent for introducing change.">
+<meta name="twitter:image" content="https://smallccut.org/assets/covers/overhead.jpg">
+<meta name="twitter:image:alt" content="A lorry on a road, its tarpaulin load stacked far higher than the cab.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230F1010'/><path d='M22 10.5a7 7 0 100 11' fill='none' stroke='%23EEC51C' stroke-width='3.4'/></svg>">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Reducing INGO Overhead with Small c Cuts", "description": "HQ in International NGOs has a talent for introducing change.", "url": "https://smallccut.org/pieces/overhead/", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://smallccut.org/pieces/overhead/"}, "image": "https://smallccut.org/assets/covers/overhead.jpg", "wordCount": 5670, "inLanguage": "en", "isPartOf": {"@type": "WebSite", "@id": "https://smallccut.org/#site", "name": "small c cut"}, "about": {"@type": "DefinedTerm", "@id": "https://smallccut.org/#term", "name": "small c cut"}, "author": {"@type": "Person", "@id": "https://smallccut.org/#ali", "name": "Ali Al Mokdad", "url": "https://alialmokdad.com"}, "publisher": {"@type": "Person", "@id": "https://smallccut.org/#ali", "name": "Ali Al Mokdad"}, "creditText": "Ali Al Mokdad", "copyrightNotice": "© Ali Al Mokdad", "sameAs": "https://www.linkedin.com/pulse/reducing-ingo-overhead-small-c-cuts-ali-al-mokdad-nhruf"}</script>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+:root{
+  --paper:#DFE0DF; --dust:#82827D; --shade:#3B3B36; --ink:#0F1010; --signal:#EEC51C;
+  --hair:rgba(15,16,16,.22);
+  --mm:clamp(11.5px,.82vw,13.5px);
+  --pad:clamp(30px,2.7vw,46px);
+}
+@font-face{font-family:Archivo;src:url(../../assets/fonts/Archivo-normal.woff2)format('woff2');
+  font-weight:100 900;font-display:swap}
+@font-face{font-family:'JetBrains Mono';src:url(../../assets/fonts/JetBrainsMono-normal.woff2)format('woff2');
+  font-weight:100 800;font-display:swap}
+body{background:var(--paper);color:var(--ink);
+  font-family:Archivo,'Helvetica Neue',Arial,sans-serif;font-weight:420;
+  font-synthesis:none;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--ink);color:var(--paper)}
+a{color:inherit}
+img{display:block;max-width:100%}
+
+.sheet{position:relative;min-height:100svh;padding:var(--pad);max-width:1680px;margin:0 auto}
+
+/* the same four marks as the front, at the same insets */
+.trim{position:absolute;width:26px;height:26px;pointer-events:none}
+.trim::before,.trim::after{content:"";position:absolute;background:var(--ink)}
+.trim::before{left:0;top:12px;width:26px;height:1px}
+.trim::after{top:0;left:12px;height:26px;width:1px}
+.trim.tl{left:8px;top:8px}.trim.tr{right:8px;top:8px}
+.trim.bl{left:8px;bottom:8px}.trim.br{right:8px;bottom:8px}
+
+.ident{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:var(--mm);
+  text-transform:uppercase;letter-spacing:.13em;font-weight:600;
+  display:inline-flex;align-items:center;gap:9px;margin:0;text-decoration:none}
+.cmark{width:15px;height:15px;flex:none}
+.cmark path{fill:none;stroke:var(--signal);stroke-width:3.6}
+
+.slug{display:block;width:max-content;max-width:100%;margin-top:26px;background:var(--ink);color:var(--paper);
+  font-family:'JetBrains Mono',ui-monospace,monospace;font-size:var(--mm);
+  letter-spacing:.1em;padding:5px 10px}
+.slug b{color:var(--signal);font-weight:600}
+
+h1{font-size:clamp(1.75rem,4.4vw,3.1rem);line-height:1.04;letter-spacing:-.025em;
+  font-weight:660;margin:.42em 0 0;max-width:19em}
+.byline{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:var(--mm);
+  letter-spacing:.13em;text-transform:uppercase;color:var(--shade);margin-top:16px}
+
+.plate{margin:30px 0 0;border:1px solid var(--ink)}
+.plate img{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
+.plate figcaption{font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:calc(var(--mm) - .5px);color:var(--shade);padding:8px 10px;
+  border-top:1px solid var(--hair);line-height:1.4}
+
+/* A poster does not have to be read for eight minutes. Prose does, so the measure
+   narrows and the size comes up. This is the one place a piece departs from the front. */
+.body{max-width:34em;margin-top:40px}
+.body p{font-size:clamp(1.02rem,1.5vw,1.14rem);line-height:1.62;margin:0 0 1.15em}
+.body h2{font-size:clamp(1.16rem,2vw,1.42rem);line-height:1.2;letter-spacing:-.015em;
+  font-weight:640;margin:2.1em 0 .55em}
+.body li{font-size:clamp(1.02rem,1.5vw,1.14rem);line-height:1.62;margin:0 0 .5em}
+.body ul{padding-left:1.1em;margin:0 0 1.15em}
+.body p:first-child{font-size:clamp(1.1rem,1.7vw,1.26rem);line-height:1.5}
+
+.end{max-width:34em;margin-top:52px;padding-top:20px;border-top:1px solid var(--ink);
+  font-family:'JetBrains Mono',ui-monospace,monospace;font-size:var(--mm);
+  letter-spacing:.04em;line-height:1.7;color:var(--shade)}
+.end a{color:var(--ink)}
+.end .row{margin-top:10px}
+.back{display:inline-block;margin-top:26px;font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:var(--mm);letter-spacing:.1em;text-transform:uppercase;
+  border-bottom:1px solid var(--ink);text-decoration:none;padding-bottom:2px}
+a:focus-visible,.back:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+
+@media (max-width:700px){
+  .trim{width:14px;height:14px}
+  .trim::before{top:6px;width:14px}.trim::after{left:6px;height:14px}
+  .trim.tl{left:4px;top:4px}.trim.tr{right:4px;top:4px}
+  .trim.bl{left:4px;bottom:4px}.trim.br{right:4px;bottom:4px}
+  .plate{margin-left:calc(var(--pad) * -1);margin-right:calc(var(--pad) * -1);
+    border-left:0;border-right:0}
+  .body{margin-top:30px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<main class="sheet">
+  <span class="trim tl"></span><span class="trim tr"></span>
+  <span class="trim bl"></span><span class="trim br"></span>
+
+  <a class="ident" href="../../"><svg class="cmark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17.2 6.4a7 7 0 1 0 0 11.2"/></svg> SMALL C CUT</a>
+
+  <div class="slug">small c cut <b>01</b> / 09</div>
+  <h1>Reducing INGO Overhead with Small c Cuts</h1>
+  <div class="byline">Ali Al Mokdad &middot; 26 min read</div>
+
+  <figure class="plate">
+    <img src="../../assets/covers/overhead.webp" width="1600" height="900"
+         alt="A lorry on a road, its tarpaulin load stacked far higher than the cab." fetchpriority="high" decoding="async">
+    <figcaption>A lorry on a road, its tarpaulin load stacked far higher than the cab.</figcaption>
+  </figure>
+
+  <article class="body">
+    <p>HQ in International NGOs has a talent for introducing change.</p>
+    <p>It usually begins with good intention. Someone notices a gap. Someone else sees an opportunity. Or someone hears a donor mention a word like nexus, localization, or climate adaptation in a meeting and thinks &quot;this could be big.&quot;</p>
+    <p>And that is all it takes to set everything in motion. One email becomes five. A ToR appears. A budget line is born. And before anyone pauses to assess the actual operational and strategic value, something new is already moving.</p>
+    <p>On paper, each decision seems reasonable. It looks like a small adjustment, a little extra support. Like installing a new app on your phone because you thought it might help with something. A quick click. Permissions granted. Access to time, access to data, access to attention. A tiny action that feels like progress.</p>
+    <p>But app stores are never made for just one download.</p>
+    <p>Soon there is another. Then another. A unit for this. A platform for that. A new role. A new policy. An updated process. Each one quietly added to the operating system.</p>
+    <p>Meanwhile, the old apps remain. Very little is removed from the old structures. An office. A department. A role created many years ago. They sit like forgotten apps with auto renew turned on, quietly charging the account every month.</p>
+    <p>Eventually, the new and the old begin to pile up together, and that is when the real impact appears.</p>
+    <p>The system slows. Decisions drag. Processes multiply. People stay busy, and frustration becomes part of the job. Click one function and three others open behind it. Nobody can tell which piece is causing the lag anymore. They all look important. They all have a justification to exist. And like any overloaded phone, eventually the whole thing freezes. That is when executive leadership reaches for the Capital C Cut. The factory reset. A dramatic restructure. Teams merged. Units dismantled. Offices closed. It looks bold from the outside. Inside, it feels like panic, like grief.</p>
+    <p>But the truth is simpler. Systems rarely break in one dramatic moment. They slow down piece by piece, permission by permission, download by download. And the way back is not one big reset. It is the small c cuts. The quiet deletions. The intentional choices that remove what no longer serves the work so everything else can move again.</p>
+    <p>This piece is about those choices, the small c cuts that keep an organization's overhead honest, light, and effective.</p>
+    <h2>Bring Overhead Back Into the Story</h2>
+    <p>If you stay long enough in the sector, you notice that the story of humanitarian work splits in two.</p>
+    <p>There is the visible story we tell students, friends, family, and the media.</p>
+    <p>Crossing borders to respond to emergency with twenty-four hours' notice.</p>
+    <p>Delivering aid after an earthquake.</p>
+    <p>Long nights in the bush.</p>
+    <p>Sleeping in tents or in containers someone optimistically called a guest house.</p>
+    <p>The people we met, the people we lost.</p>
+    <p>It sounds brave, because sometimes it was.</p>
+    <p>And then there is the invisible story rarely talked about publicly. Opening an Excel sheet in the late evening.</p>
+    <p>Editing a policy after midnight.</p>
+    <p>Spending a weekend reviewing a proposal.</p>
+    <p>Chasing an invoice. Fixing payroll calendars.</p>
+    <p>A recruitment that stretches over three months, taking longer than a presidential election.</p>
+    <p>Updating an operations handbook for the fourth time, feeling more like drafting a national constitution.</p>
+    <p>Stay long enough and the shine of the public story fades. The practical truth steps forward. There you find finance, HR, supply chain, legal, and digital: the people checking contracts, reconciling accounts, unblocking platforms, keeping the organization standing. Essential, yet almost invisible in the stories NGOs tell about themselves.</p>
+    <p>That is where the problem begins. Most organizations treat overhead as something that supports the story, not as part of it. So it gets left out of strategy, program design, donor negotiations, and decisions on systems, staffing, risk, and ambition.</p>
+    <p>The result is almost the same everywhere. Strategy that is visionary but not operational. Ideas that look good on slides but collapse when they touch a process. Projects that promise transformation but rely on overhead to repair the damage. So much time, effort, and so many roles assigned to fix, check, and align, and suddenly overhead becomes the emergency room for decisions made without it.</p>
+    <p>Here is the necessary small c cut. Bring overhead into the room where decisions are made and ideas are designed. Not as an afterthought. Not as a late reviewer. As part of the design team from the first conversation.</p>
+    <p>The rule is simple. Overhead is not backstage. Overhead is part of the main stage.</p>
+    <p>When developing a strategy, include finance and supply chain to shape logic and ambition. And when building a framework, program, or structure, work with them to assess what it genuinely demands operationally. When redesigning workflows or systems, involve IT from the start and ask what can be automated or simplified. When negotiating with donors, bring legal and compliance in early so promises match reality. And when you tell a story about the work done, talk about the overhead with the same passion you talk about the program teams.</p>
+    <p>Because this is where real efficiency begins. This is how organizations save time, reduce effort, and protect money before it is lost in rework, fixes, and firefighting.</p>
+    <p>This is how overhead stops fixing yesterday's problems and starts shaping tomorrow's work.</p>
+    <h2>Calculating Value Before Carrying Weight</h2>
+    <p>Turning on one light in a house feels like nothing. Two still feels normal. Three barely shows up on the bill. But leave the whole house lit for months and then the electricity bill arrives. Only then you realize that what felt insignificant in the moment has quietly accumulated into a cost you can no longer ignore.</p>
+    <p>Overhead works the same way.</p>
+    <p>A unit created because it seemed strategically useful.</p>
+    <p>A platform purchased because it promised smoother delivery.</p>
+    <p>A policy added because it looked like stronger accountability.</p>
+    <p>A role introduced because someone hoped it might help.</p>
+    <p>A regional team added simply to satisfy a compliance requirement.</p>
+    <p>An investment area built at HQ because a donor once showed interest.</p>
+    <p>All rooted in good intentions. All meant to strengthen the system. And yet each one carries a cost. Not just financial. Time. Attention. Reviews. Maintenance. Staffing. Reporting. A meeting here. A dashboard there. A recurring line on the budget.</p>
+    <p>The small c cut here is to treat every element of overhead as something that must justify its existence. Once a year, put it on a simple value scale and ask the questions that matter.</p>
+    <p>Which concrete problems did it actually solve. What did it reduce in money, time, risk, or mistakes. Would country teams feel its absence within six months. Does it return more time than it takes. Can its purpose be explained in one sentence that country teams would recognize.</p>
+    <p>If the value is clear, keep it and sharpen it. If the value is partial, redesign it. If the value is unclear, merge it or retire it with dignity.</p>
+    <p>When organizations stop lighting every room just because the switch exists, the system moves smoothly again, and the work begins to flow.</p>
+    <h2>Retiring the Offices Time Forgot</h2>
+    <p>There was a time when having an office in Geneva, Brussels, or New York meant real power and influence. These were the cities where policy was written, where UN bodies met, where diplomatic missions shaped entire regions.</p>
+    <p>Donors reinforced similar logic.</p>
+    <p>A donor in Oslo wanted someone nearby.</p>
+    <p>Another in Copenhagen insisted on physical presence.</p>
+    <p>One in Berlin. One in Paris. One in The Hague. One in Toronto. Each expected a local meeting or a legal local registration.</p>
+    <p>If an NGO had a representation there, it could step into the right hallway at the right moment and leave with funding. Proximity meant access. A quick conversation could shift a decision. A coffee could turn into a commitment.</p>
+    <p>So NGOs opened an office, then hired a team. It made sense at the time. But years passed, and the center of gravity shifted.</p>
+    <p>Power moved from physical corridors to screens.</p>
+    <p>Influence migrated from global capitals to regional hubs.</p>
+    <p>Diplomacy began happening over video calls rather than city desks.</p>
+    <p>Yet the offices stayed. Lights on. Rent paid.</p>
+    <p>Not because they still delivered value, but because they existed. Because legacy is heavy. Because closing any office at HQ risks tension, and questioning the existence of an office in an NGO is the equivalent of walking into a Game of Thrones council meeting and suggesting we melt the Iron Throne.</p>
+    <p>The truth is: most INGOs now carry a map of offices. Some essential. Some symbolic. Some long inactive.</p>
+    <p>The small c cut here is to treat every office as an active decision, not a legacy. Look at each location through today's lens. Ask what would truly disappear if it closed. Which funding streams would fall. Which alliances would fade. Which doors would remain permanently shut.</p>
+    <p>Then build the roadmap from reality, not nostalgia. Map where influence genuinely sits now. Which donors still require HQ-to-HQ engagement. Does it need a full office, or just one active representative. Could space be shared. Could periodic visits or a roaming presence replace permanent rent.</p>
+    <p>Legacy may explain why an office exists. Value should determine whether it continues.</p>
+    <h2>HR Activity Without HR Movement</h2>
+    <p>Wellbeing posters on the walls. Learning weeks on the calendar. Culture campaigns filling inboxes. Photos of multicultural teams proudly shared across internal channels. On the surface, it reads like progress and makes HR look energetic.</p>
+    <p>Look closer and you find a different story. Teams are exhausted. Turnover keeps rising. Stress leave repeats. National colleagues feel invisible in decisions and very visible in photos. The cost of recruiting, onboarding, and conducting investigations keeps piling up.</p>
+    <p>The problem is not the existence of HR or whether it is called People and Culture or something else.</p>
+    <p>The problem is the gap between activity and movement. Between signals and substance. Between the language of care and the lived experience of work. At its core, it is a failure in organizational psychology.</p>
+    <p>And the risky part is that some of the strongest warnings hide behind the most impressive indicators.</p>
+    <p>Here is one example I watched up close. A large INGO ran a global wellbeing survey that came back almost entirely green. Leadership celebrated the dashboard, the green percentages, and called it progress. But resignations and stress leave continued to grow. When someone finally looked one layer deeper, a thin red line appeared. Middle managers were the category that kept flashing red, especially women who were struggling the most. Highest turnover. Lowest sense of organizational support. High recruitment costs.</p>
+    <p>And when the data was examined further, it exposed governance gaps, cultural problems, and deep-rooted bias patterns.</p>
+    <p>Green did not mean people were fine. It meant nobody had asked who was still in red.</p>
+    <p>Another example, one I witnessed firsthand. An INGO proudly presented its progress on diversity. More than three hundred staff from over twenty nationalities worked together every day. The executive management celebrated the number of languages, cultures, and lunchtime traditions, and reflected that publicly with photos.</p>
+    <p>But when you looked deeper into the structure, you found that among nearly thirty managers, almost all came from the same background. The most vulnerable groups in the offices were staff from other nationalities who feared that speaking up could put both their job and residency at risk. Diversity existed in the photos and social media posts. It did not exist in the rooms where power sat or in the confidence people felt to share their perspective.</p>
+    <p>And one more story, the one that still makes my skin shiver. In one INGO, indicators showed progress on national leadership. Reports showed rising numbers of nationals in senior roles across country offices, and the global management celebrated this.</p>
+    <p>But when decisions, structures, and contracts were reviewed, the truth became clear. The numbers reflected contract types, not actual leadership. Several so called national senior roles were filled by international staff holding local contracts. On paper the roles looked national. In reality the power had not moved. Only the contract category had changed.</p>
+    <p>This is how overhead enters HR. Time and money flow into signals while the strain and imbalance remain beneath the surface. And when you add the cost of hiring, training, and onboarding people who eventually leave because nothing really changed, you see one of the most expensive forms of overhead in the entire organization.</p>
+    <p>The small c cut here is to measure movement. Once a year, review every HR activity through the lens of lived impact.</p>
+    <p>Did turnover drop. Did stress related absence go down. Did managers improve in planning, feedback, and psychological safety. Did national colleagues gain real authority. Do people feel safer telling the truth. Do candidates experience a fair, timely process that respects their effort, time, and dignity. Did leaders change their own behaviour in ways that made work clearer, safer, or more honest.</p>
+    <p>Compare these outcomes with the time and cost invested.</p>
+    <p>Keep what genuinely improves how people work and feel. Invest in organizational psychology by identifying real behavioural patterns and bias issues. Replace large campaigns with a few consistent habits that managers actually use.</p>
+    <p>Let HR be the support spine, not the performance stage.</p>
+    <h2>Trainings That Perform Not Transform</h2>
+    <p>You're hired in the country office.</p>
+    <p>Field based. Operational.</p>
+    <p>Day one, you're flown to HQ for onboarding.</p>
+    <p>Five days of slides.</p>
+    <p>Four pages of acronyms.</p>
+    <p>A facilitator explaining &quot;the reality of fragile contexts&quot; to someone who holds an unofficial record for evacuations, has lived through more hibernations than winter wildlife, and is about to start working in a place where New Year's fireworks are bullets in the air.</p>
+    <p>You return to the country and try to catch up.</p>
+    <p>You unpack a suitcase. Then repack it for the next: a regional workshop in Nairobi, or Amman, or Dakar.</p>
+    <p>Leadership calls it &quot;peer learning across regions&quot;. The country office calls it &quot;the week the office paused decisions&quot;.</p>
+    <p>You fly back to the operation, touch your desk, and immediately receive another invite: &quot;Global strategy&quot; &quot;Digitalization summit&quot; &quot;Climate adaptation discussion&quot; &quot;GDPR integration&quot;</p>
+    <p>A hotel and flight are booked that cost more than three local staff salaries for the month.</p>
+    <p>The emergency you were managing pauses because apparently &quot;this event is critical to shaping future response effectiveness&quot;.</p>
+    <p>Ironically, it weakens the current one.</p>
+    <p>You return again, exhausted, only to be pulled into online sessions and new working groups. Emails arrive with long attachments and the familiar line: &quot;Please read before our next call.&quot;</p>
+    <p>And the cycle continues.</p>
+    <p>Onboarding.</p>
+    <p>Briefing.</p>
+    <p>Summit.</p>
+    <p>Retreat.</p>
+    <p>Webinar.</p>
+    <p>Handbook.</p>
+    <p>Working groups.</p>
+    <p>Each one sold as an investment. Each one landing like an interruption.</p>
+    <p>The small c cut here is to design for impact. Start by questioning the tradition. Keep global summits only when being in the same room will clearly shift a decision, unlock a partnership, or solve something truly stuck. Shorten onboarding, move it online, and let national colleagues lead contextual briefings because they know what is real, not theoretical.</p>
+    <p>Review travel requests through one disciplined question: will this trip produce a capability or decision that cannot be achieved virtually. If the answer is soft, do not send people.</p>
+    <p>Cut week-long workshops into concise sessions that solve one practical problem at a time and return people quickly to apply it. Replace cross-border training with on-site shadowing, peer coaching, and simple recorded materials that country teams can access on their own schedule.</p>
+    <p>Another small cut: rethink the value of leaders participation. If leadership presence at summits does not directly speed a decision, remove it. Let leaders invest time in live operational issues instead of appearing on panels that echo what country teams already know, and treat training as a tool that must earn its place in the calendar by improving how people work, not by filling rooms or ticking implementation boxes.</p>
+    <h2>International Packages for a World That No Longer Exists</h2>
+    <p>Most of us in the sector have either met, or at some point been, that international staff member who calls Nairobi, Amman, Bangkok, Dakar, Johannesburg, Gaziantep or Addis Ababa &quot;the field&quot;. Or refers to Beirut, Damascus, Erbil, Cox's Bazar or Abuja as a &quot;hardship posting&quot;.</p>
+    <p>The kind of hardship where you stay in apartment that is big enough for three families, a driver waits downstairs, cleaner and sometimes there is a cook who already knows your diet, and you take UNHAS like it is a private jet. You finish the day in restaurants rated above three stars and start it in coffee shops serving beans flown in from across the world.</p>
+    <p>This is not hypocrisy. It is a system still running on settings from another time.</p>
+    <p>International packages were built for operations hardship: limited services, unreliable power, isolation. In some places, that is still true and protection must remain firm. But many locations have changed. There are supermarkets, private clinics, fibre internet, malls. The context evolved while the packages stayed still, as if we are still navigating from a bunker using a satellite phone.</p>
+    <p>Housing allowances continue as if hardship still defines the posting. Insurance stays international even when strong local coverage is available. R&amp;R follows classifications not updated in more than a decade.</p>
+    <p>And that is only the visible layer. Add pension contributions calculated at international levels, travel entitlements based on assumptions of remoteness, utilities fully covered, visa costs, rent-free accommodation, per diem if moved between sites, relocation allowance.</p>
+    <p>Over time, the cost moves beyond numbers. The cost of hiring one international staff is similar to the cost of hiring a full team from the country.</p>
+    <p>The small c cut here is to let present reality, not past narrative, guide policy.</p>
+    <p>The cost of one international package, built on yesterday's hardship, can equal the cost of an entire local team. That truth has been treated as taboo for too long. Get comfortable naming it out loud and challenging it. Update hardship ratings based on how people live and work today. Adjust housing, schooling, travel, and time away to match context. Keep full protection where danger or isolation still exists. Where stability is present, scale entitlements accordingly.</p>
+    <p>Apply the same discipline to insurance. When reliable national coverage is available, place national and international staff on the same strong local plan and reserve international cover only where it is genuinely required. When global insurance remains, renegotiate and remove what nobody uses.</p>
+    <p>Align benefits with responsibility, not nationality. When senior roles are nationalized, give real authority and compensation that match the role, along with the same protection previously given to international predecessors.</p>
+    <p>One rule ties it together. Every benefit must earn its place by protecting people in proportion to the risk they carry today. And let packages reflect the present, not a world already passed.</p>
+    <h2>Budget Gravity You Cannot See</h2>
+    <p>I call it the Pandora box. I also call it the &quot;what could possibly go wrong&quot; budget line.</p>
+    <p>Its actual name is tax.</p>
+    <p>Taxes are the budget gravity many forget. You plan the project, stack activities and staff, line up partners, then months later something you barely noticed pulls everything down. A tax rule. A missing exemption. A fee that was always there but never in the plan.</p>
+    <p>In many NGOs, tax and VAT sit in the background as details for somebody else. A line on a receipt. A percentage on an invoice. Something finance will sort out or HR will ask a lawyer about. It feels small until it is not.</p>
+    <p>Tax issues do not explode on day one. They sit quietly in the corners of projects, then arrive all at once as penalties, audit findings, frozen payments, and reputational questions.</p>
+    <p>The small c cut here is to stop guessing in the dark and turn on the light. Build a simple country tax and VAT map for every location. Nothing heavy, just clear notes on what applies, which exemptions exist, what paperwork is needed, what donors cover, and what carries legal or reputational risk. Keep it live and close to the people who sign contracts and plan activities, not buried in a shared folder.</p>
+    <p>Then add one discipline. Every new activity gets a quick tax check before it begins. Ten minutes, one conversation. A training, a workshop, a revenue activity, a local contract, anything that might trigger obligations. This is prevention, the difference between a small adjustment now and an expensive finding later.</p>
+    <p>Next, build capacity where it matters. Train finance leads and HR managers in the practical reality of local taxes, with a focus on withholding, VAT, fees, exemptions, documentation, and audit trails. Give them a clear way to escalate complex questions early.</p>
+    <p>Tattoo this in your process and policy: never treat a payment to an authority linked to an armed group as routine. Stop, escalate, and get legal and ethical advice before any agreement is signed or money is released. The next scandal on the news should not be your team trying to explain why project funds ended up with armed actors.</p>
+    <p>Finally, be honest. Budget taxes where they belong instead of hiding them under cleaner lines. Escalate unclear requests before paying. Document exemptions properly. Tell donors which rules apply and which costs are real. Over time, taxes move from surprise to a managed, visible cost.</p>
+    <h2>The Story That Costs More Than It Tells</h2>
+    <p>Branding, advocacy, press, and communications are meant to be the organization's voice, a way to explain the mission and influence decisions. In many NGOs, they have slowly become one of the heaviest and most duplicated forms of overhead. A country office hires a communications officer. The region hires theirs. HQ builds a team. Representation offices open their own channels. Each unit produces its own reports, newsletters, social media posts, advocacy briefs, campaigns, and hundreds of pages. Different wording, different images, different priorities. One organization begins to sound like many.</p>
+    <p>The cost is not just salaries. It is hours spent drafting content that duplicates other content, reviewing papers that are rarely cited, running social media channels followed mostly by staff, and maintaining websites people open mainly to check job vacancies.</p>
+    <p>Many stories in NGOs are produced, very few are heard. Instead of one credible voice, the organization becomes noise. Instead of influence, it becomes performance.</p>
+    <p>The small c cut here is to treat communication as one story, not many.</p>
+    <p>Map every branding, advocacy, press, and communications function across country, region, HQ, and representation. List what is produced and how often, then ask which products changed a decision, which campaigns reached people outside the organization, which papers were cited, and which channels or pages are actually used. Anything that does not show real use or influence becomes a candidate to stop.</p>
+    <p>Introduce a shared communication spine for internal and external content. One visible content calendar. One common tone and a small set of core messages. One shared library of visuals. Let a small group create core materials and allow others to adapt them instead of recreating the same thing in several places. Reduce the number of websites. Close inactive social media channels. Retire campaigns and newsletters that do not reach beyond internal circles.</p>
+    <p>Treat communications like any other operational function. Track cost, time, and influence. If a product does not deliver value, end it. If a role is duplicated, merge it. If a task is needed only a few times a year, do not build a full role around it.</p>
+    <p>One story. Less cost. More real influence.</p>
+    <h2>Paper, Pixels, and No Real Delivery</h2>
+    <p>We see it often but rarely pause long enough to question it.</p>
+    <p>A staff survey from an external firm.</p>
+    <p>A personality test on a polished software platform.</p>
+    <p>A printed strategy or report that looks impressive on a desk.</p>
+    <p>Visibility banners, jackets, and t shirts for HQ staff.</p>
+    <p>Awareness posters redesigned every year with new colours and the same messages.</p>
+    <p>Translation of documents into five languages.</p>
+    <p>Each item feels reasonable on its own.</p>
+    <p>A survey or test that suggests we are listening. A printed report or piece of merchandise that looks credible in a meeting. A translation or poster that signals inclusion and care.</p>
+    <p>Together, they quietly become one of the most persistent forms of overhead. Money leaves in small pieces: survey fees, test subscriptions, design, printing, translation, launch events, branded material. Costs are spread across budget lines, so the total never appears in one place. By the time anyone notices, the organization has spent the equivalent of a medium country operation on paper and pixels that changed nothing in how people work.</p>
+    <p>This is what happens when an organization rewards appearance more than use. A personality test is approved under the assumption that one size fits all, that it can interpret people across cultures and lived experiences better than a thoughtful interview. A wellbeing survey becomes a shortcut to understanding staff needs, and too often replaces honest conversations. A printed strategy looks good on a table for a day, then quietly makes its way to recycling. Translated documents take weeks, and by the time they are ready, the updated version is already circulating. And visibility gear for HQ becomes part of a style, good for photos, not for impact.</p>
+    <p>The small c cut here is logic. Apply one simple discipline to anything that looks like a survey, a major print, or a full translation. One version. One purpose. One clear primary user.</p>
+    <p>For staff listening, use short pulse checks and honest discussion. For strategies and reports, avoid printing them, keep one clean digital version in the working language, with a brief summary people can read on a phone. Print only if someone formally asks. For translations, let AI produce quick, accessible drafts, and reserve full human translation for documents that country teams identify as critical. For launches, host one live online briefing explaining what is new, what will stop, and what people must do differently. Record it, share the link, and move forward.</p>
+    <p>You still listen to staff. You still share strategies and reports. You still translate when it truly matters. You simply stop paying for products that look important and land nowhere.</p>
+    <h2>Middle Layers That Slow The Work</h2>
+    <p>In many NGO HQ governance structures, there is a growing practice of creating a wide middle layer, gradually filled with coordinators, focal points, advisors, business partners, and facilitators. They sit in the space between implementation and authority, between the teams doing the work and the leaders shaping the decisions, between frontline delivery and strategic direction. On paper, they exist to support, to facilitate, and to align. In reality, they often evolve into a soft governance layer that adds time and extra checks without contributing real operational, programmatic, or strategic value.</p>
+    <p>They join meetings instead of the person who holds the mandate. They review documents without the authority to approve. They design consultation processes where clarity is needed. They double check with layers above for routine actions. They ask to join recruitments or technical supervision simply to stay connected to the outcome.</p>
+    <p>The salary is only one part of the cost. Every coordinator adds another review. Every business partner, another alignment call. Every focal point and advisor, one more stop between question and answer.</p>
+    <p>And they all add more working groups. Each extra consultation pulls people further from action and closer to hesitation.</p>
+    <p>Over time, accountability blurs. Country teams feel observed, not supported. Senior leaders feel informed, not closer to decisions. Work stretches because it travels through those who can comment on everything and own almost nothing.</p>
+    <p>The small c cut here is clarity: move from structural complexity to clear, owned decisions. Treat these roles as part of governance. For every coordinator, business partner, advisor or focal point, write one sentence defining what they actually decide and what would stop if the role did not exist. If the answer is mostly reviewing, consulting, or forwarding, the role needs to change or be absorbed.</p>
+    <p>No position should exist only to coordinate or facilitate or manage a calendar. Every middle role must carry a real piece of delivery, with decisions they can make without escalation. Simplify decision chains so there are only a few steps from field to final sign off. And when alignment is genuinely needed, name one clear owner and trust them to close it and move.</p>
+    <h2>Licences That Quietly Eat The Budget</h2>
+    <p>It starts small. Someone watches a demo. Someone hears a donor mention digital transformation. Someone else worries we might look outdated. And suddenly, the INGO behaves as if it sits in Silicon Valley and starts buying licences for ERP, CRM, data collection, e-signature tool, recruitment software, and more.</p>
+    <p>Tools are rolled out. Staff open them once, realize the internet is too weak or the workflow does not match reality, and quietly return to Excel and WhatsApp.</p>
+    <p>Former staff keep their accounts. Consultants still have access long after their contracts end. IT starts writing governance rules for tools nobody actually needed.</p>
+    <p>And just when you think it might stop there, the memberships arrive. The alliances, the quality platforms, the accountability networks, the benchmarking groups. One for influence. One for prestige. One because it signals accountability. And one simply because other organizations already joined. Each comes with a subscription fee and hours of staff time spent attending membership meetings, joining working groups, and pretending there is real value. Management keeps approving renewals because cancelling feels risky and because it has become the norm.</p>
+    <p>The real cost is not just money. It is the time absorbed, the confusion created, and the silent commitment to maintain something that adds almost no operational or strategic value. It becomes overhead paying for more overhead.</p>
+    <p>The small c cut here is to keep only the tools and memberships that clearly help the work. Once a year, run a basic reality check. Make one list of every licence, platform, and active user. Put IT, finance, and someone from operations at the same table and ask four questions: What was actually used in the last ninety days. What is it used for. Can we get the same result with something we already have. If we stopped it tomorrow, who would notice and why.</p>
+    <p>Then act. Remove accounts for people who left. Switch off tools that nobody uses. Downgrade anything on a premium tier without real need. For the tools that remain, negotiate one agreement and give one person the responsibility to reduce cost, not add more platforms. Apply the same check to memberships.</p>
+    <p>Keep only those that truly open doors or inform decisions, not the ones that just make us feel connected. When this becomes routine, software and membership spending stops being invisible overhead.</p>
+    <h2>Consultancy: The Sector's Fastest-Growing Industry</h2>
+    <p>Consultants arrive with polished documents and confident language. A strategy. A review. A transformation plan. The ToR looks sharp, the day rates get approved, the kickoff feels serious, almost transformative.</p>
+    <p>Fast forward a few months. A glossy report lands. People nod politely. A sentence or two makes it onto a slide. And then the organization quietly returns to doing things exactly as before.</p>
+    <p>Daily work looks the same. Same debates. Same bottlenecks. Same firefighting. The consultancy finishes. The habits stay.</p>
+    <p>The problem is not consultants. The problem is how NGOs use them. Consultancies become a reflex instead of a decision. The same topics are studied again. The same findings return in fresh vocabulary. Teams invest hours in interviews and document sharing, yet nothing in operations moves even a centimetre.</p>
+    <p>It is overhead at its core. Insight without application. Movement without change. A report that never lands, while deep expertise already exists inside the organization, ignored and underused.</p>
+    <p>The small c cut is to only hire a consultant when you intend to act. Before signing, name one senior owner who will live with the findings. Clarify which decisions it will inform and which practices must stop because of it. If you cannot answer that in one clear paragraph, do not hire.</p>
+    <p>Start with what you already have. Borrow a colleague from another office. Exchange time with a peer organization. Expertise often already exists and costs nothing except attention.</p>
+    <p>And if a consultancy does go ahead, it must end with a short implementation note: what will change, who will do it, by when, and which old habits will be retired to make space.</p>
+    <p>If nothing shifts in real practice, it is overhead. If it never lands in operations, it never should have landed in the budget.</p>
+    <h2>Overhead, and What We Choose To Believe</h2>
+    <p>Behind many layers of overhead there is something simple and very human. People do not fully trust the system they work in, so they quietly build another one. They duplicate work because they do not trust the data. They escalate simple issues because they do not trust the process. They keep private trackers because they do not trust the main system.</p>
+    <p>None of this is intentional harm. It is people trying to protect programs, protect partners, protect themselves. But every extra spreadsheet, every extra approval, every parallel workflow adds time, cost, and friction. Over time it becomes overhead made from fear instead of necessity.</p>
+    <p>The small c cuts focus at building one system that earns trust and then have the courage to let the rest go. When leaders show confidence in the structure, staff slowly stop building alternatives in the shadows.</p>
+    <p>Underneath international NGO overhead sits one question: Does this still serve the work, or has it begun to serve itself.</p>
+    <p>Asked once, it is uncomfortable. Asked every week, it becomes a discipline. One office shared or closed. One role redesigned around a real need. One donor rule harmonized instead of copied again. One project costed honestly instead of hidden. One platform turned off. One benefit brought back to proportion. One unit allowed to end with dignity.</p>
+    <p>My position has not moved, and it is the thread I follow in every role and conversation. Real optimization starts in the small choices leaders make with trust and honesty, the quiet shifts that return organizations to first principles and let the system serve the people instead of the other way around.</p>
+  </article>
+
+  <div class="end">
+    <div class="row">Written by Ali Al Mokdad. First published on LinkedIn:
+      <a href="https://www.linkedin.com/pulse/reducing-ingo-overhead-small-c-cuts-ali-al-mokdad-nhruf" rel="noopener" target="_blank">read and discuss it there</a>.</div>
+<div class="row">Next: <a href="../hq-efficiency/">Unlock Efficiency at INGO HQ with a ‘Small c’ Cut</a></div>
+  </div>
+
+  <a class="back" href="../../">Back to the ten plates</a>
+</main>
+</body>
+</html>
