@@ -431,7 +431,11 @@ body[data-plate="none"] .stack{cursor:pointer}
   .by{font-size:calc(var(--mm) - .5px)}
 }
 @media (max-width:390px){
-  .by{display:none}          /* his name is already on plate 10 */
+  /* Hidden only on the narrowest phones, where the strip and the name cannot share a row
+     without one wrapping. NOT justified by "his name is on plate 10", the old comment, which
+     was wrong: plate 10 is one of ten and is not guaranteed to be on screen. It is justified
+     by the attribution under the definition, which is always present. */
+  .by{display:none}
   .colophon{justify-content:flex-end}
 }
 /* Short phones. At 360x740 the page came to 810 and clipped the control strip.
@@ -440,29 +444,38 @@ body[data-plate="none"] .stack{cursor:pointer}
 @media (max-width:700px) and (max-height:800px){
   .sheet{gap:8px;padding-bottom:calc(var(--pad) - 4px)}
   .epigraph{font-size:1.01rem;line-height:1.3;margin-top:4px}
-  .epigraph .src{margin-top:.45em}
   /* was h1.cap-t, which matched nothing: .cap-t became an h2 when the nameplate was
      promoted to the page h1, so this rule had been silently dead */
   .cap-t{margin-bottom:.4em}
-  .cap-i{margin-bottom:.6em}
-  .cap-q{margin:.5em 0 .85em;line-height:1.24}
   .instr{padding-top:calc(var(--stepH) / 2 + 2px)}
   .foot{padding-top:6px}
 }
 /* The shortest phones still in wide use, 667 tall. Everything here buys height
    without cropping a photograph or dropping a line of his prose, which is the
    trade I am not willing to make. The attribution under the epigraph goes because
-   his name is already on plate 10 and in the colophon. */
+   the attribution under the definition STAYS, because with the quoted line hidden it is
+   the only place his name appears on a phone. */
 @media (max-width:700px) and (max-height:700px){
   .sheet{padding:26px;padding-bottom:22px;gap:6px}
   .epigraph{font-size:1rem;line-height:1.28;margin-top:2px}
-  /* his name STAYS here even on the shortest phones: with the quoted line gone this
-     attribution is the only place it appears on a phone at all */
-  .epigraph .src{font-size:calc(var(--mm) - 1px);margin-top:.35em}
-  .cap-i{margin-bottom:.5em}
-  .cap-q{font-size:1.16rem;line-height:1.22;margin:.42em 0 .7em}
   .stack{margin-left:-26px;margin-right:-26px}
 }
+/* Ali’s spacing and size pass, phone only, placed AFTER the short screen blocks on
+   purpose. Sitting earlier in the file these lost to the max-height:800px and 700px rules,
+   so the changes appeared only on tall phones and were silently absent on a 667 or 740 tall
+   screen, which is most phones.
+   One SPACING level is 6px, one TYPE level is a step on a 1.125 scale, applied uniformly so
+   the six moves stay in proportion. The four downward moves add 60px, which also draws the
+   trailing margin in instead of leaving it pooled at the bottom. */
+@media (max-width:700px){
+  .stack{margin-top:6px}                              /* picture, one level down */
+  .cap-l{margin-top:12px}                             /* read the piece, two levels down */
+  .instr{padding-top:calc(var(--stepH) / 2 + 22px)}   /* arrows and scale, three levels down */
+  .foot{padding-top:36px}                             /* the four links, four levels down */
+  .ident{font-size:calc(var(--mm) * 1.125)}           /* top headline, one level bigger */
+  .epigraph .src{font-size:calc(var(--mm) / 1.266);margin-top:.35em}  /* name, two levels smaller */
+}
+
 
 /* a page whose subject is restraint does not get to ignore this */
 @media (prefers-reduced-motion:reduce){
