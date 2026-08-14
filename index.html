@@ -144,8 +144,30 @@ a{color:inherit}
 .trim::before,.trim::after{content:"";position:absolute;background:var(--ink)}
 .trim::before{left:0;top:12px;width:26px;height:1px}
 .trim::after{top:0;left:12px;height:26px;width:1px}
-.trim.tl{left:8px;top:8px}.trim.tr{right:8px;top:8px}
-.trim.bl{left:8px;bottom:8px}.trim.br{right:8px;bottom:8px}
+.trim.tl{left:8px;top:8px;--tox:16px;--toy:16px}
+.trim.tr{right:8px;top:8px;--tox:-16px;--toy:16px}
+.trim.bl{left:8px;bottom:8px;--tox:16px;--toy:-16px}
+.trim.br{right:8px;bottom:8px;--tox:-16px;--toy:-16px}
+
+/* ── The sheet opening. These four marks are what DEFINE the trim, so on load they
+   travel out to the corners they define and draw themselves as they go: each cross
+   grows from its own centre point, both strokes at once, while the whole mark moves
+   outward from the middle of the page. A diagonal stagger, top left first and bottom
+   right last, so it reads as a sheet being opened out rather than four things fading
+   in together.
+   The two strokes share their corner's delay exactly, or the cross would draw before
+   it has arrived. Fill mode is both, so the pre delay state is the drawn-in one and
+   there is no flash of finished marks before the animation starts. ── */
+@keyframes trim-place{from{transform:translate(var(--tox),var(--toy))}to{transform:translate(0,0)}}
+@keyframes trim-h{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes trim-v{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+.trim{animation:trim-place 640ms var(--ease) both}
+.trim::before{animation:trim-h 640ms var(--ease) both}
+.trim::after{animation:trim-v 640ms var(--ease) both}
+.trim.tl,.trim.tl::before,.trim.tl::after{animation-delay:160ms}
+.trim.tr,.trim.tr::before,.trim.tr::after{animation-delay:250ms}
+.trim.bl,.trim.bl::before,.trim.bl::after{animation-delay:250ms}
+.trim.br,.trim.br::before,.trim.br::after{animation-delay:340ms}
 
 /* an identifier plate, deliberately not a headline */
 .plate-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
@@ -405,7 +427,13 @@ body[data-plate="none"] .stack{cursor:pointer}
    ── */
 @media (max-width:900px){
   .bed{grid-template-columns:1fr;gap:clamp(12px,2.2vh,20px);align-items:start}
-  .sheet{min-height:auto}
+  /* The sheet is at least the screen. It was content height, which meant the two
+     bottom marks stopped wherever the content happened to stop: measured at 390x844
+     the top pair sat 12px from the edge and the bottom pair 36px, and on 360x740 the
+     gap was worse. Four marks that are meant to define one rectangle were describing
+     an uneven one. min-height rather than height, so a screen too small for the
+     content still scrolls instead of clipping. */
+  .sheet{min-height:100svh}
   .epigraph{max-width:none}
   .cap-q{max-width:none}
   .trim{width:18px;height:18px}
@@ -417,6 +445,13 @@ body[data-plate="none"] .stack{cursor:pointer}
   /* a smaller corner mark buys back the side margins on a narrow screen */
   .trim{width:14px;height:14px}
   .trim::before{top:6px;width:14px}.trim::after{left:6px;height:14px}
+  /* On a phone these were reading as four marks placed NEAR the corners rather than
+     as the corners themselves: at 8px inset the centre of each cross sat 15px inside
+     the edge, which on a 390px screen is a visible float. Pulled to 4px, so the arms
+     reach the trim edge the way they do on a real sheet. The animation carries them
+     out to here, so the tighter position is also the end of the opening move. */
+  .trim.tl{left:4px;top:4px}.trim.tr{right:4px;top:4px}
+  .trim.bl{left:4px;bottom:4px}.trim.br{right:4px;bottom:4px}
   /* On a phone the photograph is the whole point and the gutter was starving it, so
      the plate runs off both edges of the sheet. Printers call that bleed, which is
      the right word for a page built as a press sheet. */
@@ -590,6 +625,8 @@ body[data-plate="none"] .stack{cursor:pointer}
   :root{--dur:1ms}
   .plate,.needle{transition-duration:1ms}
   .stack[data-moving="1"]::after{opacity:0}
+  /* The marks are simply there, already at the corner, already drawn. */
+  .trim,.trim::before,.trim::after{animation:none}
 }
 @media (prefers-contrast:more){
   :root{--paper:#FFFFFF;--shade:#22221E;--hair:rgba(15,16,16,.55)}
