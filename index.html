@@ -207,11 +207,17 @@ a{color:inherit}
    nameplate to the page h1 turned this into an h2, which silently orphaned the rule */
 .cap-t{font-size:clamp(1.42rem,2.66vw,2.6rem);line-height:1.05;letter-spacing:-.03em;
   font-weight:680;margin:0 0 .52em;text-wrap:balance}
-/* the opening line is his published prose, so it gets a real reading size */
-.cap-o{font-size:clamp(1rem,1.16vw,1.14rem);line-height:1.54;color:var(--shade);
-  margin:0 0 1.2em;max-width:44ch}
-.cap-q{position:relative;margin:0 0 1.25em;padding-left:1.5em;max-width:33ch;
-  font-size:clamp(1.1rem,1.5vw,1.5rem);line-height:1.24;letter-spacing:-.018em;font-weight:560}
+/* ONE line of prose per plate, not two.
+   The panel used to carry his article opening AND a line quoted from inside the piece.
+   Both said a version of the same thing, and the openings are article-internal prose:
+   across the ten plates they run 236 words against the quotes' 112, and several of them
+   only make sense mid-article ("This paper might provoke you" points at a paper that is
+   not on screen). The quoted lines are self-contained and are the better writing, so the
+   opening is gone from the interactive panel and the quote inherits the room.
+   The opening is NOT deleted from the site: it stays in the no-JS block, which is the
+   crawlable copy, and in llms.txt and llms-full.txt, so no verbatim text is lost. */
+.cap-q{position:relative;margin:.62em 0 1.35em;padding-left:1.62em;max-width:30ch;
+  font-size:clamp(1.24rem,1.82vw,1.82rem);line-height:1.3;letter-spacing:-.022em;font-weight:560}
 /* the mark is a lower-case c: a notch taken out of a closed ring */
 .cap-q::before{content:"";position:absolute;left:0;top:.28em;width:.62em;height:.62em;
   border:2.4px solid var(--signal);border-radius:50%;
@@ -347,7 +353,8 @@ body[data-plate="none"] .stack{cursor:pointer}
 @media (max-width:900px){
   .bed{grid-template-columns:1fr;gap:clamp(12px,2.2vh,20px);align-items:start}
   .sheet{min-height:auto}
-  .epigraph,.cap-o{max-width:none}
+  .epigraph{max-width:none}
+  .cap-q{max-width:none}
   .trim{width:18px;height:18px}
   .trim::before{top:8px;width:18px}.trim::after{left:8px;height:18px}
   .plate[data-reg="1"]{transform:translate3d(0,0,0) rotate(0deg) scale(.9)}
@@ -385,10 +392,11 @@ body[data-plate="none"] .stack{cursor:pointer}
   .sheet{gap:8px;padding-bottom:calc(var(--pad) - 4px)}
   .epigraph{font-size:1.01rem;line-height:1.3;margin-top:4px}
   .epigraph .src{margin-top:.45em}
-  h1.cap-t{margin-bottom:.4em}
+  /* was h1.cap-t, which matched nothing: .cap-t became an h2 when the nameplate was
+     promoted to the page h1, so this rule had been silently dead */
+  .cap-t{margin-bottom:.4em}
   .cap-i{margin-bottom:.6em}
-  .cap-o{margin-bottom:.75em;line-height:1.45}
-  .cap-q{margin-bottom:.8em;line-height:1.2}
+  .cap-q{margin:.5em 0 .85em;line-height:1.24}
   .instr{padding-top:calc(var(--stepH) / 2 + 2px)}
   .foot{padding-top:6px}
 }
@@ -401,8 +409,7 @@ body[data-plate="none"] .stack{cursor:pointer}
   .epigraph{font-size:1rem;line-height:1.28;margin-top:2px}
   .epigraph .src{display:none}
   .cap-i{margin-bottom:.5em}
-  .cap-o{margin-bottom:.6em}
-  .cap-q{font-size:1.05rem;line-height:1.18;margin-bottom:.65em}
+  .cap-q{font-size:1.16rem;line-height:1.22;margin:.42em 0 .7em}
   .stack{margin-left:-26px;margin-right:-26px}
 }
 
@@ -827,7 +834,7 @@ html.js-on .nojs{display:none}
       "@type": "Article",
       "headline": "Dear NGO: Your Risk Management Is the Risk — Fix It with Small c Cuts",
       "url": "https://www.linkedin.com/pulse/dear-ngo-your-risk-management-fix-small-c-cuts-ali-al-mokdad-peaje/",
-      "about": "risk",
+      "about": "risk management",
       "author": {
        "@id": "https://smallccut.org/#ali"
       },
@@ -859,7 +866,7 @@ html.js-on .nojs{display:none}
       "@type": "Article",
       "headline": "Rethinking NGO Digital Transformation with Small c Cuts",
       "url": "https://www.linkedin.com/pulse/rethinking-ngo-digital-transformation-small-c-cuts-ali-al-mokdad-hrsse/",
-      "about": "digital",
+      "about": "digitalization",
       "author": {
        "@id": "https://smallccut.org/#ali"
       },
@@ -937,7 +944,6 @@ html.js-on .nojs{display:none}
     <div class="caption">
       <p class="cap-i"><s id="cap-i">01</s> <span id="cap-d">overhead</span></p>
       <h2 class="cap-t" id="cap-t">Reducing INGO Overhead with Small c Cuts</h2>
-      <p class="cap-o" id="cap-o">Overhead is not the enemy. Overhead that no longer earns its place is.</p>
       <p class="cap-q" id="cap-q">An office that no longer opens doors is not representation, it is overhead.</p>
       <a class="cap-l" id="cap-l" href="https://www.linkedin.com/posts/ali-al-mokdad_smallccut-ingotransformation-operationalexcellence-activity-7401927984095330304-5_kT/" target="_blank" rel="noopener">read the piece</a>
     </div>
@@ -1027,7 +1033,7 @@ html.js-on .nojs{display:none}
     </article>
     <article>
       <img src="assets/covers/risk.webp" alt="A collapsed bridge sinking into a calm green river, framed by dark trees." width="1600" height="900" loading="lazy" decoding="async">
-      <p class="num">08 &middot; risk</p>
+      <p class="num">08 &middot; risk management</p>
       <h2>Dear NGO: Your Risk Management Is the Risk — Fix It with Small c Cuts</h2>
       <blockquote>A traffic light that never stops traffic is just decoration.</blockquote>
       <p>The smoke alarm goes off. Everyone hears it.</p>
@@ -1035,7 +1041,7 @@ html.js-on .nojs{display:none}
     </article>
     <article>
       <img src="assets/covers/digital.webp" alt="A wall papered with printed and hand drawn Like and dislike buttons and smiley faces." width="1600" height="900" loading="lazy" decoding="async">
-      <p class="num">09 &middot; digital</p>
+      <p class="num">09 &middot; digitalization</p>
       <h2>Rethinking NGO Digital Transformation with Small c Cuts</h2>
       <blockquote>The tool was real. The transformation was not.</blockquote>
       <p>Digital transformation in NGOs begins the way expensive mistakes begin: a polished presentation, a room full of well-intentioned people, and a shared belief that this time the system will make the work easier.</p>
@@ -1139,12 +1145,12 @@ html.js-on .nojs{display:none}
     o:"It usually begins with good intention. A new campaign, a donor hint that visibility matters, a policy window that feels urgent.",
     q:"Influence is not a vibe. It is a practice.",
     u:"https://www.linkedin.com/pulse/turning-ngo-advocacy-influence-small-c-cuts-ali-al-mokdad-j3swe/"},
-   {d:"risk",
+   {d:"risk management",
     t:"Dear NGO: Your Risk Management Is the Risk — Fix It with Small c Cuts",
     o:"The smoke alarm goes off. Everyone hears it.",
     q:"A traffic light that never stops traffic is just decoration.",
     u:"https://www.linkedin.com/pulse/dear-ngo-your-risk-management-fix-small-c-cuts-ali-al-mokdad-peaje/"},
-   {d:"digital",
+   {d:"digitalization",
     t:"Rethinking NGO Digital Transformation with Small c Cuts",
     o:"Digital transformation in NGOs begins the way expensive mistakes begin: a polished presentation, a room full of well-intentioned people, and a shared belief that this time the system will make the work easier.",
     q:"The tool was real. The transformation was not.",
@@ -1161,7 +1167,7 @@ html.js-on .nojs{display:none}
       ticks=d.getElementById('ticks'), stack=d.getElementById('stack'),
       idx=d.getElementById('index'),
       capI=d.getElementById('cap-i'), capD=d.getElementById('cap-d'),
-      capT=d.getElementById('cap-t'), capO=d.getElementById('cap-o'),
+      capT=d.getElementById('cap-t'),
       capQ=d.getElementById('cap-q'), capL=d.getElementById('cap-l'),
       slugN=d.getElementById('slug-n'),
       slug=d.getElementById('slug'), slugLab=d.getElementById('slug-lab'),
@@ -1221,7 +1227,10 @@ html.js-on .nojs{display:none}
     }
     var p=P[cur];
     capI.textContent=pad(cur); capD.textContent=p.d;
-    capT.textContent=p.t; capO.textContent=p.o; capQ.textContent=p.q;
+    /* p.o is deliberately NOT rendered here. It stays in the array because the no-JS
+       block and the llms corpora are generated from it, so his opening lines remain
+       published and crawlable; they are just off the interactive panel. */
+    capT.textContent=p.t; capQ.textContent=p.q;
     capL.href=p.u;
     capL.textContent=(cur===N-1)?'alialmokdad.com':'read the piece';
     /* The tenth is the person who noticed, not a tenth cut, so the slug drops the

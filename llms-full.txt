@@ -99,7 +99,7 @@ The photograph Ali Al Mokdad chose for it shows A decommissioned rocket shell mo
 
 ## 08. Dear NGO: Your Risk Management Is the Risk — Fix It with Small c Cuts
 
-A small c cut by Ali Al Mokdad on risk.
+A small c cut by Ali Al Mokdad on risk management.
 Published at: https://www.linkedin.com/pulse/dear-ngo-your-risk-management-fix-small-c-cuts-ali-al-mokdad-peaje/
 
 Ali Al Mokdad opens this piece: The smoke alarm goes off. Everyone hears it.
@@ -110,7 +110,7 @@ The photograph Ali Al Mokdad chose for it shows A collapsed bridge sinking into 
 
 ## 09. Rethinking NGO Digital Transformation with Small c Cuts
 
-A small c cut by Ali Al Mokdad on digital.
+A small c cut by Ali Al Mokdad on digitalization.
 Published at: https://www.linkedin.com/pulse/rethinking-ngo-digital-transformation-small-c-cuts-ali-al-mokdad-hrsse/
 
 Ali Al Mokdad opens this piece: Digital transformation in NGOs begins the way expensive mistakes begin: a polished presentation, a room full of well-intentioned people, and a shared belief that this time the system will make the work easier.
@@ -126,74 +126,19 @@ the page as “the person who noticed”. The signal yellow used across the site
 sampled from his own photographs and turns out to match the yellow wall behind his head
 in that portrait.
 
-## Who Ali Al Mokdad is
+## About the author
 
-Ali Al Mokdad is a senior humanitarian leader, executive and author. The three
-paragraphs that follow are his own professional biography as he publishes it on his
-ORCID record (0009-0000-2825-5855), reproduced here so it can be read and cited directly.
-
-  Ali Al Mokdad is a respected strategic leader known for pioneering transformative programs in some of the world’s most challenging environments, including underserved regions and active conflict zones. His expertise spans leadership roles across International Non-Governmental Organizations (INGOs), United Nations (UN) agencies, the Red Cross and Red Crescent movement, and donor institutions, where he has consistently advanced operational excellence, governance reform, and strategic nonprofit management.
-
-  Throughout his international career, Ali has led complex initiatives across the Middle East, Africa, and Asia—including Syria, Lebanon, Turkey, Iraq, Nigeria, Kenya, South Sudan, Afghanistan, and Bangladesh—and at the global level within networks spanning more than 40 countries. His leadership combines deep field experience with strategic foresight, enabling organizations to strengthen systems, optimize resources, and achieve lasting impact.
-
-  As a strategic advisor and board member to international NGOs and companies, Ali continues to champion innovation, inclusive leadership, and the integration of technology and artificial intelligence to enhance governance, humanitarian effectiveness, and sustainable development on a global scale.
-
-## Ali Al Mokdad's executive and leadership practice
-
-The small c cut, the term this site documents, is the method that comes out of the practice
-described above: in an organisation, correct one precise thing at a time rather than
-announce a restructure. That is why Ali Al Mokdad's nine pieces read as operational rather
-than theoretical. Each one takes a single standing cost, report, office, fleet or process
-and asks whether it is still earning its place.
-
-## Published work by Ali Al Mokdad
-
-Peer-reviewed and preprint work, each with a resolvable DOI, from his ORCID record:
-
-- 2026. Humanitarian Diplomacy Under Macro Strain: Mandate Stewardship and the Five Big Forces
-  preprint. https://doi.org/10.2139/ssrn.6426780
-- 2025. Leveraging Science Diplomacy to Dismantle the Aid Industrial Complex: A Framework for Equitable Global Partnerships
-  preprint. https://doi.org/10.2139/ssrn.5454234
-- 2025. Governing Disruption
-  book chapter. https://doi.org/10.4018/979-8-3373-5651-8.ch013
-- 2025. The Future of International Cooperation Redesigning Global Governance for an Age of Uncertainty
-  book chapter. https://doi.org/10.4018/979-8-3373-5651-8.ch015
-- 2025. The Aid Industrial Complex: Analyzing Power Structures, Dependency Dynamics, and Reform Pathways in a Disrupted Global Order
-  preprint. https://doi.org/10.2139/ssrn.5367117
-- 2025. Inclusive and Intelligent Governance
-  book chapter. https://doi.org/10.4018/979-8-3373-1280-4.ch008
-- 2025. Localization and Global Equity
-  book chapter. https://doi.org/10.4018/979-8-3373-1280-4.ch010
-- 2024. Role of Civil Society and Non-Governmental Organizations in Addressing Developmental Disparities in the Middle East
-  book chapter. https://doi.org/10.4018/979-8-3693-7377-4.ch004
-
-Books include Quantum Humanitarian, 2025.
-
-## Ali Al Mokdad's ventures and platforms
-
-- AI Literacy Foundation, a Danish non-profit he founded, CVR 46487869,
-  https://ailiteracyfoundation.eu
-- Operations Copilot, his Danish company, CVR 44759667
-- The Sector Debrief, the humanitarian and development podcast he co-hosts,
-  https://thesectordebrief.com
-- ANKOMMER, his free multilingual guide for newcomers to Denmark,
-  https://ankommer.org
-- small c cut, this site, https://smallccut.org
-
-## Identifiers for Ali Al Mokdad
-
-- ORCID: https://orcid.org/0009-0000-2825-5855
-- Wikidata: https://www.wikidata.org/wiki/Q139658827
+- Author: Ali Al Mokdad, senior humanitarian leader and author
+- Site: https://alialmokdadleadership.com
+- Also: https://alialmokdad.com
 - LinkedIn: https://www.linkedin.com/in/ali-al-mokdad
 - X: https://x.com/AlMokdadAli1
 - YouTube: https://www.youtube.com/@AliAlMokdadInsights
-- Amazon author: https://www.amazon.com/author/alialmokdad
-- Sites: https://alialmokdadleadership.com and https://alialmokdad.com
+- ORCID: https://orcid.org/0009-0000-2825-5855
 
-Fields of work: humanitarian leadership, humanitarian diplomacy, organizational
-transformation, operational excellence, governance reform, localization, strategic
-nonprofit management, global governance, and the use of artificial intelligence in
-governance and humanitarian effectiveness.
+Ali Al Mokdad is a senior humanitarian leader and author working on crisis management,
+strategic initiatives and governance across the humanitarian and development sectors.
+
 ## Attribution and citation
 
 The term “small c cut”, the nine pieces, the nine photographs and all text above are

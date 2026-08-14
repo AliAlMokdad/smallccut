@@ -22,14 +22,21 @@ photographs, and each one is a dry observed joke about the exact problem its pie
 | 05 | a row of near identical tents in a dry field | regional offices |
 | 06 | a market stall crammed floor to ceiling with stacked notebooks | fundraising |
 | 07 | a decommissioned rocket shell reused as a bench | advocacy |
-| 08 | a collapsed bridge sinking into a calm green river | risk |
-| 09 | a wall papered with hand drawn Like and dislike buttons | digital |
+| 08 | a collapsed bridge sinking into a calm green river | risk management |
+| 09 | a wall papered with hand drawn Like and dislike buttons | digitalization |
 | 10 | Ali Al Mokdad against a yellow perforated wall | the person who noticed |
 
 So the photographs are the argument, and the site is built to serve them rather than to
 decorate around them. Misregistration is a real printing defect and these are real press
 photographs, which is why the sheet, the trim marks, the plate slugs and the millimetre
 scale are the visual language: they are what you actually use to check register.
+
+Each plate carries ONE line of his prose, not two. It used to show the article opening
+AND a line quoted from inside the piece, which said the same thing twice: across the ten
+plates the openings run 236 words against the quotes 112, and several openings only make
+sense mid article. The quote stays, the opening comes off the panel. Nothing is lost,
+because the openings remain in the no JS block, which is the crawlable copy, and in
+llms.txt and llms-full.txt.
 
 The interface verb is correction, not addition. Everything unfixed sits there silently
 wrong. It does not vibrate and it does not pulse. Motion appears only while a plate is
