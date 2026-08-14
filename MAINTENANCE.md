@@ -94,6 +94,13 @@ Both read from `--cell`, set on `.foot`. Never hand-write the two numbers separa
 is how the alignment gets broken by an unrelated later edit. Phone tiers: 35px, then 32px
 under 700px tall, 30px under 660px.
 
+**The piece cover is capped, and the bleed is portrait only.** `.plate` is capped at
+`min(920px, 100%, 90svh)` so the photograph and its caption arrive together rather than the
+caption landing below the fold. The phone bleed lifts that cap, so it is inside an
+`@media (orientation:portrait)` block: lifting it in landscape rendered a cover 394px tall
+on a 390px screen, and produced a two-fold jump between 700px and 701px wide. Portrait
+bleeds, landscape stays inside the screen.
+
 **The corner marks define one rectangle.** All four sit at 4px on phone and 8px on laptop.
 This only holds because `.sheet` has `min-height:100svh` on phone. When the sheet was
 content height, the bottom pair followed the content instead of the screen and sat 36px in

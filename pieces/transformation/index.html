@@ -110,10 +110,14 @@ a:focus-visible,.back:focus-visible{outline:2px solid var(--ink);outline-offset:
   .trim::before{top:6px;width:14px}.trim::after{left:6px;height:14px}
   .trim.tl{left:4px;top:4px}.trim.tr{right:4px;top:4px}
   .trim.bl{left:4px;bottom:4px}.trim.br{right:4px;bottom:4px}
-  /* max-width:none, or the desktop cap fights the bleed and the photograph shrinks
-     to the text column instead of running off both edges of the sheet. */
-  .plate{margin-left:calc(var(--pad) * -1);margin-right:calc(var(--pad) * -1);
-    border-left:0;border-right:0;max-width:none}
+  /* The bleed is PORTRAIT ONLY. Lifting the cap in landscape let the cover render its
+     full width, which at 700x390 is a photograph 394px tall on a 390px screen: taller
+     than the whole viewport, and a two-fold jump against 701px where the cap still
+     applied. A phone held sideways keeps the cap and stays inside its screen. */
+  @media (orientation:portrait){
+    .plate{margin-left:calc(var(--pad) * -1);margin-right:calc(var(--pad) * -1);
+      border-left:0;border-right:0;max-width:none}
+  }
   .body{margin-top:30px}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
