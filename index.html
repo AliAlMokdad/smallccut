@@ -936,7 +936,7 @@ html.js-on .nojs{display:none}
       <figure class="plate" data-i="7" style="--ox:2.2%;--oy:-2.9%;--or:.34deg"><img src="assets/covers/risk.webp" alt="A collapsed bridge sinking into a calm green river, framed by dark trees." width="1600" height="900" loading="lazy" decoding="async"></figure>
       <figure class="plate" data-i="8" style="--ox:-1.8%;--oy:2.9%;--or:.58deg"><img src="assets/covers/digital.webp" alt="A wall papered with printed and hand drawn Like and dislike buttons and smiley faces." width="1600" height="900" loading="lazy" decoding="async"></figure>
       <figure class="plate" data-i="9" style="--ox:3.1%;--oy:-2.3%;--or:-.48deg"><img src="assets/ali-al-mokdad.webp" alt="Ali Al Mokdad in red glasses and a checked jacket, photographed against a bright yellow perforated wall." width="1500" height="844" loading="lazy" decoding="async"></figure>
-      <!-- Nine cuts, then the person who noticed them. The tenth is NOT a cut, so it
+      <!-- Nine cuts, then the practitioner behind them. The tenth is NOT a cut, so it
            drops the counter rather than claiming to be "small c cut 10 of 10". -->
       <p class="slug" id="slug"><i id="slug-lab">small c cut</i><span class="num"> <span id="slug-n">01</span></span><i class="num">/</i><span class="num">09</span></p>
     </div>
@@ -959,7 +959,7 @@ html.js-on .nojs{display:none}
       <span class="baseline"></span>
       <div class="ticks" id="ticks" aria-hidden="true"></div>
       <input class="dial" id="dial" type="range" min="0" max="9" step="1" value="0"
-             aria-label="Bring one into register. Nine small c cuts, then the person who noticed them.">
+             aria-label="Bring one into register. Nine small c cuts, then the practitioner behind them.">
       <span class="rulefocus"></span>
       <span class="needle" id="needle" style="left:0%">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6.2a8 8 0 100 11.6"/></svg>
@@ -1049,7 +1049,7 @@ html.js-on .nojs{display:none}
     </article>
     <article>
       <img src="assets/ali-al-mokdad.webp" alt="Ali Al Mokdad in red glasses and a checked jacket, photographed against a bright yellow perforated wall." width="1600" height="900" loading="lazy" decoding="async">
-      <p class="num">10 &middot; the person who noticed</p>
+      <p class="num">10 &middot; the practitioner</p>
       <h2>Ali Al Mokdad</h2>
       <blockquote>Starting from first principles. Optimization in small steps is what frees an organization to take the big ones.</blockquote>
       <p>Real optimization starts in the small choices leaders make with trust and honesty, the quiet shifts that return organizations to first principles and let the system serve the people instead of the other way around.</p>
@@ -1155,7 +1155,7 @@ html.js-on .nojs{display:none}
     o:"Digital transformation in NGOs begins the way expensive mistakes begin: a polished presentation, a room full of well-intentioned people, and a shared belief that this time the system will make the work easier.",
     q:"Technology isn’t the problem. Transformation is.",
     u:"https://www.linkedin.com/pulse/rethinking-ngo-digital-transformation-small-c-cuts-ali-al-mokdad-hrsse/"},
-   {d:"the person who noticed",
+   {d:"the practitioner",
     t:"Ali Al Mokdad",
     o:"Real optimization starts in the small choices leaders make with trust and honesty, the quiet shifts that return organizations to first principles and let the system serve the people instead of the other way around.",
     q:"Starting from first principles. Optimization in small steps is what frees an organization to take the big ones.",
@@ -1233,9 +1233,9 @@ html.js-on .nojs{display:none}
     capT.textContent=p.t; capQ.textContent=p.q;
     capL.href=p.u;
     capL.textContent=(cur===N-1)?'alialmokdad.com':'read the piece';
-    /* The tenth is the person who noticed, not a tenth cut, so the slug drops the
+    /* The tenth is the practitioner, not a tenth cut, so the slug drops the
        counter there rather than reading "small c cut 10 of 09". */
-    if(cur===N-1){ slugLab.textContent='the person who noticed'; slug.setAttribute('data-author','1'); }
+    if(cur===N-1){ slugLab.textContent=p.d; slug.setAttribute('data-author','1'); }
     else { slugLab.textContent='small c cut'; slug.removeAttribute('data-author'); slugN.textContent=pad(cur); }
     needle.style.left=(cur/(N-1)*100)+'%';
     ends();

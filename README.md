@@ -24,7 +24,7 @@ photographs, and each one is a dry observed joke about the exact problem its pie
 | 07 | a decommissioned rocket shell reused as a bench | advocacy |
 | 08 | a collapsed bridge sinking into a calm green river | risk management |
 | 09 | a wall papered with hand drawn Like and dislike buttons | digitalization |
-| 10 | Ali Al Mokdad against a yellow perforated wall | the person who noticed |
+| 10 | Ali Al Mokdad against a yellow perforated wall | the practitioner |
 
 So the photographs are the argument, and the site is built to serve them rather than to
 decorate around them. Misregistration is a real printing defect and these are real press
