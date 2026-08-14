@@ -73,6 +73,13 @@ that relationship was measured rather than asserted.
 - The ten opening lines are exact complete sentences from the published pieces, or from
   his own drafts for plate 01 and plate 10.
 - The ten quoted lines are exact sentences located in his drafts.
+- One deliberate exception to keep in mind before “fixing” it. Plate 09 quotes
+  “Technology isn’t the problem. Transformation is.”, which is verbatim his but comes
+  from the STRATEGY draft, where it is a heading in capitals, not from the digital piece
+  the plate links to. Ali chose that line for this plate. The words are unchanged and only
+  the case differs. It is therefore not findable in the linked article, which is the known
+  and accepted cost. His digital piece has its own line for the same argument, “The
+  technology was never the point.”, if it is ever swapped back.
 
 Nothing is paraphrased into his voice and nothing was written to sound like him. Two
 opening lines in an early draft of this page were mine and were replaced with verbatim
