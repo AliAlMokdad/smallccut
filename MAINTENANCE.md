@@ -42,10 +42,16 @@ throttled phone.
 from the first frame, so there is nothing for the browser to defer. It was behaving
 correctly. **The weight has to come out of the files.**
 
-So each cover also exists at `assets/covers/ghost/<name>.webp`, 420px wide and greyscale,
-8 to 22 KB. Plates 1 to 9 load those and carry the real file in `data-full`. Plate 0 keeps
-its full photograph, because it is the largest paint on the screen and the first to come
-into register.
+So each cover also exists at `assets/covers/ghost/<name>.webp`, 420px wide, 7 to 25 KB.
+Plates 1 to 9 load those and carry the real file in `data-full`. Plate 0 keeps its full
+photograph, because it is the largest paint on the screen and the first to come into
+register.
+
+**The ghosts are IN COLOUR, and must stay that way.** They were greyscale at first, which
+seemed free because out of register the CSS greys them anyway. It was not: a plate shows
+its ghost for about 1.35 seconds after coming into register, and in register the plate has
+`filter:none`, so the picture appeared grey and then popped into colour. Colour costs 18 KB
+across the whole set and removes the pop entirely.
 
 A plate swaps to its real photograph when it comes into register:
 
@@ -67,13 +73,14 @@ from PIL import Image
 import os,glob
 os.makedirs('assets/covers/ghost',exist_ok=True)
 for p in glob.glob('assets/covers/*.webp'):
-    Image.open(p).convert('L').resize((420,236),Image.LANCZOS).save(
-        'assets/covers/ghost/'+os.path.basename(p),'WEBP',quality=52,method=6)
+    Image.open(p).convert('RGB').resize((420,236),Image.LANCZOS).save(
+        'assets/covers/ghost/'+os.path.basename(p),'WEBP',quality=58,method=6)
 "
 ```
 
 The tenth plate is the portrait at `assets/ali-al-mokdad.webp`; its ghost sits in the same
-folder under that name. `ghost/overhead.webp` is unused, because plate 0 never needs one.
+folder under that name. There is no `ghost/overhead.webp`: plate 0 keeps its full
+photograph, so it never needs one.
 
 Measured effect, live, on 1.6 Mbps with 150ms RTT and 4x CPU throttling:
 **1,540 KB → 339 KB, load event 7.9 s → 2.0 s.** Rendered both versions and diffed them:
