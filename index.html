@@ -21,7 +21,7 @@
 <meta property="og:locale" content="en">
 <meta property="og:url" content="https://smallccut.org/">
 <meta property="og:title" content="small c cut &middot; Ali Al Mokdad">
-<meta property="og:description" content="Quiet, strategic reductions that unlock real change over time, for NGO and INGO reform.">
+<meta property="og:description" content="Quiet, strategic reductions that unlock impactful change over time, for local and international NGO reform.">
 <meta property="og:image" content="https://smallccut.org/assets/covers/overhead.jpg">
 <meta property="og:image:width" content="1600">
 <meta property="og:image:height" content="900">
@@ -319,7 +319,8 @@ a{color:inherit}
   font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:.04em;
   outline:2px solid var(--ink);outline-offset:2px;z-index:6}
 
-.foot{display:flex;justify-content:flex-end;align-items:flex-end;gap:14px 20px;flex-wrap:wrap;
+.foot{display:flex;justify-content:flex-end;align-items:flex-end;gap:10px 20px;flex-wrap:wrap;
+  flex-direction:column;
   font-family:'JetBrains Mono',ui-monospace,monospace;font-size:var(--mm);color:var(--shade);
   letter-spacing:.1em;padding-top:clamp(8px,1.4vh,16px)}
 
@@ -336,7 +337,23 @@ a{color:inherit}
    the combined width of the four so the two line up edge to edge, sharing their right margin.
    It is drawn in the same knocked out ink and inverts on press like every other control here.
    Phone only, and it sits at the very bottom of the sheet. */
-.share{display:none}
+.share{
+  --bg:var(--ink); --gl:var(--paper);
+  display:grid;place-items:center;margin-left:auto;margin-top:10px;
+  width:133px;height:34px;padding:0;
+  background:var(--bg);color:var(--gl);border:1px solid var(--ink);
+  font-family:'JetBrains Mono',ui-monospace,monospace;font-size:var(--mm);
+  letter-spacing:.16em;text-transform:uppercase;font-weight:600;cursor:pointer;
+  -webkit-tap-highlight-color:transparent;transition:background-color 130ms linear}
+.share:hover,.share:focus-visible,.share:active{--bg:var(--paper); --gl:var(--ink)}
+.share:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+/* Shorter laptops have no room for the full footer rhythm once the share bar is added:
+   a 1280x800 window scrolled by 22px while a 1440x900 fitted. The bar keeps its size and
+   alignment; only the air around it yields. */
+@media (min-width:701px) and (max-height:860px){
+  .share{margin-top:4px;height:32px}
+  .foot{gap:6px 20px;padding-top:8px}
+}
 .vis-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 .by{color:var(--ink);font-weight:600;letter-spacing:.13em;text-transform:uppercase;white-space:nowrap}
 .strip{display:flex}
@@ -550,22 +567,12 @@ body[data-plate="none"] .stack{cursor:pointer}
    meant for an 844, which scrolled by 19px. Height decides here, and nothing after can win. */
 @media (max-width:700px){
   .sheet{padding-bottom:18px}
-  .share{
-    --bg:var(--ink); --gl:var(--paper);
-    display:grid;place-items:center;margin-left:auto;margin-top:24px;
-    width:133px;height:44px;padding:0;
-    background:var(--bg);color:var(--gl);border:1px solid var(--ink);
-    font-family:'JetBrains Mono',ui-monospace,monospace;font-size:var(--mm);
-    letter-spacing:.16em;text-transform:uppercase;font-weight:600;cursor:pointer;
-    -webkit-tap-highlight-color:transparent;
-    transition:background-color 130ms linear}
-  .share:hover,.share:focus-visible,.share:active{--bg:var(--paper); --gl:var(--ink)}
-  .share:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+  .share{margin-top:24px;height:44px}   /* a real touch target, and more air */
 }
 /* the four patches are 44px wide under a coarse pointer and 34px otherwise, overlapping by
    1px, so the bar matches at 4x44-3 and 4x34-3 exactly rather than approximately */
 @media (max-width:700px) and (hover:none) and (pointer:coarse){ .share{width:173px} }
-@media (max-width:700px) and (max-height:830px){ .sheet{padding-bottom:8px} .share{margin-top:12px} }
+@media (max-width:700px) and (max-height:830px){ .sheet{padding-bottom:6px} .share{margin-top:8px} }
 @media (max-width:700px) and (max-height:800px){ .sheet{padding-bottom:8px} .share{margin-top:12px} }
 @media (max-width:700px) and (max-height:700px){ .sheet{padding-bottom:6px} .share{margin-top:8px;height:40px} }
 @media (max-width:700px) and (max-height:660px){ .sheet{padding-bottom:4px} .share{margin-top:6px;height:38px} }
