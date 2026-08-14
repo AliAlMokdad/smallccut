@@ -1,11 +1,33 @@
-# Maintaining this page
+# Maintaining this site
 
 Everything here was learned by measuring, and most of it cost a round to find. Read the
 part you are about to touch. `README.md` holds the plates and the verbatim rules; this
 file holds the mechanics.
 
-The whole site is one file, `index.html`, with no build step. GitHub Pages serves it on
-push to `main`, which takes about a minute.
+No build step anywhere. GitHub Pages serves it on push to `main`, which takes about a
+minute.
+
+## What is where
+
+| | |
+|---|---|
+| `index.html` | The front. The press sheet with the ten plates. All the interaction, the sounds and the scale live here, and everything in sections 1 to 5 below is about this file. |
+| `pieces/<slug>/` | Nine article pages, one per cut, carrying the full text of each piece. 39,189 words. |
+| `ali-al-mokdad/` | The page for his name, carrying his bio. |
+| `sitemap.xml` | 11 URLs. Add a row whenever a page is added. |
+
+**The pieces and the bio page are STATIC and hand-finished.** They were generated once from
+scripts that no longer live in the repo, so treat the committed HTML as the source. Editing
+one means editing that file directly.
+
+**Their text is verbatim and must stay that way.** Every paragraph is Ali's own writing,
+reproduced without a word changed, and it was verified against the source twice before
+shipping. Do not tidy, shorten, retitle, or "improve" a sentence in `pieces/` or
+`ali-al-mokdad/`. If a piece genuinely needs correcting, that is his call and his wording.
+
+Each piece links to the bio page from its byline, and the bio page ends on a single button
+back to the front. The nine plates on the front link to their own pieces; plate 01's
+LinkedIn post link was replaced when its article was published.
 
 ---
 
