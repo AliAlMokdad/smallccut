@@ -74,7 +74,12 @@ h1{font-size:clamp(1.75rem,4.4vw,3.1rem);line-height:1.04;letter-spacing:-.025em
 .byline{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:var(--mm);
   letter-spacing:.13em;text-transform:uppercase;color:var(--shade);margin-top:16px}
 
-.plate{margin:30px 0 0;border:1px solid var(--ink)}
+/* The cover is capped rather than running the full sheet. At laptop width it was
+   rendering 1586px wide and 892px tall, which put the caption 1201px down a 945px
+   screen: you scrolled a whole viewport of photograph before reaching the line that
+   explains it, and his captions are the point of these pictures. Capped so the
+   photograph and its caption arrive together. */
+.plate{margin:30px 0 0;border:1px solid var(--ink);max-width:min(920px,100%,90svh)}
 .plate img{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
 .plate figcaption{font-family:'JetBrains Mono',ui-monospace,monospace;
   font-size:calc(var(--mm) - .5px);color:var(--shade);padding:8px 10px;
@@ -105,8 +110,10 @@ a:focus-visible,.back:focus-visible{outline:2px solid var(--ink);outline-offset:
   .trim::before{top:6px;width:14px}.trim::after{left:6px;height:14px}
   .trim.tl{left:4px;top:4px}.trim.tr{right:4px;top:4px}
   .trim.bl{left:4px;bottom:4px}.trim.br{right:4px;bottom:4px}
+  /* max-width:none, or the desktop cap fights the bleed and the photograph shrinks
+     to the text column instead of running off both edges of the sheet. */
   .plate{margin-left:calc(var(--pad) * -1);margin-right:calc(var(--pad) * -1);
-    border-left:0;border-right:0}
+    border-left:0;border-right:0;max-width:none}
   .body{margin-top:30px}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
