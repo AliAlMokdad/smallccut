@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Rethinking NGO Digital Transformation with Small c Cuts &middot; small c cut</title>
+<meta name="description" content="Digital transformation in NGOs begins the way expensive mistakes begin: a polished presentation, a room full of well-intentioned people, and a shared...">
+<link rel="canonical" href="https://smallccut.org/pieces/digitalization/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="author" content="Ali Al Mokdad">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="small c cut">
+<meta property="og:locale" content="en">
+<meta property="og:url" content="https://smallccut.org/pieces/digitalization/">
+<meta property="og:title" content="Rethinking NGO Digital Transformation with Small c Cuts">
+<meta property="og:description" content="Digital transformation in NGOs begins the way expensive mistakes begin: a polished presentation, a room full of well-intentioned people, and a shared...">
+<meta property="og:image" content="https://smallccut.org/assets/covers/digital.jpg">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="900">
+<meta property="og:image:alt" content="A wall papered with printed and hand drawn Like and dislike buttons and smiley faces.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@AlMokdadAli1">
+<meta name="twitter:creator" content="@AlMokdadAli1">
+<meta name="twitter:title" content="Rethinking NGO Digital Transformation with Small c Cuts">
+<meta name="twitter:description" content="Digital transformation in NGOs begins the way expensive mistakes begin: a polished presentation, a room full of well-intentioned people, and a shared...">
+<meta name="twitter:image" content="https://smallccut.org/assets/covers/digital.jpg">
+<meta name="twitter:image:alt" content="A wall papered with printed and hand drawn Like and dislike buttons and smiley faces.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230F1010'/><path d='M22 10.5a7 7 0 100 11' fill='none' stroke='%23EEC51C' stroke-width='3.4'/></svg>">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Rethinking NGO Digital Transformation with Small c Cuts", "description": "Digital transformation in NGOs begins the way expensive mistakes begin: a polished presentation, a room full of well-intentioned people, and a shared...", "url": "https://smallccut.org/pieces/digitalization/", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://smallccut.org/pieces/digitalization/"}, "image": "https://smallccut.org/assets/covers/digital.jpg", "wordCount": 5622, "inLanguage": "en", "isPartOf": {"@type": "WebSite", "@id": "https://smallccut.org/#site", "name": "small c cut"}, "about": {"@type": "DefinedTerm", "@id": "https://smallccut.org/#term", "name": "small c cut"}, "author": {"@type": "Person", "@id": "https://smallccut.org/#ali", "name": "Ali Al Mokdad", "url": "https://alialmokdad.com"}, "publisher": {"@type": "Person", "@id": "https://smallccut.org/#ali", "name": "Ali Al Mokdad"}, "creditText": "Ali Al Mokdad", "copyrightNotice": "© Ali Al Mokdad", "sameAs": "https://www.linkedin.com/pulse/rethinking-ngo-digital-transformation-small-c-cuts-ali-al-mokdad-hrsse/"}</script>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+:root{
+  --paper:#DFE0DF; --dust:#82827D; --shade:#3B3B36; --ink:#0F1010; --signal:#EEC51C;
+  --hair:rgba(15,16,16,.22);
+  --mm:clamp(11.5px,.82vw,13.5px);
+  --pad:clamp(30px,2.7vw,46px);
+}
+@font-face{font-family:Archivo;src:url(../../assets/fonts/Archivo-normal.woff2)format('woff2');
+  font-weight:100 900;font-display:swap}
+@font-face{font-family:'JetBrains Mono';src:url(../../assets/fonts/JetBrainsMono-normal.woff2)format('woff2');
+  font-weight:100 800;font-display:swap}
+body{background:var(--paper);color:var(--ink);
+  font-family:Archivo,'Helvetica Neue',Arial,sans-serif;font-weight:420;
+  font-synthesis:none;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--ink);color:var(--paper)}
+a{color:inherit}
+img{display:block;max-width:100%}
+
+.sheet{position:relative;min-height:100svh;padding:var(--pad);max-width:1680px;margin:0 auto}
+
+/* the same four marks as the front, at the same insets */
+.trim{position:absolute;width:26px;height:26px;pointer-events:none}
+.trim::before,.trim::after{content:"";position:absolute;background:var(--ink)}
+.trim::before{left:0;top:12px;width:26px;height:1px}
+.trim::after{top:0;left:12px;height:26px;width:1px}
+.trim.tl{left:8px;top:8px}.trim.tr{right:8px;top:8px}
+.trim.bl{left:8px;bottom:8px}.trim.br{right:8px;bottom:8px}
+
+.ident{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:var(--mm);
+  text-transform:uppercase;letter-spacing:.13em;font-weight:600;
+  display:inline-flex;align-items:center;gap:9px;margin:0;text-decoration:none}
+.cmark{width:15px;height:15px;flex:none}
+.cmark path{fill:none;stroke:var(--signal);stroke-width:3.6}
+
+/* On its own line. As an inline-block it sat immediately beside the nameplate and
+   the two collided at phone width. width:max-content keeps the black field tight
+   to the text rather than running the width of the sheet. */
+.slug{display:block;width:max-content;max-width:100%;margin-top:26px;background:var(--ink);color:var(--paper);
+  font-family:'JetBrains Mono',ui-monospace,monospace;font-size:var(--mm);
+  letter-spacing:.1em;padding:5px 10px}
+.slug b{color:var(--signal);font-weight:600}
+
+h1{font-size:clamp(1.75rem,4.4vw,3.1rem);line-height:1.04;letter-spacing:-.025em;
+  font-weight:660;margin:.42em 0 0;max-width:19em}
+.byline{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:var(--mm);
+  letter-spacing:.13em;text-transform:uppercase;color:var(--shade);margin-top:16px}
+
+.plate{margin:30px 0 0;border:1px solid var(--ink)}
+.plate img{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
+.plate figcaption{font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:calc(var(--mm) - .5px);color:var(--shade);padding:8px 10px;
+  border-top:1px solid var(--hair);line-height:1.4}
+
+/* A poster does not have to be read for eight minutes. Prose does, so the measure
+   narrows and the size comes up. This is the one place a piece departs from the front. */
+.body{max-width:34em;margin-top:40px}
+.body p{font-size:clamp(1.02rem,1.5vw,1.14rem);line-height:1.62;margin:0 0 1.15em}
+.body h2{font-size:clamp(1.16rem,2vw,1.42rem);line-height:1.2;letter-spacing:-.015em;
+  font-weight:640;margin:2.1em 0 .55em}
+.body li{font-size:clamp(1.02rem,1.5vw,1.14rem);line-height:1.62;margin:0 0 .5em}
+.body ul{padding-left:1.1em;margin:0 0 1.15em}
+.body p:first-child{font-size:clamp(1.1rem,1.7vw,1.26rem);line-height:1.5}
+
+.end{max-width:34em;margin-top:52px;padding-top:20px;border-top:1px solid var(--ink);
+  font-family:'JetBrains Mono',ui-monospace,monospace;font-size:var(--mm);
+  letter-spacing:.04em;line-height:1.7;color:var(--shade)}
+.end a{color:var(--ink)}
+.end .row{margin-top:10px}
+.back{display:inline-block;margin-top:26px;font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:var(--mm);letter-spacing:.1em;text-transform:uppercase;
+  border-bottom:1px solid var(--ink);text-decoration:none;padding-bottom:2px}
+a:focus-visible,.back:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+
+@media (max-width:700px){
+  .trim{width:14px;height:14px}
+  .trim::before{top:6px;width:14px}.trim::after{left:6px;height:14px}
+  .trim.tl{left:4px;top:4px}.trim.tr{right:4px;top:4px}
+  .trim.bl{left:4px;bottom:4px}.trim.br{right:4px;bottom:4px}
+  .plate{margin-left:calc(var(--pad) * -1);margin-right:calc(var(--pad) * -1);
+    border-left:0;border-right:0}
+  .body{margin-top:30px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<main class="sheet">
+  <span class="trim tl"></span><span class="trim tr"></span>
+  <span class="trim bl"></span><span class="trim br"></span>
+
+  <a class="ident" href="../../"><svg class="cmark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17.2 6.4a7 7 0 1 0 0 11.2"/></svg> SMALL C CUT</a>
+
+  <div class="slug">small c cut <b>09</b> / 09</div>
+  <h1>Rethinking NGO Digital Transformation with Small c Cuts</h1>
+  <div class="byline">Ali Al Mokdad &middot; 26 min read</div>
+
+  <figure class="plate">
+    <img src="../../assets/covers/digital.webp" width="1600" height="900"
+         alt="A wall papered with printed and hand drawn Like and dislike buttons and smiley faces." fetchpriority="high" decoding="async">
+    <figcaption>A wall papered with printed and hand drawn Like and dislike buttons and smiley faces.</figcaption>
+  </figure>
+
+  <article class="body">
+    <p>Digital transformation in NGOs begins the way expensive mistakes begin: a polished presentation, a room full of well-intentioned people, and a shared belief that this time the system will make the work easier.</p>
+    <p>The platform goes live on Monday. By Friday, the field team has rebuilt the spreadsheet.</p>
+    <p>Not because they are resistant. Not because they fear technology. Because the spreadsheet, for all its limits, still understands their reality better than the platform does.</p>
+    <p>That gap is where most digital transformation fails.</p>
+    <p>It fails earlier, in the thinking that defines the problem, chooses the tool, and assumes the work can be simplified without first understanding how it is actually done.</p>
+    <p>NGOs rarely lack ambition when it comes to digitalisation. They invest in ERP systems, automated workflows, dashboards, digital tools, and data systems wrapped in the language of efficiency, speed, optimisation, and control. Yet too often, the result is something else: more cost, more friction, more duplication, and one more layer of work for people already stretched thin.</p>
+    <p>When organisations try to correct that failure, they often reach for Capital C Cuts: another platform, another unit, another strategy, another rollout, another promise made to people who have already heard it.</p>
+    <p>This piece is about the opposite.</p>
+    <p>Small c cuts.</p>
+    <p>Not the dramatic moves that get presented as transformation, but the disciplined corrections and practical changes that remove friction, challenge assumptions, and make transformation work where it can sustain and scale: in the workflow, among end users, and in the work culture.</p>
+    <p>These small c cuts come from what I have seen work and fail in NGO digital transformation.</p>
+    <h2>The Problem Was Never Properly Named</h2>
+    <p>The board approved the investment. A steering committee formed. Then a reference group and a working group. The agenda looked disciplined. Vendor shortlist. Budget allocation. Risk register. Every box was ticked.</p>
+    <p>The problem was not on the agenda.</p>
+    <p>Not which broken process, if fixed, would return the most time to programmes.</p>
+    <p>Not which missing data, if resolved, would change a decision before the next crisis.</p>
+    <p>Not which approval layer, if removed, would let the right person make the call without three sign-offs.</p>
+    <p>Not which existing initiative needed to stop before this one could start.</p>
+    <p>Those questions were not asked. The vendor gave a good demo instead.</p>
+    <p>The slides were clean. The case studies looked familiar. The procurement committee approved it in one meeting. Nobody from the field was in the room.</p>
+    <p>Or more precisely, someone was: a country director on a weak connection who nodded because it was easier than explaining, again, that the system assumed stable internet, a dedicated data entry person, and a workflow that had not existed in that context for three years.</p>
+    <p>The decision was made. The reality was not consulted.</p>
+    <p>It is like writing a prescription before seeing the patient. The medicine may be good. The diagnosis was never made. And when the patient gets worse, everyone points to the medicine.</p>
+    <p>This is how digital fragmentation happens. Governance of tools is easy. Governance of priorities forces leadership to choose.</p>
+    <p>Every request arrives dressed as urgency. Every gap becomes a system problem. Every system problem becomes a procurement decision. And the result is more systems, more logins, more reporting layers, and a mission that does not move faster because none of those systems were built around what was broken.</p>
+    <p>A foundational small c cut starts before any digital tool reaches procurement: require two things in writing from the people who will use it, not the people who will approve it.</p>
+    <p>Run a priority test. What is the single most painful problem this solves for the people closest to the work? What is the real cost if nothing changes? What existing initiative stops so this one can succeed?</p>
+    <p>Add a one-page problem statement. What task is failing? How often? What does that failure cost? What would fixed look like from the perspective of the person doing the work, in their actual context?</p>
+    <p>Then map the tool to that reality. If the mapping requires assumptions that do not exist in the field, procurement stops.</p>
+    <p>A tool that solves the wrong problem efficiently is a faster way to stay stuck.</p>
+    <h2>Change Fatigue and Political Resistance</h2>
+    <p>The all-staff email arrives. Another transformation. Another platform. Another promise that this time it will be easier.</p>
+    <p>The field team reads it. Closes it. Opens the spreadsheet.</p>
+    <p>This is not resistance. It is memory.</p>
+    <p>They have been here before. A new system arrives. Work increases before it improves. The old system never fully disappears. The burden lands on the same people it always does. Six months later, the new system joins the graveyard of tools that were going to change everything.</p>
+    <p>It is like getting a new alarm clock every year because you keep sleeping through the morning. The problem was never the clock.</p>
+    <p>That memory is rational. It is also one of the most expensive things an organisation can afford to ignore.</p>
+    <p>Then there is the other kind of resistance. Quieter. More organised.</p>
+    <p>The resistance of people who have something to lose when work becomes visible and accountability becomes traceable.</p>
+    <p>Some of what looks like resistance to technology is actually resistance to transparency, and that kind does not show up in a survey. It shows up in slow adoption, missing data, and decisions that somehow keep travelling through the old channels.</p>
+    <p>This is a workload problem, a trust problem, or a power problem wearing the clothes of a training problem.</p>
+    <p>A transformative small c cut begins before launch: ask three things. How much change have you already absorbed this year? What would need to stop for this to work? Where do you expect the friction to come from, and why?</p>
+    <p>Then map who loses something when this succeeds — control, discretion, visibility, the informal authority that lives in knowing things others do not. Map how workflows shift and which roles absorb the friction when the transformation lands. Trace the supply chains, the approval paths, the informal dependencies that never appear on an org chart but carry the work. Those are the places the rollout will slow, stall, or quietly reverse. Build adoption time into the plan as a line item and name the things that will stop so this can start.</p>
+    <p>And when the first signal of trouble appears — slow uptake, workarounds emerging, data quality dropping, the informal system reasserting itself — treat it as information, not insubordination.</p>
+    <p>That signal is not a failure. It is the field telling the truth earlier.</p>
+    <p>The earliest signal is the cheapest problem to fix. The ones that arrive six months later have already become something expensive to change.</p>
+    <h2>You Automated the Wrong Process</h2>
+    <p>The procurement process was slow.</p>
+    <p>Three weeks from request to approval.</p>
+    <p>A month to close the payment.</p>
+    <p>Programme teams were frustrated.</p>
+    <p>Finance was in conflict with procurement.</p>
+    <p>And procurement kept asking for a procurement plan that only existed as an annex to the proposal.</p>
+    <p>Something had to change.</p>
+    <p>Everyone agreed.</p>
+    <p>So it was automated. Digital forms. Automated routing. Approval notifications. Status tracking. Real-time visibility into where every request sat in the chain.</p>
+    <p>The process that once took three weeks of emails and chasing now takes three weeks of automated emails and automated chasing.</p>
+    <p>The bottleneck was never the form. It was the review and the approval chain nobody had the authority, or the courage, to redesign.</p>
+    <p>Automation preserved it perfectly. And because it now lived inside a system, it started to feel permanent. Harder to challenge than the old process that lived in inboxes and could have been changed quietly on any Tuesday afternoon.</p>
+    <p>It is like paving a dirt road that still leads to the wrong place. The ride feels smoother. You still end up where you should not be.</p>
+    <p>Automation captures what exists. It scales it. It standardises it. If what exists is broken, automation makes it easier to repeat the dysfunction. If what exists is unnecessarily complex, the system makes that complexity look intentional.</p>
+    <p>The most common error in automating processes inside NGOs is optimising things that should not exist.</p>
+    <p>A small c cut here starts with requirements. Before anything is mapped, modelled, or built, question what the process is for. Not what it has always done. What it should do.</p>
+    <p>Then delete before you design. Remove every step that exists only just-in-case, only by habit, or only because no one ever challenged it. The just-in-case logic is where broken processes hide. It sounds like caution. It functions like friction.</p>
+    <p>Then do mapping and apply one test to each step: does it add protection, add value, or add delay? If it only adds delay, remove it. If the protection is real but the method is slow, redesign it. If approval sits at the wrong level, move it before you automate it.</p>
+    <p>Then, and only then, automate what remains.</p>
+    <h2>The Training Was Delivered. The Capability Did Not Stay.</h2>
+    <p>The training happened. The slides were polished. The attendance sheet was full. The pre-post form came back positive.</p>
+    <p>Two weeks later, the field team was back on WhatsApp, asking each other how to do the same task the training had already covered.</p>
+    <p>This is one of the quietest failures in digital transformation, and one of the most expensive ones to repeat.</p>
+    <p>NGOs say capacity building when they mean system orientation.</p>
+    <p>They say digital literacy when they mean compliance.</p>
+    <p>People are shown the platform, but not how to use it under pressure, recover when it fails, or adapt it to the context they actually work in.</p>
+    <p>The training was designed around the system, not the task. It assumed stable connectivity, strong English, low staff turnover, and enough continuity for one session to become practice. In many field offices, none of those conditions exist.</p>
+    <p>One person becomes the informal expert. Everyone else learns just enough to get through the day. When that person leaves, the office loses its operational memory. And the next person starts from zero, asking the same WhatsApp questions, making the same mistakes, and costing the same hours nobody ever counted.</p>
+    <p>This is not a learning problem. It is a design problem.</p>
+    <p>If the system is built in English but the working language is Arabic, French, or Spanish, capability weakens immediately. If the tool works at headquarters but fails on the device used in the field, learning collapses on first use. If training covers the ideal workflow but not the offline workaround, the common errors, and the recovery steps, what was built is not capability. It is dependence dressed as training.</p>
+    <p>The small c cut here is investment in people: stop treating capacity building as a rollout activity and start designing it as operational infrastructure.</p>
+    <p>Train to real tasks, not platform features. Measure learning three weeks later, three months later, not at the end of the session. Build training in the working language of the users. Include failure states, low connectivity scenarios, device limitations, and the workflows people actually use under pressure.</p>
+    <p>And require every rollout to leave behind three things in each office. One local super user. One plain language troubleshooting guide. One repeatable way to train the next person after turnover happens, because it will.</p>
+    <p>Here is another small c cut: invest in the community of practice. The WhatsApp group that already exists is your fastest support channel. Name it. Resource it. Let it do what it is already doing, but deliberately.</p>
+    <p>And here is one more: those hundreds of pages of user manuals that nobody reads and nobody can find, put them in a chatbot. Make it available in every language your teams work in, in every location they work from. The knowledge already exists. The small c cut is just making it reachable.</p>
+    <p>And invest in local knowledge sharing. Not headquarters to country. Not region to country. Within the same country, peer to peer, office to office. Build the conditions for that knowledge to travel sideways, not just down.</p>
+    <h2>The ERP Went Live. The Spreadsheet Came Back.</h2>
+    <p>Six months of implementation. Three months of parallel running. Weeks of training. Days of kickoff. One go-live. Two weeks of hypercare. A sign-off meeting.</p>
+    <p>And then, quietly, in a shared drive somewhere, a new Excel file. Named something that suggests it is temporary. It is not temporary. It is the real system now.</p>
+    <p>The ERP is where data goes to satisfy the audit. The spreadsheet is where the work gets done.</p>
+    <p>This is not resistance to change. This is the organisation telling the truth.</p>
+    <p>The ERP was designed around a model of how the organisation works that does not match how the organisation actually works.</p>
+    <p>The approval workflow assumed two levels of sign off. The organisation uses four. The budget structure assumed cost centres mapped to programmes. They map to donors. The reporting cadence assumed monthly closes. The field reality is whenever connectivity allows.</p>
+    <p>Each mismatch was worked around, customised around, or silently ignored. By go-live, the system had been bent enough to pass testing and not enough to be genuinely useful.</p>
+    <p>The spreadsheet returned because it was built by the people doing the work, for the actual work, with no budget and no consultant and no eighteen month implementation plan. It solved the real problem. The ERP solved the problem described in a requirements document two years ago by people describing an organisation that had since changed its donor base, lost ten key staff, and opened two new country offices.</p>
+    <p>The organisation did not fail the ERP. The ERP failed the organisation.</p>
+    <p>A logical small c cut starts before implementation: start with mapping every workaround across finance and operations. Not the official process. The actual one. Every exception, every manual step, every export to Excel. Those workarounds are not user failure. They are requirements the processes never captured. Build them into the design before implementation, not after go-live.</p>
+    <p>The distance between the official process and the actual one is where implementation fails.</p>
+    <p>Make vendors compete on simplicity. Before any demo, give each shortlisted vendor the same three tasks from the perspective of frontliner in low connectivity location: submit a request, submit a report offline, recover from an error without IT support. Score each on completion time, steps, and whether the tool holds under realistic conditions.</p>
+    <p>Do a small c cut on customisation: every request needs one justification: is this specific to how we work, or resistance to changing how we work? Customisation costs more than the invoice. It makes upgrades harder, turns developers into single points of failure, and leaves the organisation on an older version because upgrading would break everything built on top. The default answer is no. The burden of proof sits with the request.</p>
+    <p>A small c cut on scope: the system is for finance and operations. The moment it also carries project management, donor reporting, and results tracking, it becomes too complex to own, too slow to use, and too fragile to trust. Let each tool do what it was built to do and consider if you want the ERP to cover programme management as well.</p>
+    <p>A small c cut on connectivity: if the ERP cannot queue transactions, sync on reconnection, and allow data entry without loss, it is not built for the field. Test offline behaviour before signing. An ERP that requires stable internet is not built for where the work happens.</p>
+    <p>The most important reframe: an ERP is not an IT system. It is an organisational system that runs on software. The decisions it encodes, who approves what, what triggers a payment, what counts as a complete record, are organisational decisions, not technical ones.</p>
+    <p>A small governance c cut is to build ERP governance that outlasts the implementation. Not a steering committee or a board meeting quarterly at headquarters, but a small group who understand process, can read a workflow, and have enough authority to decide without escalating everything. Give them a mandate, a meeting rhythm, and the ability to say no. The system will drift without them. With them, it has a chance of staying owned.</p>
+    <p>In most failed ERP projects, the system worked exactly as designed. The problem was that the design had little to do with how the organisation actually functioned.</p>
+    <h2>The Field Team Collects. It Never Receives.</h2>
+    <p>Somebody fills in the form. Somebody resubmits when the format is wrong. Somebody carries the device to a place with no signal. Somebody collects the data, enters the data, and gets asked about the data. Then asked again.</p>
+    <p>That somebody is almost always the field team.</p>
+    <p>And the field team almost never sees the output.</p>
+    <p>The data travels from community to tablet to server to dashboard to donor report. At no point does it return to the person who collected it in a form that helps the front liners understand anything better, or make a different decision tomorrow.</p>
+    <p>Digital systems in NGOs were designed for upward reporting. Data flows toward the people with the least contact with the field work and away from the people with the most.</p>
+    <p>The field team carries the collection burden for a system that serves someone else's visibility. Because it does not serve them, they do not trust it. Because they do not trust it, the quality degrades.</p>
+    <p>This is extraction. Information taken from people who see no return from it. The sector has frameworks for community accountability. It has not yet applied them to its own data practices.</p>
+    <p>A small c cut starts with one question: what does the person collecting this data receive back from it? If the answer is nothing, redesign the output before mandating the input.</p>
+    <p>Every system should produce at least one output designed specifically for the field, something that makes the next visit, conversation, or decision more informed.</p>
+    <p>Data taken from people who see no return from it becomes data that cannot be trusted.</p>
+    <h2>The Data Was Never Clean</h2>
+    <p>The dashboard looks authoritative. The numbers update in real time. The visualisation is polished.</p>
+    <p>But three systems hold three versions of the same community record. The field team reported in one currency and the finance system converted at the wrong rate. Two country offices interpreted the same indicator differently for six months, and nobody caught it until the annual review.</p>
+    <p>The dashboard is presenting broken data beautifully. And because it looks authoritative, decisions are being made on it.</p>
+    <p>This is the data quality problem the sector avoids because it implicates everyone. The donor whose parallel reporting requirements created parallel data flows never designed to be compatible. The field team that filled in required fields with whatever kept the system from rejecting the submission.</p>
+    <p>Poor data does not become insight because the chart is beautiful. Automation scales it. AI amplifies it. A new platform migrates it.</p>
+    <p>The sector has invested heavily in making data visible. It has invested almost nothing in making data honest.</p>
+    <p>Here is the small c cut: before any new system is implemented, run an honesty audit on the single most important data set it will use. Not a technical audit. A human one. How was this data collected? By whom? Under what pressure? In which language? What happened when the real number did not match the expected one?</p>
+    <p>Map every point where the data could have been shaped between reality and system entry. Present the findings before implementation begins. If the foundation cannot hold the weight of what is being built on it, fix the foundation first.</p>
+    <p>A system built on unacknowledged data problems does not produce insight. It produces the appearance of it.</p>
+    <h2>AI Is Already in the Building. Nobody Signed Off on It.</h2>
+    <p>The field coordinator finished the situation report at eleven at night. One hour of generator left. One hour of connectivity. Six programmes to summarise in a format designed for a reader he would never meet. He opened ChatGPT, drafted the report in twenty minutes, cleaned it, and submitted it.</p>
+    <p>A country director wearing three hats after a funding cut — responding to headquarters, the region, the donor, the cluster — she opened Microsoft Copilot, drafted the emails, and sent them.</p>
+    <p>A grants manager and a head of programmes sat down to write their third proposal in a month. Claude was open on the screen. It finalised paragraphs. It drafted the annexes.</p>
+    <p>Nobody at headquarters knows. Nobody approved it. Nobody has a policy for it. And the report was better than the one from the month before.</p>
+    <p>This is where AI lives in most NGOs right now. Not in the strategy document. Not in the carefully governed pilot. In the field coordinator's browser at eleven at night. In the country director summarising forty pages of partner reports before the next meeting. In the grants manager drafting annexes under time pressure in a context where English is her third language.</p>
+    <p>The people closest to the work have already decided. AI reduces friction. They are not waiting for permission.</p>
+    <p>Meanwhile, at headquarters, a different conversation is happening. Risk registers are being updated with AI liability clauses. Legal is drafting use policies. IT is blocking tools on the corporate network. A working group has been formed.</p>
+    <p>By the time the working group holds its first meeting, the field team is on its third AI tool.</p>
+    <p>This is not a technology gap. It is a governance gap dressed as caution.</p>
+    <p>The risks, hallucination, bias, data privacy, overreliance, are genuine. But the real exposure is not that AI is being used. It is that it is being used invisibly, unevenly, and without guidance, while leadership mistakes caution for control. The same coordinator drafting a situation report may also be summarising protection case notes or location data into a tool whose data residency and vendor jurisdiction nobody has reviewed. The friction she is solving is real. So is the exposure she is carrying alone. Governance that ignores either one is not governance. It is a policy document waiting for a crisis.</p>
+    <p>Most NGOs that have embraced AI have done so in fragments: a copilot here, a summarisation tool there, none connected to a workflow that matters, none attached to a decision that actually needed improving. That is not transformation. That is the same procurement mistake, only faster.</p>
+    <p>The small c cut is to govern what is already happening. Ask every team what AI tools they are currently using informally, and why. Map the real usage before writing the policy. Define three things in plain language: which uses are permitted now, which require review, and which are prohibited, and why, with data sensitivity and vendor jurisdiction as explicit criteria.</p>
+    <p>Then map where the work is genuinely slow, repetitive, or concentrated in too few people. Those are the places where generative AI can return real time to real work. Start there, not with the technology.</p>
+    <p>Find the people in your organisation who are already experimenting. Ask them what they are finding, including the failures. They are ahead of the policy. That is not a problem to manage. It is intelligence to use.</p>
+    <p>Engage vendors honestly. Ask hard questions about data residency, model training, and what happens to the information your teams input.</p>
+    <p>The goal is not to slow AI down. It is to make sure the people already using it have the guidance and protection they need to use it well.</p>
+    <p>AI is not arriving. It is already here. The question is whether the organisation will meet it.</p>
+    <h2>Protect the Data Like You Protect the People</h2>
+    <p>The data inside NGO systems is not ordinary operational data. It is displacement records, protection referrals, health histories, family cases, and the location of people in contexts where being found by the wrong actor is a matter of survival.</p>
+    <p>Most of it was collected with a promise. That it would be used to help the person it came from. That promise was made honestly. The system holding it was procured without asking what happens when the context changes. When a government falls. When a conflict actor gains access. When a vendor is acquired and the data moves with it.</p>
+    <p>In a commercial context, a breach is a reputational problem.</p>
+    <p>In a humanitarian context, it can be a protection crisis.</p>
+    <p>In an AI context, it is a prompt entered once, processed somewhere, stored by someone, and impossible to fully recall.</p>
+    <p>In a conflict context, it is a name, a location, a vulnerability that was never meant to leave the room.</p>
+    <p>That is not a legal distinction. It is the difference between a fine and a life.</p>
+    <p>A necessary small c cut is to slow down long enough to ask the questions that should have come first. Before any system holding sensitive data goes live, answer five questions: What is the worst realistic harm to the person described by this data if it is exposed? Who maintains the data controls? Where does the data go after collection, and who can access it beyond the programme team? What happens if the programme closes or the vendor stops supporting the product? Does that person know, in plain language, what their data will be used for and what rights they have?</p>
+    <p>If those questions cannot be answered before go-live, the system is not ready.</p>
+    <p>The people whose information fills these systems are not users or customers. They are people in acute vulnerability who trusted the organisation with information that could protect them or expose them.</p>
+    <p>That is not a data governance question. It is a moral one.</p>
+    <h2>Support That Does Not Reach the Field</h2>
+    <p>The ticket was submitted Monday.</p>
+    <p>The auto reply promised three to five business days.</p>
+    <p>The follow up went unanswered.</p>
+    <p>The escalation needed approval.</p>
+    <p>The person who usually fixes it was on leave.</p>
+    <p>For the field team, this can mean services delayed, data lost, or a decision made blind.</p>
+    <p>Eventually, the field team stops reporting the problem. Not because it is fixed. Because experience has taught them that reporting changes nothing. They absorb the failure quietly, build the workaround silently, carry the cost invisibly.</p>
+    <p>That silence is one of the most expensive data points in the system. It never appears on the dashboard.</p>
+    <p>What headquarters sees: low ticket volume, acceptable uptime, stable adoption rates.</p>
+    <p>What is actually happening: the field has stopped asking for help and started managing around the system entirely. That is not resilience. It is substitution.</p>
+    <p>A practical small c cut starts before deployment: before any system goes live in a field location, answer four questions. Who fixes it locally when it breaks? What is the escalation path if they cannot? What is the maximum acceptable downtime? What manual backup holds the work while the fix is underway?</p>
+    <p>If those answers do not exist before deployment, the system is not ready.</p>
+    <p>A second small c cut begins after go-live: measure one thing that never appears in IT reports, how often field teams fix a problem without logging a ticket. That number is not a sign of capability. It is a sign of abandonment.</p>
+    <p>A tool without support is not an asset. It is a liability the field team will carry quietly until they stop carrying it.</p>
+    <h2>Digital Transformation Is Investment, Not Cost</h2>
+    <p>Ask most NGO finance teams where digital transformation sits in the budget.</p>
+    <p>The answer is the same.</p>
+    <p>Overhead. Indirect cost. Something to defend and cut when funding gets tight.</p>
+    <p>That framing shapes everything. Digital roles stay junior. Systems stay underfunded. Maintenance contracts shrink. Training disappears. Critical infrastructure runs on the cheapest option available, supported by teams too small for contexts too complex to absorb failure when it comes.</p>
+    <p>Then the failure comes. A breach. A system outage during emergency response. An ERP that cannot handle scale-up. A payment system that collapses mid cycle.</p>
+    <p>Each failure has a cost. Not the technology cost. The recovery cost. Emergency support. Programme delays. Donor repair. Staff time pulled from work that needed doing.</p>
+    <p>Money cut from digital infrastructure does not disappear. It relocates into the crisis it was supposed to prevent.</p>
+    <p>There is a constraint that rarely appears in the digital strategy document: cybersecurity. Not as a policy annex. As a structural vulnerability the sector has systematically underfunded.</p>
+    <p>Digital infrastructure and cybersecurity sit in indirect costs, negotiated and reduced. Every new system is another surface. Every new integration is another exposure. A new risk.</p>
+    <p>Field teams entering data into multiple platforms and staff using personal devices because the organisation cannot provision them properly are not operational gaps. They are cybersecurity risks the funding model created.</p>
+    <p>Digital transformation cannot deliver security inside a system funded to produce exposure. That is not a technology problem. It is a structural one. Naming it is the first cut.</p>
+    <p>A strategic small c cut is to calculate what the last serious digital failure actually cost: system recovery, programme disruption, staff time diverted, partner and donor repair, and data risk exposure. Put that number next to the annual maintenance budget. Then take both to the next budget discussion.</p>
+    <p>Do the same for cybersecurity. What would a phishing attack cost? A single compromised account can expose community data, freeze operations, and trigger a donor notification process that takes months to close.</p>
+    <p>The gap between those numbers makes the argument on its own.</p>
+    <p>Digital infrastructure is not the price of modernity. It is the price of continuity. Fund it like you mean it.</p>
+    <h2>Your Digital Lead Has No Seat at the Table</h2>
+    <p>Investment approved. Budget allocated. A digital transformation lead hired for AI, ERP, automation, or whatever initiative made it into the strategy document. The mandate looked promising.</p>
+    <p>But the budget sat elsewhere. Process change needed approval from each function. Adoption depended on country directors and regional buy in. Legacy systems could only be retired through a governance group that met every couple of months.</p>
+    <p>The strategy appeared in leadership presentations and disappeared in daily operations. The digital lead wrote a good plan and a polished lessons learned report but nothing moved.</p>
+    <p>This is not a hiring problem. It is a governance problem handed to a person and called a role.</p>
+    <p>It is like appointing someone to fix the plumbing and giving them a notepad instead of a wrench.</p>
+    <p>Digital transformation is organisational change that happens to involve technology.</p>
+    <p>A leadership small c cut starts before hiring: answer three questions at leadership level. What exactly must change in the next two years that requires this role? What authority will this person have to mandate adoption across functions, not just influence it? What happens when a function refuses to implement an agreed change?</p>
+    <p>This role must work with the people who can mandate, not just recommend.</p>
+    <p>If those answers are weak, the organisation is not ready for the role.</p>
+    <p>The deeper small c cut is this: leadership cannot stop at the level of the individual, the team, or the organisation. It has to think at the level of the system. That means staying in the room when resistance appears. It means challenging what is broken instead of managing around it. It means naming what is not working and refusing to let bad habits hide behind process.</p>
+    <p>The digital lead needs to sit inside decision making, not alongside it. Not an advisory function others can take or leave. A voice with weight and the authority to use it.</p>
+    <p>A digital lead without authority is not leading transformation. They are recording its failure.</p>
+    <h2>What Digital Transformation Was Always For</h2>
+    <p>Digital transformation was meant to make work easier, not harder.</p>
+    <p>The community worker should finish a home visit, hit save, and immediately see something useful. The procurement officer should not be running an offline and online process at the same time, printing what the system should carry and chasing signatures that should be a click. The HR officer should be engaging with people, not managing a backlog of onboarding tickets and document requests because the process was never integrated. The finance officer should trace a variance in seconds, not days. The field team should spend less time feeding systems and more time with people.</p>
+    <p>That was the point.</p>
+    <p>Somewhere between that intention and the implementation plan, the technology became the point. The platform became the deliverable. The go-live became the measure of success. The dashboard became the proof of transformation.</p>
+    <p>Not all digital change belongs at the same level. Start with what helps one person work faster, with less friction. Build trust there. Build data discipline there. Build governance habits there. Then move to what reshapes a function. Then to what becomes embedded in the core processes the organisation cannot afford to lose control of. That sequence matters more than ambition.</p>
+    <p>Too many organisations want the language of transformation before the practice of readiness. Scale before trust. Big systems before small discipline. That is how digital transformation becomes another burden carried by the people it was supposed to help.</p>
+    <p>Small c cuts start with a different question, asked earlier, by different people, in a different room. Not what tool to procure, but what is actually broken, for whom, and how will we know it is fixed from the perspective of the person doing the work.</p>
+    <p>Ask that before procurement. During implementation. Six months after go-live.</p>
+    <p>Technology will only ever reflect the thinking behind it. And that thinking has to start with the people the mission was written for, before they became data points, before the field became a reporting unit, before the work became a dashboard.</p>
+    <p>First principles have not changed. Who we are accountable to. What problem we are fixing. What harm we refuse to cause. The digital part is detail.</p>
+    <p>The sector is not short of digital tools. It is not short of ambition. It is short of honest questions asked before buying them, and short of the investment that makes transformation innovative enough to matter, scalable enough to reach the field, and sustained enough to last.</p>
+  </article>
+
+  <div class="end">
+    <div class="row">Written by Ali Al Mokdad. First published on LinkedIn:
+      <a href="https://www.linkedin.com/pulse/rethinking-ngo-digital-transformation-small-c-cuts-ali-al-mokdad-hrsse/" rel="noopener" target="_blank">read and discuss it there</a>.</div>
+<div class="row">Before this: <a href="../risk-management/">Dear NGO: Your Risk Management Is the Risk — Fix It with Small c Cuts</a></div>
+  </div>
+
+  <a class="back" href="../../">Back to the ten plates</a>
+</main>
+</body>
+</html>
