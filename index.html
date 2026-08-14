@@ -21,7 +21,7 @@
 <meta property="og:locale" content="en">
 <meta property="og:url" content="https://smallccut.org/">
 <meta property="og:title" content="small c cut &middot; Ali Al Mokdad">
-<meta property="og:description" content="Quiet, strategic reductions that unlock real change over time. Nine small c cuts for NGO and INGO reform, each one a photograph from the work.">
+<meta property="og:description" content="Quiet, strategic reductions that unlock real change over time, for NGO and INGO reform.">
 <meta property="og:image" content="https://smallccut.org/assets/covers/overhead.jpg">
 <meta property="og:image:width" content="1600">
 <meta property="og:image:height" content="900">
@@ -331,6 +331,13 @@ a{color:inherit}
    yellow is not used here, because on this page yellow means one thing only,
    which is a plate in register. ── */
 .colophon{display:flex;align-items:center;gap:12px}
+/* SHARE. A printer lays a row of solid density patches along the edge of a sheet, which is
+   what the control strip already is. This is ONE LONG PATCH beneath that row, set to exactly
+   the combined width of the four so the two line up edge to edge, sharing their right margin.
+   It is drawn in the same knocked out ink and inverts on press like every other control here.
+   Phone only, and it sits at the very bottom of the sheet. */
+.share{display:none}
+.vis-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 .by{color:var(--ink);font-weight:600;letter-spacing:.13em;text-transform:uppercase;white-space:nowrap}
 .strip{display:flex}
 .strip a{
@@ -485,9 +492,9 @@ body[data-plate="none"] .stack{cursor:pointer}
      the millimetre scale is longer and its ten stops sit further apart, which is the whole
      problem with a 24px stop on a touch screen. The gap between arrow and rule tightens for
      the same reason. Three levels further down as well. */
-  .instr{padding-top:calc(var(--stepH) / 2 + 40px);
+  .instr{padding-top:calc(var(--stepH) / 2 + 34px);
     margin-left:-15px;margin-right:-15px;gap:6px}
-  .foot{padding-top:32px}      /* the four links, three levels lower again. The number looks
+  .foot{padding-top:24px}      /* the four links. The number looks
                                   small against the visible gap because the instrument carries
                                   its own scale labels below the arrows. */
   .ident{font-size:calc(var(--mm) * 1.125)}           /* top headline, one level bigger */
@@ -541,11 +548,27 @@ body[data-plate="none"] .stack{cursor:pointer}
    Written as ONE cascade at the end, on purpose. Setting it earlier meant a later broad
    phone block silently overrode every height tier and a 812 tall screen inherited the value
    meant for an 844, which scrolled by 19px. Height decides here, and nothing after can win. */
-@media (max-width:700px){ .sheet{padding-bottom:84px} }
-@media (max-width:700px) and (max-height:830px){ .sheet{padding-bottom:56px} }
-@media (max-width:700px) and (max-height:800px){ .sheet{padding-bottom:48px} }
-@media (max-width:700px) and (max-height:700px){ .sheet{padding-bottom:28px} }
-@media (max-width:700px) and (max-height:660px){ .sheet{padding-bottom:18px} }
+@media (max-width:700px){
+  .sheet{padding-bottom:18px}
+  .share{
+    --bg:var(--ink); --gl:var(--paper);
+    display:grid;place-items:center;margin-left:auto;margin-top:24px;
+    width:133px;height:44px;padding:0;
+    background:var(--bg);color:var(--gl);border:1px solid var(--ink);
+    font-family:'JetBrains Mono',ui-monospace,monospace;font-size:var(--mm);
+    letter-spacing:.16em;text-transform:uppercase;font-weight:600;cursor:pointer;
+    -webkit-tap-highlight-color:transparent;
+    transition:background-color 130ms linear}
+  .share:hover,.share:focus-visible,.share:active{--bg:var(--paper); --gl:var(--ink)}
+  .share:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+}
+/* the four patches are 44px wide under a coarse pointer and 34px otherwise, overlapping by
+   1px, so the bar matches at 4x44-3 and 4x34-3 exactly rather than approximately */
+@media (max-width:700px) and (hover:none) and (pointer:coarse){ .share{width:173px} }
+@media (max-width:700px) and (max-height:830px){ .sheet{padding-bottom:8px} .share{margin-top:12px} }
+@media (max-width:700px) and (max-height:800px){ .sheet{padding-bottom:8px} .share{margin-top:12px} }
+@media (max-width:700px) and (max-height:700px){ .sheet{padding-bottom:6px} .share{margin-top:8px;height:40px} }
+@media (max-width:700px) and (max-height:660px){ .sheet{padding-bottom:4px} .share{margin-top:6px;height:38px} }
 
 
 
@@ -1233,6 +1256,8 @@ html.js-on .nojs{display:none}
 
       </nav>
     </span>
+    <button class="share" id="share" type="button">Share</button>
+    <span class="vis-hidden" id="share-say" role="status" aria-live="polite"></span>
   </footer>
 
 </main>
@@ -1464,6 +1489,35 @@ html.js-on .nojs{display:none}
     }catch(e){}
   }
   capL.addEventListener('click',shutter);
+
+  /* SHARE. navigator.share opens the phone's own sheet, which is where WhatsApp, mail and
+     the rest already live, so nothing here reimplements a share menu. Where that API does
+     not exist the link is copied instead and the button says so, and where neither works the
+     button simply does nothing rather than lying about having shared. The confirmation is
+     announced through a live region as well as shown, so it is not a visual-only message.
+     The canonical url is shared, never the visitor's current one, so a stray query string
+     from a link they followed is never passed on. */
+  var shareBtn=d.getElementById('share'), shareSay=d.getElementById('share-say'), shareT=0;
+  function shareFlash(msg){
+    clearTimeout(shareT);
+    shareBtn.textContent=msg; shareSay.textContent=msg;
+    shareT=setTimeout(function(){ shareBtn.textContent='Share'; shareSay.textContent=''; },2200);
+  }
+  if(shareBtn) shareBtn.addEventListener('click',function(){
+    shutter();
+    var payload={title:'small c cut', text:'small c cut, by Ali Al Mokdad',
+                 url:'https://smallccut.org/'};
+    if(navigator.share){
+      navigator.share(payload).catch(function(){});   /* a cancelled share is not an error */
+      return;
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(payload.url).then(function(){ shareFlash('Link copied'); },
+                                                      function(){ shareFlash('Copy failed'); });
+      return;
+    }
+    shareFlash('smallccut.org');
+  });
 
   dial.addEventListener('pointerdown',cancelDemo);
   dial.addEventListener('input',function(){cancelDemo();go(parseInt(dial.value,10)||0);});
