@@ -342,7 +342,16 @@ a{color:inherit}
    instrument: positioned absolutely, so it never reflows the scale. */
 .index{position:absolute;left:0;right:0;top:0;height:0}
 .index a{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
-.index a:focus-visible{width:auto;height:auto;clip-path:none;left:0;top:-34px;
+/* The surfaced chip has to WRAP. It inherits white-space:nowrap from the rule above,
+   which is right while the link is a clipped 1x1 box and wrong the moment it opens:
+   measured at 390px, seven of the ten titles ran past the right edge, the longest by
+   42px, and at 360px by 72px. Body overflow-x is hidden, so nothing scrolled and
+   nothing looked broken; the end of the title and part of the focus ring were simply
+   cut off the screen, which is a keyboard user losing the thing they just focused.
+   It is also anchored by its BOTTOM rather than its top, so a title that now takes two
+   lines grows UPWARD into the empty field and never descends onto the scale. */
+.index a:focus-visible{width:auto;max-width:100%;height:auto;clip-path:none;
+  white-space:normal;left:0;top:auto;bottom:2px;
   background:var(--ink);color:var(--paper);padding:5px 9px;
   font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:.04em;
   outline:2px solid var(--ink);outline-offset:2px;z-index:6}
@@ -406,7 +415,10 @@ a{color:inherit}
 .strip .k{fill:var(--bg)}
 .strip .ks{fill:none;stroke:var(--bg);stroke-width:1.55;stroke-linecap:round}
 
-/* a finger needs more than 34px */
+/* A finger needs more than the 34px default, so a coarse pointer gets 44px. On a
+   phone the footer is deliberately smaller than this, driven by --cell in the final
+   cascade, which is an owner decision about how the foot should sit rather than an
+   oversight; the smallest tier is 30px, still above the 24px WCAG 2.2 AA floor. */
 @media (hover:none) and (pointer:coarse){
   .strip a{width:44px;height:44px}
   .strip svg{width:22px;height:22px}
@@ -1302,7 +1314,7 @@ html.js-on .nojs{display:none}
   </div>
 
   <footer class="foot">
-    <span class="colophon">
+    <div class="colophon">
       <span class="by">Ali Al Mokdad</span>
       <nav class="strip" aria-label="Ali Al Mokdad elsewhere">
 
@@ -1340,7 +1352,7 @@ html.js-on .nojs{display:none}
         </a>
 
       </nav>
-    </span>
+    </div>
     <button class="share" id="share" type="button">Share</button>
     <span class="vis-hidden" id="share-say" role="status" aria-live="polite"></span>
   </footer>
@@ -1484,7 +1496,15 @@ html.js-on .nojs{display:none}
      covers the swap entirely. Loaded once, then remembered.
      If the network fails the ghost simply stays, which is a degraded picture rather
      than a broken one. ── */
-  var fullDone = {};
+  var fullDone = {}, fullT = null;
+  /* Settle before fetching. Measured: sweeping the arrows through all ten plates takes
+     289ms, and firing on every plate passed through queued all ten photographs at once,
+     about 1.1MB, which took 45 seconds to clear on a slow connection. That is the exact
+     payload the ghost files removed from page load, arriving again by another door.
+     A plate is only worth its full photograph once someone has stopped on it. 260ms is
+     long enough to skip everything a sweep flies past and short enough to stay inside
+     the 820ms plate transition, so a deliberate step still resolves before it lands. */
+  function wantFull(i){ clearTimeout(fullT); fullT = setTimeout(function(){ bringFull(i); }, 260); }
   function bringFull(i){
     var img = plates[i] && plates[i].querySelector('img');
     if(!img) return;
@@ -1503,7 +1523,7 @@ html.js-on .nojs{display:none}
     for(i=0;i<plates.length;i++){
       plates[i].setAttribute('data-reg', i===cur?'1':(i===prev?'2':'0'));
     }
-    if(cur>=0) bringFull(cur);
+    if(cur>=0) wantFull(cur);
     /* the opening state: nothing corrected yet, so there is nothing to caption */
     if(cur<0){
       slugN.textContent='--';
@@ -1560,6 +1580,7 @@ html.js-on .nojs{display:none}
      autoplay policy requires, and the whole thing is wrapped so that a browser which
      refuses audio simply follows the link in silence. ── */
   var actx=null;
+  function resumeCtx(){ try{ var r=actx.resume(); if(r&&r.catch) r.catch(function(){}); }catch(e){} }
   /* ── FOUR VOICES ──────────────────────────────────────────────────────────────────
      Every sound here is synthesised at the moment it plays. No audio file is fetched,
      because the page's promise is no third party request and no extra weight, and that
@@ -1611,7 +1632,11 @@ html.js-on .nojs{display:none}
       abus=actx.createGain(); abus.gain.value=0.5;
       abus.connect(comp); comp.connect(actx.destination);
     }
-    if(actx.state==='suspended') actx.resume();
+    /* resume() is asynchronous, so the try/catch around this call cannot see a
+       rejection. A browser that refuses to resume would surface an unhandled
+       rejection in the console and the page would look broken when the only real
+       consequence is silence. */
+    if(actx.state==='suspended') resumeCtx();
     return actx;
   }
 
@@ -1765,7 +1790,7 @@ html.js-on .nojs{display:none}
   /* iOS suspends the context when the tab is hidden or a call comes in, and it does not
      resume itself, so the next tap would be silent without this */
   d.addEventListener('visibilitychange',function(){
-    if(!d.hidden && actx && actx.state==='suspended') actx.resume();
+    if(!d.hidden && actx && actx.state==='suspended') resumeCtx();
   });
 
   capL.addEventListener('click',function(){ snd('read'); });
@@ -1815,8 +1840,15 @@ html.js-on .nojs{display:none}
 
   /* The two steps. From the opening state, cur is -1, so next lands on plate 01 and
      prev clamps to it: either arrow gets a first time visitor moving. */
-  bPrev.addEventListener('click',function(){cancelDemo();snd('next');go(cur<0?0:cur-1);});
-  bNext.addEventListener('click',function(){cancelDemo();snd('next');go(cur+1);});
+  /* A step that says it has nowhere to go must actually have nowhere to go. aria-disabled
+     is a statement about the control, not a behaviour: the browser still fires the click.
+     Verified on the page before this guard existed: at the opening state the previous
+     arrow was greyed AND announced disabled, and clicking it still moved to plate 01; at
+     the last plate the next arrow was announced disabled, and clicking it moved nothing
+     but still played the sound. Announced state, drawn state and behaviour now agree. */
+  function atEnd(btn){ return btn.getAttribute('aria-disabled')==='true'; }
+  bPrev.addEventListener('click',function(){if(atEnd(bPrev))return;cancelDemo();snd('next');go(cur<0?0:cur-1);});
+  bNext.addEventListener('click',function(){if(atEnd(bNext))return;cancelDemo();snd('next');go(cur+1);});
 
   /* Clicking a plate brings it into register. There is no button, and the wheel is
      left alone so that the page can still be read and scrolled normally. */
