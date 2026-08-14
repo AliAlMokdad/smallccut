@@ -72,7 +72,12 @@ that relationship was measured rather than asserted.
 - The ten titles are exactly as published.
 - The ten opening lines are exact complete sentences from the published pieces, or from
   his own drafts for plate 01 and plate 10.
-- The ten quoted lines are exact sentences located in his drafts.
+- The quoted lines are exact sentences located in his drafts, with one stated exception.
+  Plate 10 reads “Starting from first principles. Optimization in small steps is what frees
+  an organization to take the big ones.” The second sentence is verbatim from his drafts,
+  where it follows “My take remains simple.” The opening four words are NOT from the drafts:
+  Ali wrote them for this plate on 14 August 2026, so they are his, just newly written rather
+  than quoted. Only the capital S was added, to match the sentence case every other quote uses.
 - One deliberate exception to keep in mind before “fixing” it. Plate 09 quotes
   “Technology isn’t the problem. Transformation is.”, which is verbatim his but comes
   from the STRATEGY draft, where it is a heading in capitals, not from the digital piece
