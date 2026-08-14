@@ -94,7 +94,13 @@ a:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
   .trim::before{top:6px;width:14px}.trim::after{left:6px;height:14px}
   .trim.tl{left:4px;top:4px}.trim.tr{right:4px;top:4px}
   .trim.bl{left:4px;bottom:4px}.trim.br{right:4px;bottom:4px}
-  .plate{margin-left:calc(var(--pad) * -1);margin-right:calc(var(--pad) * -1);border-left:0;border-right:0}
+  /* Portrait only, the same as the piece pages. In landscape the bleed rendered the
+     portrait 394px tall on a 390px screen, taller than the whole viewport. */
+  @media (orientation:portrait){
+    .plate{margin-left:calc(var(--pad) * -1);margin-right:calc(var(--pad) * -1);
+      border-left:0;border-right:0}
+  }
+  @media (orientation:landscape){ .plate{max-width:min(100%,88svh)} }
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
