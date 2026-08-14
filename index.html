@@ -555,7 +555,13 @@ body[data-plate="none"] .stack{cursor:pointer}
   .foot{padding-top:24px}      /* the four links. The number looks
                                   small against the visible gap because the instrument carries
                                   its own scale labels below the arrows. */
-  .ident{font-size:calc(var(--mm) * 1.125)}           /* top headline, one level bigger */
+  /* The nameplate. One level larger again, and lifted toward the top edge: at 30px of
+     sheet padding it was sitting lower than a masthead should on a screen this small.
+     The pull is 6px, which still leaves clear air under the top trim marks, whose
+     lowest point is 18px down. The C mark grows with the type so the lockup keeps its
+     proportion rather than the letters outrunning the symbol. */
+  .ident{font-size:calc(var(--mm) * 1.2656);margin-top:-6px}
+  .cmark{width:17px;height:17px}
   .epigraph .src{font-size:calc(var(--mm) / 1.266);margin-top:.35em}  /* name, two levels smaller */
 }
 
@@ -617,6 +623,35 @@ body[data-plate="none"] .stack{cursor:pointer}
 @media (max-width:700px) and (max-height:800px){ .sheet{padding-bottom:8px} .share{margin-top:12px} }
 @media (max-width:700px) and (max-height:700px){ .sheet{padding-bottom:6px} .share{margin-top:8px;height:40px} }
 @media (max-width:700px) and (max-height:660px){ .sheet{padding-bottom:4px} .share{margin-top:6px;height:38px} }
+
+/* ── THE FOOT, CENTRED AND TWO STEPS DOWN. Phone only.
+   The strip and the share bar were pinned to the right edge, inherited from the laptop
+   where they sit under a wide sheet and have a right margin to share. On a phone that
+   left the whole footer hanging off one side. Both are now centred on a single axis,
+   which is also the only arrangement that keeps them aligned with each other.
+   ONE VARIABLE drives both. The two have always had to satisfy width = 4 x cell - 3,
+   because the four patches overlap their borders by 1px and the bar is set to exactly
+   their combined width. Hand matching those two numbers is how that invariant gets
+   broken later, so the cell size is stated once and both read from it, and the short
+   screen tiers below only change that one value.
+   The SHARE label deliberately does NOT shrink with the bar. 11.5px is the mono floor
+   set for this page because uppercase at this tracking stops being readable below it;
+   two steps down would be 9.1px. The geometry yields, the legibility does not.
+   His name comes off the phone footer for the same reason it already came off below
+   390px: the attribution under the definition is always on screen, so the footer does
+   not need to repeat it, and without it the two controls centre cleanly. ── */
+@media (max-width:700px){
+  .foot{--cell:35px;align-items:center;justify-content:flex-end}
+  .by{display:none}
+  .colophon{width:100%;justify-content:center;gap:0}
+  .strip a{width:var(--cell);height:var(--cell)}
+  .strip svg{width:17px;height:17px}
+  .share{margin-left:0;margin-right:0;
+    height:var(--cell);width:calc(var(--cell) * 4 - 3px)}
+}
+/* The same two steps, held in proportion as the screen shortens. Only the cell changes. */
+@media (max-width:700px) and (max-height:700px){ .foot{--cell:32px} }
+@media (max-width:700px) and (max-height:660px){ .foot{--cell:30px} }
 
 
 
@@ -1136,15 +1171,15 @@ html.js-on .nojs{display:none}
   <div class="bed">
     <div class="stack" id="stack" data-moving="0">
       <figure class="plate" data-i="0" style="--ox:-3.1%;--oy:2.2%;--or:-.55deg"><img src="assets/covers/overhead.webp" alt="A lorry on a road, its tarpaulin load stacked far higher than the cab." width="1600" height="900" fetchpriority="high" decoding="async"></figure>
-      <figure class="plate" data-i="1" style="--ox:2.6%;--oy:-1.8%;--or:.42deg"><img src="assets/covers/hqefficiency.webp" alt="A man hauling an overloaded cart of scrap and firewood through mud by hand." width="1600" height="900" loading="lazy" decoding="async"></figure>
-      <figure class="plate" data-i="2" style="--ox:-2.2%;--oy:-2.6%;--or:.6deg"><img src="assets/covers/hqstrategy.webp" alt="A yellow taxi driving down a street with a full air conditioning duct unit strapped to its roof." width="1600" height="900" loading="lazy" decoding="async"></figure>
-      <figure class="plate" data-i="3" style="--ox:3.3%;--oy:2.7%;--or:-.36deg"><img src="assets/covers/transformation.webp" alt="A queue of identical white four wheel drives on a dirt road with headlights on." width="1600" height="900" loading="lazy" decoding="async"></figure>
-      <figure class="plate" data-i="4" style="--ox:-2.7%;--oy:1.4%;--or:.5deg"><img src="assets/covers/regional.webp" alt="A row of near identical tents pitched in a dry open field." width="1600" height="900" loading="lazy" decoding="async"></figure>
-      <figure class="plate" data-i="5" style="--ox:1.9%;--oy:3.1%;--or:-.62deg"><img src="assets/covers/fundraising.webp" alt="A market stall crammed from floor to ceiling with stacked notebooks and books." width="1600" height="900" loading="lazy" decoding="async"></figure>
-      <figure class="plate" data-i="6" style="--ox:-3.4%;--oy:-1.2%;--or:-.28deg"><img src="assets/covers/advocacy.webp" alt="A decommissioned rocket shell mounted on legs and reused as a bench." width="1600" height="900" loading="lazy" decoding="async"></figure>
-      <figure class="plate" data-i="7" style="--ox:2.2%;--oy:-2.9%;--or:.34deg"><img src="assets/covers/risk.webp" alt="A collapsed bridge sinking into a calm green river, framed by dark trees." width="1600" height="900" loading="lazy" decoding="async"></figure>
-      <figure class="plate" data-i="8" style="--ox:-1.8%;--oy:2.9%;--or:.58deg"><img src="assets/covers/digital.webp" alt="A wall papered with printed and hand drawn Like and dislike buttons and smiley faces." width="1600" height="900" loading="lazy" decoding="async"></figure>
-      <figure class="plate" data-i="9" style="--ox:3.1%;--oy:-2.3%;--or:-.48deg"><img src="assets/ali-al-mokdad.webp" alt="Ali Al Mokdad in red glasses and a checked jacket, photographed against a bright yellow perforated wall." width="1500" height="844" loading="lazy" decoding="async"></figure>
+      <figure class="plate" data-i="1" style="--ox:2.6%;--oy:-1.8%;--or:.42deg"><img src="assets/covers/ghost/hqefficiency.webp" data-full="assets/covers/hqefficiency.webp" alt="A man hauling an overloaded cart of scrap and firewood through mud by hand." width="1600" height="900" decoding="async"></figure>
+      <figure class="plate" data-i="2" style="--ox:-2.2%;--oy:-2.6%;--or:.6deg"><img src="assets/covers/ghost/hqstrategy.webp" data-full="assets/covers/hqstrategy.webp" alt="A yellow taxi driving down a street with a full air conditioning duct unit strapped to its roof." width="1600" height="900" decoding="async"></figure>
+      <figure class="plate" data-i="3" style="--ox:3.3%;--oy:2.7%;--or:-.36deg"><img src="assets/covers/ghost/transformation.webp" data-full="assets/covers/transformation.webp" alt="A queue of identical white four wheel drives on a dirt road with headlights on." width="1600" height="900" decoding="async"></figure>
+      <figure class="plate" data-i="4" style="--ox:-2.7%;--oy:1.4%;--or:.5deg"><img src="assets/covers/ghost/regional.webp" data-full="assets/covers/regional.webp" alt="A row of near identical tents pitched in a dry open field." width="1600" height="900" decoding="async"></figure>
+      <figure class="plate" data-i="5" style="--ox:1.9%;--oy:3.1%;--or:-.62deg"><img src="assets/covers/ghost/fundraising.webp" data-full="assets/covers/fundraising.webp" alt="A market stall crammed from floor to ceiling with stacked notebooks and books." width="1600" height="900" decoding="async"></figure>
+      <figure class="plate" data-i="6" style="--ox:-3.4%;--oy:-1.2%;--or:-.28deg"><img src="assets/covers/ghost/advocacy.webp" data-full="assets/covers/advocacy.webp" alt="A decommissioned rocket shell mounted on legs and reused as a bench." width="1600" height="900" decoding="async"></figure>
+      <figure class="plate" data-i="7" style="--ox:2.2%;--oy:-2.9%;--or:.34deg"><img src="assets/covers/ghost/risk.webp" data-full="assets/covers/risk.webp" alt="A collapsed bridge sinking into a calm green river, framed by dark trees." width="1600" height="900" decoding="async"></figure>
+      <figure class="plate" data-i="8" style="--ox:-1.8%;--oy:2.9%;--or:.58deg"><img src="assets/covers/ghost/digital.webp" data-full="assets/covers/digital.webp" alt="A wall papered with printed and hand drawn Like and dislike buttons and smiley faces." width="1600" height="900" decoding="async"></figure>
+      <figure class="plate" data-i="9" style="--ox:3.1%;--oy:-2.3%;--or:-.48deg"><img src="assets/covers/ghost/ali-al-mokdad.webp" data-full="assets/ali-al-mokdad.webp" alt="Ali Al Mokdad in red glasses and a checked jacket, photographed against a bright yellow perforated wall." width="1500" height="844" decoding="async"></figure>
       <!-- Nine cuts, then the practitioner behind them. The tenth is NOT a cut, so it
            drops the counter rather than claiming to be "small c cut 10 of 10". -->
       <p class="slug" id="slug"><i id="slug-lab">small c cut</i><span class="num"> <span id="slug-n">01</span></span><i class="num">/</i><span class="num">09</span></p>
@@ -1436,11 +1471,39 @@ html.js-on .nojs{display:none}
     idx.appendChild(afrag);
   })();
 
+  /* ── The photograph arrives when the plate does, and not before.
+     Nine of the ten plates are only ever seen as a 22% wash through grayscale(1),
+     which is what the ghost files already are: greyscale, 420px wide, about 12KB
+     each instead of 106 to 282KB of full colour. loading="lazy" could never have
+     saved this, because every plate sits inside the viewport from the first frame,
+     so the browser was correct to fetch all ten immediately. The weight had to come
+     out of the files, not out of the loading attribute.
+     A plate swaps to its real photograph the moment it comes into register. The new
+     file is decoded off screen first and only assigned once it is ready, so the
+     visible image never blanks or pops; the plate is mid transition for 820ms, which
+     covers the swap entirely. Loaded once, then remembered.
+     If the network fails the ghost simply stays, which is a degraded picture rather
+     than a broken one. ── */
+  var fullDone = {};
+  function bringFull(i){
+    var img = plates[i] && plates[i].querySelector('img');
+    if(!img) return;
+    var full = img.getAttribute('data-full');
+    if(!full || fullDone[i]) return;
+    fullDone[i] = true;
+    var pre = new Image();
+    pre.decoding = 'async';
+    pre.onload = function(){ img.src = full; img.removeAttribute('data-full'); };
+    pre.onerror = function(){ fullDone[i] = false; };   /* let a later visit retry */
+    pre.src = full;
+  }
+
   function render(){
     var i;
     for(i=0;i<plates.length;i++){
       plates[i].setAttribute('data-reg', i===cur?'1':(i===prev?'2':'0'));
     }
+    if(cur>=0) bringFull(cur);
     /* the opening state: nothing corrected yet, so there is nothing to caption */
     if(cur<0){
       slugN.textContent='--';
