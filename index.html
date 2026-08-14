@@ -173,7 +173,9 @@ a{color:inherit}
    plate to black. The sheet is paper because that is what overprinting needs:
    plates laid out of register on a light sheet darken where they overlap. */
 .stack{position:relative;aspect-ratio:16/9;background:var(--paper);overflow:hidden;
-  isolation:isolate;border:1px solid var(--ink);cursor:ew-resize}
+  /* pointer, not ew-resize: the sheet is no longer a scrub surface. The scale is the thing
+     you drag, and the photograph is now a way into the piece. */
+  isolation:isolate;border:1px solid var(--ink);cursor:pointer}
 .stack::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:40;
   background:
     linear-gradient(to right,rgba(238,197,28,.55) 0 1px,transparent 1px) 50% 0/100% 100% no-repeat,
@@ -394,6 +396,12 @@ body[data-plate="none"] .stack{cursor:pointer}
   .step svg{width:19px;height:19px}
   .foot{justify-content:space-between}
   .colophon{gap:10px;width:100%;justify-content:space-between}
+  /* The topic eyebrow, "01 OVERHEAD", "08 RISK MANAGEMENT", comes off the phone. On a
+     small screen it is a third line of label above a title that already names the subject,
+     and the number is already carried by the slug stamp on the photograph and by the
+     needle on the scale. Two fewer words and one fewer line, with nothing lost: the
+     eyebrow stays on wider screens where there is room for it. */
+  .cap-i{display:none}
 }
 @media (max-width:560px){
   /* ten numerals will not fit across a phone, so the scale keeps its first,
@@ -1362,6 +1370,20 @@ html.js-on .nojs{display:none}
      left alone so that the page can still be read and scrolled normally. */
   stack.addEventListener('click',function(e){
     cancelDemo();
+    /* Once a plate is in register the photograph IS that piece, so clicking it opens the
+       piece: new tab, noopener, and the same shutter click the read link makes, so the two
+       ways of opening an article behave identically.
+       Before anything is in register there is no piece to open yet, so the first click
+       still starts the instrument, which is exactly what the opening state invites.
+       This is a POINTER convenience, deliberately not a second link in the accessibility
+       tree: the real "read the piece" link sits directly beneath and is the keyboard and
+       screen reader path to the same url, so nothing is lost and nothing is announced
+       twice. */
+    if(cur>=0){
+      shutter();
+      window.open(P[cur].u,'_blank','noopener');
+      return;
+    }
     var r=stack.getBoundingClientRect();
     /* The ||0 is not decoration. If the box is transiently zero width and the click x
        lands exactly on its left edge, this is 0/0, which is NaN, and NaN passes straight
