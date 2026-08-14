@@ -74,19 +74,16 @@ h1{font-size:clamp(2rem,6vw,3.9rem);line-height:1;letter-spacing:-.03em;font-wei
 .body{max-width:34em}
 .body p{font-size:clamp(1.02rem,1.5vw,1.12rem);line-height:1.62;margin:0 0 1.15em}
 
-.where{margin-top:38px;padding-top:20px;border-top:1px solid var(--ink);max-width:34em}
-.where h2{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:var(--mm);
-  text-transform:uppercase;letter-spacing:.13em;font-weight:600;margin:0 0 14px;color:var(--shade)}
-.where ul{list-style:none;margin:0;padding:0;display:grid;gap:2px}
-.where a{display:flex;justify-content:space-between;gap:16px;align-items:baseline;
-  font-family:'JetBrains Mono',ui-monospace,monospace;font-size:var(--mm);letter-spacing:.04em;
-  text-decoration:none;padding:9px 0;border-bottom:1px solid var(--hair);min-height:44px}
-.where a span:last-child{color:var(--shade)}
-.where a:hover span:last-child,.where a:focus-visible span:last-child{color:var(--ink)}
 a:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
-.back{display:inline-block;margin-top:34px;font-family:'JetBrains Mono',ui-monospace,monospace;
-  font-size:var(--mm);letter-spacing:.1em;text-transform:uppercase;border-bottom:1px solid var(--ink);
-  text-decoration:none;padding-bottom:2px}
+/* One control, drawn like the share bar on the front: a solid patch of ink that inverts
+   on press, so the page ends on the same language the rest of the sheet speaks. */
+.back{--bg:var(--ink);--gl:var(--paper);
+  display:grid;place-items:center;margin-top:38px;width:max-content;min-width:200px;
+  height:44px;padding:0 22px;background:var(--bg);color:var(--gl);border:1px solid var(--ink);
+  font-family:'JetBrains Mono',ui-monospace,monospace;font-size:var(--mm);
+  letter-spacing:.16em;text-transform:uppercase;font-weight:600;text-decoration:none;
+  -webkit-tap-highlight-color:transparent;transition:background-color 130ms linear}
+.back:hover,.back:focus-visible,.back:active{--bg:var(--paper);--gl:var(--ink)}
 
 @media (max-width:820px){
   .bed{grid-template-columns:1fr;gap:26px}
@@ -128,18 +125,8 @@ a:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
     <p>Ali Al Mokdad also serves as a strategic advisor on the boards of both international and national organizations. He is committed to inclusive leadership, organizational well-being, and the responsible integration of artificial intelligence and technology to enhance humanitarian action, strengthen public systems, and drive innovation at scale.</p>
       </div>
 
-      <section class="where">
-        <h2>Elsewhere</h2>
-        <ul>
-      <li><a href="https://alialmokdad.com" rel="noopener me" target="_blank"><span>alialmokdad.com</span><span>Personal site</span></a></li>
-      <li><a href="https://alialmokdadleadership.com/" rel="noopener me" target="_blank"><span>alialmokdadleadership.com</span><span>Leadership profile</span></a></li>
-      <li><a href="https://www.linkedin.com/in/ali-al-mokdad" rel="noopener me" target="_blank"><span>LinkedIn</span><span>ali-al-mokdad</span></a></li>
-      <li><a href="https://x.com/AlMokdadAli1" rel="noopener me" target="_blank"><span>X</span><span>@AlMokdadAli1</span></a></li>
-      <li><a href="https://www.youtube.com/@AliAlMokdadInsights" rel="noopener me" target="_blank"><span>YouTube</span><span>@AliAlMokdadInsights</span></a></li>
-        </ul>
-      </section>
 
-      <a class="back" href="../">Back to the ten plates</a>
+      <a class="back" href="../">Back to small c cut</a>
     </div>
   </div>
 </main>
