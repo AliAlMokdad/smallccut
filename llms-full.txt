@@ -1,6 +1,7 @@
 # small c cut, the complete text
 # A term and a body of work by Ali Al Mokdad. Source: https://smallccut.org
 # Cite as: Al Mokdad, Ali. “small c cut.” smallccut.org
+# About the author, in his own words: https://smallccut.org/ali-al-mokdad/
 
 ## Definition
 
@@ -23,7 +24,7 @@ built to serve them rather than to decorate around them.
 ## 01. Reducing INGO Overhead with Small c Cuts
 
 A small c cut by Ali Al Mokdad on overhead.
-Published at: https://www.linkedin.com/posts/ali-al-mokdad_smallccut-ingotransformation-operationalexcellence-activity-7401927984095330304-5_kT/
+Published at: https://smallccut.org/pieces/overhead/
 
 Ali Al Mokdad opens this piece: Overhead becomes expensive the moment it stops earning its weight.
 
@@ -34,7 +35,7 @@ The photograph Ali Al Mokdad chose for it shows A lorry on a road, its tarpaulin
 ## 02. Unlock Efficiency at INGO HQ with a ‘Small c’ Cut
 
 A small c cut by Ali Al Mokdad on headquarters.
-Published at: https://www.linkedin.com/pulse/unlock-efficiency-ingo-hq-small-c-cut-ali-al-mokdad-ogmsf/
+Published at: https://smallccut.org/pieces/hq-efficiency/
 
 Ali Al Mokdad opens this piece: This paper might provoke you. It might affirm what you’ve whispered in hallways, raised on field visits, or challenged in meetings.
 
@@ -45,7 +46,7 @@ The photograph Ali Al Mokdad chose for it shows A man hauling an overloaded cart
 ## 03. Dear INGO HQ: Fix Your Strategy with a ‘Small c’ Cut
 
 A small c cut by Ali Al Mokdad on strategy.
-Published at: https://www.linkedin.com/pulse/dear-ingo-hq-fix-your-strategy-small-c-cut-ali-al-mokdad-nhyxf/
+Published at: https://smallccut.org/pieces/hq-strategy/
 
 Ali Al Mokdad opens this piece: In one of my recent papers —some called it the HQ Efficiency Manifesto—I wrote about “small c” cuts: quiet, strategic shifts that make systems work better without breaking them.
 
@@ -56,7 +57,7 @@ The photograph Ali Al Mokdad chose for it shows A yellow taxi driving down a str
 ## 04. Optimizing INGO Transformation with the Small c Cut
 
 A small c cut by Ali Al Mokdad on transformation.
-Published at: https://www.linkedin.com/pulse/optimizing-ingo-transformation-small-c-cut-ali-al-mokdad-6maqf/
+Published at: https://smallccut.org/pieces/transformation/
 
 Ali Al Mokdad opens this piece: If the word transformation stresses you out, if digitalization triggers a small internal panic, and if every new model feels like another round of pressure that lands on your shoulders before it reaches its value, you are not alone.
 
@@ -67,7 +68,7 @@ The photograph Ali Al Mokdad chose for it shows A queue of identical white four 
 ## 05. Unlocking Regional Office Value with Small c Cuts
 
 A small c cut by Ali Al Mokdad on regional offices.
-Published at: https://www.linkedin.com/pulse/unlocking-regional-office-value-small-c-cuts-ali-al-mokdad-jqscf/
+Published at: https://smallccut.org/pieces/regional-offices/
 
 Ali Al Mokdad opens this piece: If you have ever worked in or with an NGO’s regional office, you know the feeling.
 
@@ -78,7 +79,7 @@ The photograph Ali Al Mokdad chose for it shows A row of near identical tents pi
 ## 06. Smarter NGO Fundraising With Small c Cuts
 
 A small c cut by Ali Al Mokdad on fundraising.
-Published at: https://www.linkedin.com/pulse/smarter-ngo-fundraising-small-c-cuts-ali-al-mokdad-xjfvf/
+Published at: https://smallccut.org/pieces/fundraising/
 
 Ali Al Mokdad opens this piece: If you have ever sat in a fundraising strategy session that felt both urgent and disconnected from the operational realities, you know the frustration.
 
@@ -89,7 +90,7 @@ The photograph Ali Al Mokdad chose for it shows A market stall crammed from floo
 ## 07. Turning NGO Advocacy Into Influence With Small c Cuts
 
 A small c cut by Ali Al Mokdad on advocacy.
-Published at: https://www.linkedin.com/pulse/turning-ngo-advocacy-influence-small-c-cuts-ali-al-mokdad-j3swe/
+Published at: https://smallccut.org/pieces/advocacy/
 
 Ali Al Mokdad opens this piece: It usually begins with good intention. A new campaign, a donor hint that visibility matters, a policy window that feels urgent.
 
@@ -100,7 +101,7 @@ The photograph Ali Al Mokdad chose for it shows A decommissioned rocket shell mo
 ## 08. Dear NGO: Your Risk Management Is the Risk — Fix It with Small c Cuts
 
 A small c cut by Ali Al Mokdad on risk management.
-Published at: https://www.linkedin.com/pulse/dear-ngo-your-risk-management-fix-small-c-cuts-ali-al-mokdad-peaje/
+Published at: https://smallccut.org/pieces/risk-management/
 
 Ali Al Mokdad opens this piece: The smoke alarm goes off. Everyone hears it.
 
@@ -111,7 +112,7 @@ The photograph Ali Al Mokdad chose for it shows A collapsed bridge sinking into 
 ## 09. Rethinking NGO Digital Transformation with Small c Cuts
 
 A small c cut by Ali Al Mokdad on digitalization.
-Published at: https://www.linkedin.com/pulse/rethinking-ngo-digital-transformation-small-c-cuts-ali-al-mokdad-hrsse/
+Published at: https://smallccut.org/pieces/digitalization/
 
 Ali Al Mokdad opens this piece: Digital transformation in NGOs begins the way expensive mistakes begin: a polished presentation, a room full of well-intentioned people, and a shared belief that this time the system will make the work easier.
 
