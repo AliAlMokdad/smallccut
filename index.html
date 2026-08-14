@@ -1447,55 +1447,231 @@ html.js-on .nojs{display:none}
 
   /* ── The click on "read the piece". Synthesised here rather than shipped as an audio
      file, so the page keeps its promise of no third party request and no extra weight.
-     It is a mechanical shutter, not a UI beep: a short filtered noise transient for the
+     Each is a mechanism, not a UI beep: a short filtered noise transient for the
      snap, plus a very short low sine for the body. 55ms total and quiet, which also
      means it finishes before the new tab takes focus and suspends the context.
      The AudioContext is created on the click itself, which is the user gesture the
      autoplay policy requires, and the whole thing is wrapped so that a browser which
      refuses audio simply follows the link in silence. ── */
   var actx=null;
-  function shutter(){
+  /* ── FOUR VOICES ──────────────────────────────────────────────────────────────────
+     Every sound here is synthesised at the moment it plays. No audio file is fetched,
+     because the page's promise is no third party request and no extra weight, and that
+     promise does not get an exception for sound.
+
+     They are one family, not four unrelated noises: a single contact model, fast attack
+     into exponential decay through a band limit, separated by OCTAVE rather than by genre.
+     Root G, so 196 / 784 / 1568 / 3136 Hz.
+
+       link   3136 Hz    45 ms   a densitometer head touching a patch and releasing
+       next   1568 Hz    70 ms   a ball detent seating in the next scale position
+       share   784 Hz   190 ms   the edge of a sheet releasing from the one beneath it
+       read    196 Hz   320 ms   a plate meeting stock under pressure
+
+     No two durations are within 25 ms, which is what lets them tell apart in use rather
+     than only when compared side by side.
+
+     The thing that nearly went wrong: the share and read metaphors, drawn literally, live
+     at 200 to 800 Hz, which a phone speaker rolls off almost entirely. They would have
+     sounded correct on a laptop and been inaudible in the hand. So each one's audible
+     evidence sits between 700 Hz and 3.5 kHz, and the low weight is a bonus for anyone on
+     headphones rather than the carrier of the sound. ───────────────────────────────── */
+  var abus=null, alast={}, avoices=0;
+
+  function audio(){
+    var AC=window.AudioContext||window.webkitAudioContext;
+    if(!AC) return null;
+    /* a closed context stays truthy, so caching blindly would silently kill sound for the
+       rest of the visit */
+    if(actx && actx.state==='closed'){ actx=null; abus=null; }
+    if(!actx){
+      actx=new AC();
+      /* iOS unlocks only after something has actually been played, so feed it one silent
+         frame the first time rather than waiting for the first real sound to be swallowed */
+      try{
+        var b=actx.createBuffer(1,1,actx.sampleRate), q=actx.createBufferSource();
+        q.buffer=b; q.connect(actx.destination); q.start(0);
+        /* release it once it has played: a one frame source that stays connected is a node
+           held for the whole visit for no reason, and it showed up as exactly that in the
+           node-count check */
+        q.onended=function(){ try{ q.disconnect(); }catch(e){} };
+        setTimeout(function(){ try{ q.disconnect(); }catch(e){} },200);
+      }catch(e){}
+      /* one shared bus: the compressor keeps four voices at four levels from ever stacking
+         into something startling, which matters most on a phone at full volume */
+      var comp=actx.createDynamicsCompressor();
+      comp.threshold.value=-18; comp.knee.value=6; comp.ratio.value=4;
+      comp.attack.value=0.003; comp.release.value=0.1;
+      abus=actx.createGain(); abus.gain.value=0.5;
+      abus.connect(comp); comp.connect(actx.destination);
+    }
+    if(actx.state==='suspended') actx.resume();
+    return actx;
+  }
+
+  /* Release a chain once it has finished. onended alone is not enough: it only fires if the
+     context reaches the stop time, and switching tab mid sound suspends it, which would
+     leave the nodes wired to the bus forever. The timer catches that case, and disconnecting
+     twice is harmless. */
+  function arelease(nodes, ms){
+    var done=false;
+    var go=function(){ if(done) return; done=true; avoices=Math.max(0,avoices-1);
+      for(var i=0;i<nodes.length;i++){ try{ nodes[i].disconnect(); }catch(e){} } };
+    return { go:go, arm:function(src){ if(src) src.onended=go; setTimeout(go, ms+400); } };
+  }
+
+  function noiseBuf(ac, secs, curve){
+    var n=Math.max(1,Math.floor(ac.sampleRate*secs)), b=ac.createBuffer(1,n,ac.sampleRate),
+        d=b.getChannelData(0);
+    for(var i=0;i<n;i++){ d[i]=(Math.random()*2-1)*Math.pow(1-i/n, curve); }
+    return b;
+  }
+
+  /* A gate, not a mute button. Sound fires only in direct answer to a tap, never on its own,
+     so it is feedback rather than autoplay. prefers-reduced-motion is honoured as a
+     conservative proxy: it is the only standardised signal in this area, since the proposed
+     prefers-reduced-sound was never shipped, and someone who has asked for less movement is
+     not likely to want a machine clicking at them either. */
+  function acan(name){
+    if(reduced) return false;
+    var t=Date.now();
+    if(alast[name] && t-alast[name] < 60) return false;   /* no machine gunning */
+    if(avoices > 6) return false;                          /* hard cap on live voices */
+    alast[name]=t;
+    return true;
+  }
+
+  /* ±1.5 percent, so stepping quickly through the plates does not sound like one sample
+     retriggering, which is the tell that gives a synthetic click away */
+  function adet(hz){ return hz*(1+(Math.random()-0.5)*0.03); }
+
+  function snd(name){
     try{
-      var AC=window.AudioContext||window.webkitAudioContext;
-      if(!AC) return;
-      /* A closed context stays truthy, so caching it blindly would silently kill the
-         sound for the rest of the visit. Replace it if the browser has closed it. */
-      if(actx && actx.state==='closed') actx=null;
-      actx=actx||new AC();
-      if(actx.state==='suspended') actx.resume();
-      var t=actx.currentTime, sr=actx.sampleRate;
+      if(!acan(name)) return;
+      var ac=audio(); if(!ac) return;
+      /* never schedule at currentTime exactly: the graph can start mid sample and put a
+         click on the front of the sound */
+      var t=ac.currentTime+0.005;
+      avoices++;
 
-      var n=Math.floor(sr*0.05), buf=actx.createBuffer(1,n,sr), ch=buf.getChannelData(0);
-      for(var i=0;i<n;i++){ ch[i]=(Math.random()*2-1)*Math.pow(1-i/n,9); }
-      var src=actx.createBufferSource(); src.buffer=buf;
-      var bp=actx.createBiquadFilter(); bp.type='bandpass'; bp.frequency.value=2400; bp.Q.value=0.9;
-      var g1=actx.createGain(); g1.gain.setValueAtTime(0.16,t);
-      src.connect(bp); bp.connect(g1); g1.connect(actx.destination);
-      src.start(t); src.stop(t+0.05);
-      /* Disconnect when the source ends. A source and an oscillator release themselves
-         once stopped, but the filter and the gains stay wired to the destination, so
-         without this every click would leave three more live nodes in the graph. */
-      var drop1=function(){ try{ src.disconnect(); bp.disconnect(); g1.disconnect(); }catch(e){} };
-      src.onended=drop1;
-      /* onended only fires if the context actually advances to the stop time. If it gets
-         suspended first (switching tab mid sound is the ordinary way), the nodes would sit
-         attached. This timer releases them regardless, and disconnect twice is harmless. */
-      setTimeout(drop1,400);
+      if(name==='link'){
+        /* densitometer contact: instant, dry, the brightest and shortest of the four */
+        var src=ac.createBufferSource(); src.buffer=noiseBuf(ac,0.045,6);
+        var bp=ac.createBiquadFilter(); bp.type='bandpass';
+        bp.frequency.value=adet(3136); bp.Q.value=7;
+        var hp=ac.createBiquadFilter(); hp.type='highpass'; hp.frequency.value=900;
+        var g=ac.createGain();
+        g.gain.setValueAtTime(0.0001,t);
+        g.gain.exponentialRampToValueAtTime(0.05,t+0.001);
+        g.gain.exponentialRampToValueAtTime(0.0001,t+0.038);
+        var o=ac.createOscillator(); o.type='triangle'; o.frequency.value=adet(1568);
+        var og=ac.createGain();
+        og.gain.setValueAtTime(0.0001,t);
+        og.gain.exponentialRampToValueAtTime(0.018,t+0.001);
+        og.gain.exponentialRampToValueAtTime(0.0001,t+0.026);
+        src.connect(bp); bp.connect(g); g.connect(hp); hp.connect(abus);
+        o.connect(og); og.connect(hp);
+        src.start(t); src.stop(t+0.045); o.start(t); o.stop(t+0.03);
+        var r1=arelease([src,bp,hp,g,o,og],45); r1.arm(src);
 
-      var osc=actx.createOscillator(); osc.type='sine'; osc.frequency.setValueAtTime(190,t);
-      osc.frequency.exponentialRampToValueAtTime(90,t+0.045);
-      var g2=actx.createGain();
-      g2.gain.setValueAtTime(0.0001,t);
-      g2.gain.exponentialRampToValueAtTime(0.09,t+0.006);
-      g2.gain.exponentialRampToValueAtTime(0.0001,t+0.05);
-      osc.connect(g2); g2.connect(actx.destination);
-      osc.start(t); osc.stop(t+0.055);
-      var drop2=function(){ try{ osc.disconnect(); g2.disconnect(); }catch(e){} };
-      osc.onended=drop2;
-      setTimeout(drop2,400);
+      }else if(name==='next'){
+        /* a ball detent seating: two separated transients, the only sound here with a gap
+           in the middle, which is what makes a step feel like a step */
+        var s2=ac.createBufferSource(); s2.buffer=noiseBuf(ac,0.02,5);
+        var b2=ac.createBiquadFilter(); b2.type='bandpass';
+        b2.frequency.value=adet(1568); b2.Q.value=9;
+        var g2=ac.createGain();
+        g2.gain.setValueAtTime(0.0001,t);
+        g2.gain.exponentialRampToValueAtTime(0.06,t+0.0005);
+        g2.gain.exponentialRampToValueAtTime(0.0001,t+0.018);
+        var o2=ac.createOscillator(); o2.type='sine';
+        o2.frequency.setValueAtTime(adet(784),t+0.034);
+        o2.frequency.setTargetAtTime(784*0.9965,t+0.034,0.008);   /* it seats, 6 cents down */
+        var og2=ac.createGain();
+        og2.gain.setValueAtTime(0.0001,t+0.034);
+        og2.gain.exponentialRampToValueAtTime(0.03,t+0.036);
+        og2.gain.exponentialRampToValueAtTime(0.0001,t+0.062);
+        s2.connect(b2); b2.connect(g2); g2.connect(abus);
+        o2.connect(og2); og2.connect(abus);
+        s2.start(t); s2.stop(t+0.02); o2.start(t+0.034); o2.stop(t+0.07);
+        var r2=arelease([s2,b2,g2,o2,og2],70); r2.arm(o2);
+
+      }else if(name==='share'){
+        /* a sheet releasing from the one beneath it: friction, then air. The only voice with
+           no transient at all. Its 22 ms swell IS its signature, so it can never be mistaken
+           for the others even at low volume. */
+        var s3=ac.createBufferSource(); s3.buffer=noiseBuf(ac,0.2,1.4);
+        var lp=ac.createBiquadFilter(); lp.type='lowpass'; lp.frequency.value=4000;
+        var b3=ac.createBiquadFilter(); b3.type='bandpass'; b3.Q.value=1.6;
+        b3.frequency.setValueAtTime(adet(2400),t);
+        b3.frequency.exponentialRampToValueAtTime(900,t+0.16);   /* the edge coming free */
+        var g3=ac.createGain();
+        g3.gain.setValueAtTime(0.0001,t);
+        g3.gain.linearRampToValueAtTime(0.045,t+0.022);           /* the swell, not a click */
+        g3.gain.exponentialRampToValueAtTime(0.0001,t+0.18);
+        var o3=ac.createOscillator(); o3.type='sine'; o3.frequency.value=adet(784);
+        var og3=ac.createGain();
+        og3.gain.setValueAtTime(0.0001,t+0.09);
+        og3.gain.exponentialRampToValueAtTime(0.008,t+0.1);
+        og3.gain.exponentialRampToValueAtTime(0.0001,t+0.15);
+        s3.connect(lp); lp.connect(b3); b3.connect(g3); g3.connect(abus);
+        o3.connect(og3); og3.connect(abus);
+        s3.start(t); s3.stop(t+0.2); o3.start(t+0.09); o3.stop(t+0.16);
+        var r3=arelease([s3,lp,b3,g3,o3,og3],190); r3.arm(s3);
+
+      }else{
+        /* read: a plate meeting stock. The heaviest action on the page gets the only weight
+           below 400 Hz and the only ringing tail, so it reads as consequential without ever
+           being loud. */
+        var s4=ac.createBufferSource(); s4.buffer=noiseBuf(ac,0.06,4);
+        var b4=ac.createBiquadFilter(); b4.type='bandpass';
+        b4.frequency.value=adet(780); b4.Q.value=3;
+        var g4=ac.createGain();
+        g4.gain.setValueAtTime(0.0001,t);
+        g4.gain.exponentialRampToValueAtTime(0.04,t+0.001);
+        g4.gain.exponentialRampToValueAtTime(0.0001,t+0.055);
+        var ring=ac.createBiquadFilter(); ring.type='peaking';
+        ring.frequency.value=1568; ring.Q.value=12; ring.gain.value=18;
+        var rg=ac.createGain();
+        rg.gain.setValueAtTime(0.0001,t);
+        rg.gain.exponentialRampToValueAtTime(0.012,t+0.004);
+        rg.gain.exponentialRampToValueAtTime(0.0001,t+0.24);
+        var lo=ac.createOscillator(); lo.type='sine';
+        lo.frequency.setValueAtTime(adet(196),t);
+        lo.frequency.linearRampToValueAtTime(192,t+0.12);
+        var lo2=ac.createOscillator(); lo2.type='sine'; lo2.frequency.value=adet(392);
+        var lg=ac.createGain();
+        lg.gain.setValueAtTime(0.0001,t);
+        lg.gain.exponentialRampToValueAtTime(0.09,t+0.003);
+        lg.gain.exponentialRampToValueAtTime(0.0001,t+0.3);
+        var lg2=ac.createGain(); lg2.gain.value=0.4;
+        s4.connect(b4); b4.connect(g4); g4.connect(abus);
+        b4.connect(ring); ring.connect(rg); rg.connect(abus);
+        lo.connect(lg); lg.connect(abus);
+        lo2.connect(lg2); lg2.connect(lg);
+        s4.start(t); s4.stop(t+0.06);
+        lo.start(t); lo.stop(t+0.32); lo2.start(t); lo2.stop(t+0.32);
+        var r4=arelease([s4,b4,g4,ring,rg,lo,lg,lo2,lg2],320); r4.arm(lo);
+      }
     }catch(e){}
   }
-  capL.addEventListener('click',shutter);
+
+  /* iOS suspends the context when the tab is hidden or a call comes in, and it does not
+     resume itself, so the next tap would be silent without this */
+  d.addEventListener('visibilitychange',function(){
+    if(!d.hidden && actx && actx.state==='suspended') actx.resume();
+  });
+
+  capL.addEventListener('click',function(){ snd('read'); });
+
+  /* The four tiles are density patches, so they get the densitometer contact. One delegated
+     listener on the strip rather than four bindings: fewer listeners, and it keeps working if
+     a tile is ever added or reordered. They are target=_blank, so the page survives the click
+     and the sound is never cut off mid transient by a navigation. */
+  var stripEl=d.querySelector('.strip');
+  if(stripEl) stripEl.addEventListener('click',function(e){
+    if(e.target && e.target.closest && e.target.closest('a')) snd('link');
+  });
 
   /* SHARE. navigator.share opens the phone's own sheet, which is where WhatsApp, mail and
      the rest already live, so nothing here reimplements a share menu. Where that API does
@@ -1511,7 +1687,7 @@ html.js-on .nojs{display:none}
     shareT=setTimeout(function(){ shareBtn.textContent='Share'; shareSay.textContent=''; },2200);
   }
   if(shareBtn) shareBtn.addEventListener('click',function(){
-    shutter();
+    snd('share');
     var payload={title:'small c cut', text:'small c cut, by Ali Al Mokdad',
                  url:'https://smallccut.org/'};
     if(navigator.share){
@@ -1527,12 +1703,14 @@ html.js-on .nojs{display:none}
   });
 
   dial.addEventListener('pointerdown',cancelDemo);
-  dial.addEventListener('input',function(){cancelDemo();go(parseInt(dial.value,10)||0);});
+  /* dragging the scale ratchets: the 60ms retrigger guard turns a continuous drag into a
+     detent per stop, which is what a real millimetre scale does under the thumb */
+  dial.addEventListener('input',function(){cancelDemo();snd('next');go(parseInt(dial.value,10)||0);});
 
   /* The two steps. From the opening state, cur is -1, so next lands on plate 01 and
      prev clamps to it: either arrow gets a first time visitor moving. */
-  bPrev.addEventListener('click',function(){cancelDemo();go(cur<0?0:cur-1);});
-  bNext.addEventListener('click',function(){cancelDemo();go(cur+1);});
+  bPrev.addEventListener('click',function(){cancelDemo();snd('next');go(cur<0?0:cur-1);});
+  bNext.addEventListener('click',function(){cancelDemo();snd('next');go(cur+1);});
 
   /* Clicking a plate brings it into register. There is no button, and the wheel is
      left alone so that the page can still be read and scrolled normally. */
@@ -1576,7 +1754,7 @@ html.js-on .nojs{display:none}
     if(now()-swipedAt < 500) return;         /* that click belongs to a swipe */
     cancelDemo();
     /* Once a plate is in register the photograph IS that piece, so clicking it opens the
-       piece: new tab, noopener, and the same shutter click the read link makes, so the two
+       piece: new tab, noopener, and the same read voice the link makes, so the two
        ways of opening an article behave identically.
        Before anything is in register there is no piece to open yet, so the first click
        still starts the instrument, which is exactly what the opening state invites.
@@ -1585,7 +1763,7 @@ html.js-on .nojs{display:none}
        screen reader path to the same url, so nothing is lost and nothing is announced
        twice. */
     if(cur>=0){
-      shutter();
+      snd('read');
       window.open(P[cur].u,'_blank','noopener');
       return;
     }
