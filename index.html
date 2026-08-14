@@ -396,6 +396,26 @@ body[data-plate="none"] .stack{cursor:pointer}
   .step svg{width:19px;height:19px}
   .foot{justify-content:space-between}
   .colophon{gap:10px;width:100%;justify-content:space-between}
+  /* PHONE INVARIANT: 390 / (16/9) = 219px is the hard ceiling on the photograph, and the
+     photographs are never cropped, because each is a joke that needs its whole frame. So the
+     phone page does not fill the screen and must not pretend to: it ends where its content
+     ends. A gap in the MIDDLE of the composition is the thing to avoid, not trailing margin. */
+
+  /* The read link was the ONE element measured as failing the touch guideline: 138x19,
+     against 44x44 for both the arrows and the control strip. The hit area is expanded with
+     a pseudo element rather than padding, so the underline stays tight to the words and
+     nothing on screen moves. */
+  .stack{touch-action:pan-y}
+  .cap-l{position:relative}
+  .cap-l::before{content:"";position:absolute;left:0;right:0;top:50%;height:44px;
+    transform:translateY(-50%)}
+
+  /* The quoted line comes off the phone, as asked. On a small screen the plate is the
+     photograph and its title; the line belongs to the piece, one tap away. It stays in full
+     on wider screens, in the no-JS block and in both llms corpora, so nothing leaves the
+     record. */
+  .cap-q{display:none}
+
   /* The topic eyebrow, "01 OVERHEAD", "08 RISK MANAGEMENT", comes off the phone. On a
      small screen it is a third line of label above a title that already names the subject,
      and the number is already carried by the slug stamp on the photograph and by the
@@ -436,7 +456,9 @@ body[data-plate="none"] .stack{cursor:pointer}
 @media (max-width:700px) and (max-height:700px){
   .sheet{padding:26px;padding-bottom:22px;gap:6px}
   .epigraph{font-size:1rem;line-height:1.28;margin-top:2px}
-  .epigraph .src{display:none}
+  /* his name STAYS here even on the shortest phones: with the quoted line gone this
+     attribution is the only place it appears on a phone at all */
+  .epigraph .src{font-size:calc(var(--mm) - 1px);margin-top:.35em}
   .cap-i{margin-bottom:.5em}
   .cap-q{font-size:1.16rem;line-height:1.22;margin:.42em 0 .7em}
   .stack{margin-left:-26px;margin-right:-26px}
@@ -1368,7 +1390,44 @@ html.js-on .nojs{display:none}
 
   /* Clicking a plate brings it into register. There is no button, and the wheel is
      left alone so that the page can still be read and scrolled normally. */
+  /* Swipe. Ten plates were reachable only by two arrows and a ruler whose stops sit 24px
+     apart on a 390px screen, which is below any sane touch target. Listeners are passive, so
+     scrolling is never blocked. A swipe must be deliberate: 40px of travel, more horizontal
+     than vertical, finished inside 700ms. Anything else stays a tap and opens the piece.
+     The synthetic click that follows a swipe is suppressed by TIMESTAMP, not by a boolean
+     latch. A latch that never gets cleared, which happens whenever that click does not
+     arrive, silently swallows the next genuine tap; a time window cannot stick. */
+  /* performance.now() rather than event.timeStamp: the two are not guaranteed to share an
+     epoch across event types, and comparing them can silently mis-measure the window. */
+  var now=function(){ return (window.performance&&performance.now)?performance.now():Date.now(); };
+  var swipedAt=-1e9;
+  (function(){
+    var x0=null,y0=null,t0=0,far=false;
+    stack.addEventListener('touchstart',function(e){
+      if(e.touches.length!==1){ x0=null; return; }
+      x0=e.touches[0].clientX; y0=e.touches[0].clientY; t0=now(); far=false;
+    },{passive:true});
+    stack.addEventListener('touchmove',function(e){
+      if(x0===null||e.touches.length!==1) return;
+      var dx=e.touches[0].clientX-x0, dy=e.touches[0].clientY-y0;
+      if(Math.abs(dx)>12&&Math.abs(dx)>Math.abs(dy)) far=true;
+    },{passive:true});
+    stack.addEventListener('touchend',function(e){
+      if(x0===null) return;
+      var t=e.changedTouches[0], dx=t.clientX-x0, dy=t.clientY-y0;
+      if(far&&Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy)*1.4&&(now()-t0)<700){
+        swipedAt=now(); cancelDemo();
+        go(cur<0?0:(dx<0?cur+1:cur-1));
+      }
+      x0=null;
+    },{passive:true});
+    /* a cancelled touch (a call, a notification, the system taking over) must not leave a
+       half measured gesture behind that the next touch completes into a phantom swipe */
+    stack.addEventListener('touchcancel',function(){ x0=null; far=false; },{passive:true});
+  })();
+
   stack.addEventListener('click',function(e){
+    if(now()-swipedAt < 500) return;         /* that click belongs to a swipe */
     cancelDemo();
     /* Once a plate is in register the photograph IS that piece, so clicking it opens the
        piece: new tab, noopener, and the same shutter click the read link makes, so the two
